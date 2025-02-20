@@ -50,7 +50,7 @@
         android:textAlignment="center"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
-        app:fontFamily="@font/rubik_mono_one"
+        app:fontFamily="@font/poppins_thin"
         app:fontWeight="1"
         app:shadowColor="@color/MPink"
         app:shadowRadius="20dp"
