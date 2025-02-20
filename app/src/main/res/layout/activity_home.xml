@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home"
+    android:textAlignment="center"
+    tools:context=".HomeActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <views.MButton
+            android:id="@+id/btnProfile"
+            android:layout_width="92dp"
+            android:layout_height="94dp"
+            android:contentDescription="@string/profile_button"
+            android:layout_alignParentStart="true"
+            app:backColor="#4189A6"
+            app:borderColor="@color/MBrown"
+            app:borderWidth="10dp"
+            app:imageBackground="@drawable/avatar1"
+            app:imageScale="0.9"
+            app:cornerRadius="10dp"
+            />
+        <views.MButton
+            android:id="@+id/btnSettings"
+            android:layout_width="65dp"
+            android:layout_height="68dp"
+            android:contentDescription="@string/settings_button"
+            android:foreground="@drawable/settings"
+            android:foregroundGravity="center|fill"
+            app:backColor="#00000000"
+            app:cornerRadius="10dp"
+            app:shadowColor="#00000000"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <!-- Play Button in the Center -->
+    <views.MButton
+        android:id="@+id/btnPlay"
+        android:layout_width="267dp"
+        android:layout_height="99dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/play_button"
+        android:textAlignment="center"
+        app:backColor="@color/MYellow"
+        app:cornerRadius="50dp"
+        app:fontFamily="@font/rubik_mono_one"
+        app:fontWeight="1"
+        app:shadowColor="@color/MPink"
+        app:shadowRadius="20dp"
+        app:text="PLAY"
+        app:textColor="#FFFFFF"
+        app:textSize="30sp" />
+
+    <!-- Bottom Bar -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true" >
+
+        <View
+            android:id="@+id/HorizontalB"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:background="#2B5460"
+            android:layout_gravity="bottom"/>
+
+        <views.MButton
+            android:id="@+id/homeButton"
+            android:layout_width="143dp"
+            android:layout_height="130dp"
+            android:contentDescription="@string/home_button"
+            app:imageBackground="@drawable/homebutton"
+            app:imageScale="1.1"
+            app:backHeightScale="0.8"
+            app:backVerticalOffset="1"
+            app:backColor="@color/MBlue"
+            android:layout_gravity="center|bottom"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/indoors"
+    tools:context=".SettingsActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp" >
+        <views.MTextView
+            android:id="@+id/tvSettings"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="@string/profile"
+            android:textAlignment="center"
+            android:textColor="@color/MWhite"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:fontFamily="@font/rubik_mono_one"
+            app:gradientDirection="topToBottom"
+            app:startColor="@color/MGreen"
+            app:endColor="@color/MBluishGreen"
+            >
+        </views.MTextView>
+
+        <views.MButton
+            android:id="@+id/btnExit"
+            android:layout_width="74dp"
+            android:layout_height="71dp"
+            android:padding="100dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            app:imageBackground="@drawable/exit"
+            app:backColor="@color/transparent"
+            app:borderColor="@color/MBrown"
+            app:borderWidth="5dp"
+            app:cornerRadius="90dp"
+            app:imageScale="0.8" />
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/MBrown"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/bg_rounded_rect"
+        android:orientation="horizontal">
+        <views.MButton
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="30dp"
+            app:imageScale="0.9"
+            app:backColor="#4189A6"
+            app:imageBackground="@drawable/avatar1"
+            app:borderWidth="10dp"
+            app:cornerRadius="10dp"
+            app:borderColor="@color/MBrown"/>
+
+        <views.MTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/rubik_mono_one"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textColor="@color/MBWhite"
+            android:textSize="15sp"
+            app:endColor="@color/transparent"
+            app:startColor="@color/transparent"/>
+
+        <views.MTextView
+            android:layout_width="103dp"
+            android:layout_height="95dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="55dp"
+            android:fontFamily="@font/rubik_mono_one"
+            android:gravity="center"
+            android:text="@string/lvl"
+            android:textColor="@color/MBWhite"
+            android:textSize="15sp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="10"
+            app:cornerRadius="300dp"
+            app:endColor="@color/MLightGreen"
+            app:startColor="@color/MBluishGreen"
+            app:gradientDirection="topToBottom"
+            app:borderWidth="6dp"
+            app:borderColor="@color/MBrown"/>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/MBrown" />
+
+        <views.MTextView
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/rubik_mono_one"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="10"
+            android:text="@string/achievements"
+            android:gravity="center"
+            android:textColor="@color/MBWhite"
+            android:textSize="25sp"
+            app:borderColor="@color/MBrown"
+            app:borderWidth="5dp"
+            app:endColor="@color/MLightGreen"
+            app:gradientDirection="topToBottom"
+            app:startColor="@color/MBluishGreen" />
+    </FrameLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:padding="16dp"
+        android:background="@drawable/bg_rounded_rect"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <!-- First Item -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="46dp"
+                android:layout_height="62dp"
+                android:background="@drawable/award"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Achievement1"
+                android:textColor="@color/MYellow"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:background="@color/MBWhite"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="46dp"
+                android:layout_height="62dp"
+                android:background="@drawable/energy" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Achievement2"
+                android:textColor="@color/MYellow"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:background="@color/MBWhite"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="46dp"
+                android:layout_height="62dp"
+                android:background="@drawable/time"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Achievement3"
+                android:textColor="@color/MYellow"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:background="@color/MBWhite"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="58dp"
+                android:layout_height="54dp"
+                android:background="@drawable/coin"
+                android:scaleType="centerInside"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Achievement4"
+                android:textColor="@color/MYellow"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:background="@color/MBWhite"/>
+        </LinearLayout>
+    </GridLayout>
+</LinearLayout>

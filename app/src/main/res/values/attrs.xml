@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common attributes that can be shared across custom views -->
+    <attr name="borderColor" format="color" />
+    <attr name="borderWidth" format="dimension" />
+    <attr name="cornerRadius" format="dimension" />
+    <attr name="shadowRadius" format="dimension" />
+    <attr name="shadowDx" format="dimension" />
+    <attr name="shadowDy" format="dimension" />
+    <attr name="shadowColor" format="color" />
+    <attr name="gradientDirection" format="enum">
+        <enum name="leftToRight" value="0" />
+        <enum name="topToBottom" value="1" />
+        <enum name="diagonal" value="2" />
+        <enum name="angle" value="3" />
+    </attr>
+    <attr name="gradientAngle" format="float" />
+
+    <!-- MButton specific attributes -->
+    <declare-styleable name="MButton">
+        <attr name="backColor" format="color" />
+        <attr name="cornerRadius" />
+        <attr name="shadowRadius" />
+        <attr name="shadowDx" />
+        <attr name="shadowDy" />
+        <attr name="shadowColor" />
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="fontWeight" format="integer" />
+        <attr name="backWidthScale" format="float"/>
+        <attr name="backHeightScale" format="float"/>
+        <attr name="backHorizontalOffset" format="float"/>
+        <attr name="backVerticalOffset" format="float"/>
+        <attr name="borderColor" />
+        <attr name="borderWidth" />
+        <attr name="imageBackground" format="reference" />
+        <attr name="imageScale" format="float" />
+        <attr name="gradientColors" format="reference" />
+        <attr name="gradientOrientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="pressedAlpha" format="float" />
+        <attr name="fontFamily" format="string" />
+        <attr name="textStyle">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+            <enum name="bold_italic" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <!-- Profile button attributes -->
+    <declare-styleable name="ProfileButton">
+        <attr name="frameImage" format="reference" />
+        <attr name="contentImage" format="reference" />
+        <attr name="contentScale" format="float" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
+    <!-- MTextView attributes -->
+    <declare-styleable name="MTextView">
+        <attr name="startColor" format="color" />
+        <attr name="endColor" format="color" />
+        <attr name="borderColor" />
+        <attr name="borderWidth" />
+        <attr name="cornerRadius" />
+        <attr name="gradientDirection" />
+        <attr name="gradientAngle" />
+    </declare-styleable>
+</resources>
