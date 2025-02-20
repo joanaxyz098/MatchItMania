@@ -15,6 +15,8 @@
     <string name="achievements">Achievements</string>
     <string name="johndoe_gmail_com">johndoe@gmail.com</string>
     <string name="password">Password</string>
-    <string name="login">LogIn</string>
     <string name="passwordhint">***************</string>
+    <string name="done">Done</string>
+    <string name="registerMsg">Don\'t have an account? REGISTER</string>
+    <string name="email">Email</string>
 </resources>

@@ -20,9 +20,9 @@ class MTextView @JvmOverloads constructor(
     ) : androidx.appcompat.widget.AppCompatTextView(context, attrs, defStyleAttr) {
         private var borderColor = Color.BLACK
         private var borderWidth = 0f
-        private var startColor = Color.BLUE
-        private var endColor = Color.RED
-        private var cornerRadius = 20f
+        private var startColor = Color.TRANSPARENT
+        private var endColor = Color.TRANSPARENT
+        private var cornerRadius = 0f
 
         private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val gradientPaint = Paint(Paint.ANTI_ALIAS_FLAG)

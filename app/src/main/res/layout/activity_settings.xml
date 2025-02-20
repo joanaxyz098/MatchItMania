@@ -58,7 +58,7 @@
                 android:textSize="15sp" />
 
             <views.MButton
-                android:id="@+id/playButton"
+                android:id="@+id/btnLogIn"
                 android:layout_width="249dp"
                 android:layout_height="73dp"
                 android:contentDescription="@string/log_in"
@@ -68,6 +68,8 @@
                 app:fontWeight="1"
                 app:shadowColor="@color/MBluishGreen"
                 app:shadowRadius="10dp"
+                app:borderColor="@color/MBrown"
+                app:borderWidth="2dp"
                 app:text="Log In"
                 app:textColor="#FFFFFF"
                 app:textSize="30sp" />

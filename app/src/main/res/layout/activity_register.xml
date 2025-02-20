@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <views.MTextView
-        android:id="@+id/tvUsername"
+        android:id="@+id/tvEmail"
         android:layout_width="95dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
@@ -28,51 +28,14 @@
         android:textSize="20sp"
         app:borderColor="@color/MBrown"
         app:borderWidth="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etUsername"
+        app:layout_constraintBottom_toBottomOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/etUsername"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="180dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="212dp"
-        android:background="@color/MLightGreen"
-        android:gravity="center_vertical|start"
-        android:hint="@string/johndoe_gmail_com"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toEndOf="@+id/tvUsername"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="180dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:background="@color/MLightGreen"
-        android:gravity="center_vertical|start"
-        android:hint="@string/passwordhint"
-        android:inputType="textPassword"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toEndOf="@+id/tvPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+        app:layout_constraintTop_toTopOf="@+id/etEmail"
+        app:layout_constraintVertical_bias="1.0" />
 
     <views.MTextView
         android:id="@+id/tvPassword"
-        android:layout_width="94dp"
+        android:layout_width="95dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
         android:gravity="start|center_vertical"
@@ -86,13 +49,120 @@
         app:layout_constraintTop_toTopOf="@+id/etPassword"
         app:layout_constraintVertical_bias="1.0" />
 
+
+    <views.MTextView
+        android:id="@+id/tvCPassword"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:gravity="start|center_vertical"
+        android:text="Confirm Password"
+        android:textColor="@color/MWhite"
+        android:textSize="20sp"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etCPassword"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/etCPassword"
+        app:layout_constraintVertical_bias="0.529" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="180dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="196dp"
+        android:background="@color/MLightGreen"
+        android:gravity="center_vertical|start"
+        android:hint="John Doe"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toEndOf="@+id/tvUsername"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <views.MTextView
+        android:id="@+id/tvUsername"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/username"
+        android:textColor="@color/MWhite"
+        android:textSize="20sp"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/etUsername"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/etUsername"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="180dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="36dp"
+        android:background="@color/MLightGreen"
+        android:gravity="center_vertical|start"
+        android:hint="@string/johndoe_gmail_com"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/tvEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="180dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/MLightGreen"
+        android:gravity="center_vertical|start"
+        android:hint="@string/passwordhint"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toEndOf="@+id/tvPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+
+    <EditText
+        android:id="@+id/etCPassword"
+        android:layout_width="180dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:background="@color/MLightGreen"
+        android:gravity="center_vertical|start"
+        android:hint="@string/passwordhint"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toEndOf="@+id/tvCPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
     <views.MTextView
         android:id="@+id/tvSettings"
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="@string/log_in"
+        android:text="Register"
         android:textColor="@color/MWhite"
         android:textSize="25sp"
         app:borderColor="@color/MBrown"
@@ -110,7 +180,7 @@
         android:id="@+id/btnDone"
         android:layout_width="249dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="244dp"
+        android:layout_marginBottom="148dp"
         android:contentDescription="@string/done"
         android:textAlignment="center"
         app:backColor="@color/MLightGreen"
@@ -126,19 +196,6 @@
         app:text="@string/done"
         app:textColor="#FFFFFF"
         app:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tvRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/registerMsg"
-        android:textColor="@color/MWhite"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.047" />
 
     <views.MButton
         android:id="@+id/btnExit"

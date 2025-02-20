@@ -16,5 +16,13 @@ class SettingsActivity : Activity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+
+        val btnLogIn = findViewById<MButton>(R.id.btnLogIn)
+        btnLogIn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

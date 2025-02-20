@@ -58,7 +58,6 @@
         app:textColor="#FFFFFF"
         app:textSize="30sp" />
 
-    <!-- Bottom Bar -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -72,16 +71,16 @@
             android:layout_gravity="bottom"/>
 
         <views.MButton
-            android:id="@+id/homeButton"
+            android:id="@+id/btnHome"
             android:layout_width="143dp"
             android:layout_height="130dp"
             android:contentDescription="@string/home_button"
+            android:layout_gravity="center|bottom"
             app:imageBackground="@drawable/homebutton"
             app:imageScale="1.1"
             app:backHeightScale="0.8"
             app:backVerticalOffset="1"
-            app:backColor="@color/MBlue"
-            android:layout_gravity="center|bottom"/>
+            app:backColor="@color/MBlue"/>
 
     </FrameLayout>
 
