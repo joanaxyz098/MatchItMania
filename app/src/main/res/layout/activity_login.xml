@@ -113,7 +113,7 @@
         android:layout_marginBottom="244dp"
         android:contentDescription="@string/done"
         android:gravity="center"
-        android:text="@string/done"
+        android:text="@string/log_in"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:backColor="@color/MLightGreen"
