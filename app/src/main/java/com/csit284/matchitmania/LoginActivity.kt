@@ -12,6 +12,12 @@ class LoginActivity : Activity() {
 
         setContentView(R.layout.activity_login)
 
+        val btnExit = findViewById<MButton>(R.id.btnExit)
+        btnExit.setOnClickListener{
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
+
         val tvRegister = findViewById<TextView>(R.id.tvRegister)
         tvRegister.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)

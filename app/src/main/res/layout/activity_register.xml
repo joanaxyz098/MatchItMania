@@ -182,7 +182,10 @@
         android:layout_height="73dp"
         android:layout_marginBottom="148dp"
         android:contentDescription="@string/done"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:text="@string/done"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:backColor="@color/MLightGreen"
         app:borderColor="@color/MBrown"
         app:borderWidth="2dp"
@@ -192,10 +195,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:shadowColor="@color/MBluishGreen"
-        app:shadowRadius="10dp"
-        app:text="@string/done"
-        app:textColor="#FFFFFF"
-        app:textSize="30sp" />
+        app:shadowRadius="10dp"/>
 
     <views.MButton
         android:id="@+id/btnExit"

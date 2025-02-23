@@ -55,17 +55,17 @@
         android:layout_height="190dp"
         android:background="@drawable/bg_rounded_rect"
         android:orientation="horizontal">
+
         <views.MButton
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="50dp"
             android:layout_marginStart="30dp"
-            app:imageScale="0.9"
             app:backColor="#4189A6"
-            app:imageBackground="@drawable/avatar1"
+            app:borderColor="@color/MBrown"
             app:borderWidth="10dp"
             app:cornerRadius="10dp"
-            app:borderColor="@color/MBrown"/>
+            app:imageBackground="@drawable/avatar1"
+            app:imageScale="0.9" />
 
         <views.MTextView
             android:layout_width="wrap_content"

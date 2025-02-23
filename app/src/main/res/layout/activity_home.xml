@@ -43,20 +43,20 @@
     <!-- Play Button in the Center -->
     <views.MButton
         android:id="@+id/btnPlay"
-        android:layout_width="267dp"
-        android:layout_height="99dp"
+        android:layout_width="265dp"
+        android:layout_height="92dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/play_button"
+        android:text="PLAY"
+        android:gravity="center"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
-        app:fontFamily="@font/poppins_thin"
         app:fontWeight="1"
         app:shadowColor="@color/MPink"
-        app:shadowRadius="20dp"
-        app:text="PLAY"
-        app:textColor="#FFFFFF"
-        app:textSize="30sp" />
+        app:shadowRadius="20dp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
             android:contentDescription="@string/home_button"
             android:layout_gravity="center|bottom"
             app:imageBackground="@drawable/homebutton"
-            app:imageScale="1.1"
+            app:imageScale="1.2"
             app:backHeightScale="0.8"
             app:backVerticalOffset="1"
             app:backColor="@color/MBlue"/>
