@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import firebase.UserRepository
 import firebase.UserSettingsRepository
 import kotlinx.coroutines.launch
+import music.BackgroundMusic
 import userGenerated.UserProfile
 import views.MButton
 
@@ -23,8 +24,33 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        // Initialize music at app start
+        BackgroundMusic.initialize(this)
+
+        // Start playing if music is enabled
+        if (userSettings?.music != false) {  // Play by default for guest users
+            BackgroundMusic.play()
+        }
+
         setupViews()
         loadUserData()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        BackgroundMusic.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (userSettings?.music != false) {
+            BackgroundMusic.play()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        BackgroundMusic.release()
     }
 
     private fun setupViews() {

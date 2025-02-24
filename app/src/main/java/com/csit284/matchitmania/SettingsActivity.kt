@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import firebase.UserSettingsRepository
 import kotlinx.coroutines.launch
+import music.BackgroundMusic
 import userGenerated.UserProfile
 import views.MButton
 
@@ -63,6 +64,15 @@ class SettingsActivity : AppCompatActivity() {
 
         // Setup login/logout button
         updateLoginButton()
+
+        scMusic.setOnCheckedChangeListener { _, isChecked ->
+            updateSettings(music = isChecked)
+            if (isChecked) {
+                BackgroundMusic.play()
+            } else {
+                BackgroundMusic.pause()
+            }
+        }
     }
 
     private fun initializeSettings() {
