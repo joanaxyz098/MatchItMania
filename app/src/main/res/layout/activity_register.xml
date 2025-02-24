@@ -11,7 +11,7 @@
         android:id="@+id/view"
         android:layout_width="329dp"
         android:layout_height="586dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/gb_rounded_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +26,6 @@
         android:text="@string/email"
         android:textColor="@color/MWhite"
         android:textSize="20sp"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/etEmail"
@@ -42,8 +40,6 @@
         android:text="@string/password"
         android:textColor="@color/MWhite"
         android:textSize="20sp"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/etPassword"
@@ -59,8 +55,6 @@
         android:text="Confirm Password"
         android:textColor="@color/MWhite"
         android:textSize="20sp"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/etCPassword"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/etCPassword"
@@ -71,7 +65,7 @@
         android:layout_width="180dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="184dp"
         android:background="@color/MLightGreen"
         android:gravity="center_vertical|start"
         android:hint="John Doe"
@@ -93,8 +87,6 @@
         android:text="@string/username"
         android:textColor="@color/MWhite"
         android:textSize="20sp"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/etUsername"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/etUsername"
@@ -178,15 +170,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:startColor="@color/MLightGreen" />
 
+
     <views.MButton
         android:id="@+id/btnDone"
         android:layout_width="249dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="168dp"
         android:contentDescription="@string/done"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/done"
-        android:fontFamily="@font/poppins"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:backColor="@color/MLightGreen"
@@ -197,23 +190,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCPassword"
+        app:layout_constraintVertical_bias="0.965"
         app:shadowColor="@color/MBluishGreen"
-        app:shadowRadius="10dp"/>
+        app:shadowRadius="10dp" />
 
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#5C5C5C"
+        android:gravity="center"
         android:text="@string/loginMsg"
         android:textColor="@color/MWhite"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.047" />
-
+        app:layout_constraintVertical_bias="0.098" />
 
     <views.MButton
         android:id="@+id/btnExit"

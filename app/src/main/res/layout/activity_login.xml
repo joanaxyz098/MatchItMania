@@ -26,8 +26,6 @@
         android:text="@string/email"
         android:textColor="@color/MWhite"
         android:textSize="20sp"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/etEmail"
@@ -80,15 +78,13 @@
         android:text="@string/password"
         android:textColor="@color/MWhite"
         android:textSize="20sp"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/etPassword"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/etPassword"
         app:layout_constraintVertical_bias="1.0" />
 
     <views.MTextView
-        android:id="@+id/tvSettings"
+        android:id="@+id/tvLogin"
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
@@ -134,15 +130,16 @@
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#5C5C5C"
         android:text="@string/registerMsg"
         android:textColor="@color/MWhite"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.122" />
 
     <views.MButton
         android:id="@+id/btnExit"
@@ -158,24 +155,8 @@
         app:imageScale="0.8"
         app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvSettings"
+        app:layout_constraintStart_toEndOf="@+id/tvLogin"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <views.MButton
-        android:id="@+id/btnGoogle"
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="8dp"
-        app:backColor="@color/MBWhite"
-        app:borderColor="@color/MBrown"
-        app:borderWidth="2dp"
-        app:cornerRadius="100dp"
-        app:imageBackground="@drawable/google"
-        app:imageScale="0.8"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
-        app:layout_constraintVertical_bias="0.506" />
 
     <views.MButton
         android:id="@+id/btnFb"
@@ -194,7 +175,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btnGoogle"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.353" />
+
+    <views.MButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        app:backColor="@color/MBWhite"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/google"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/btnDone"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+        app:layout_constraintVertical_bias="0.353" />
 
     <views.MButton
         android:id="@+id/btnTwitter"
@@ -209,7 +206,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/btnDone"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.41" />
 
     <ProgressBar
         android:id="@+id/pbRegister"
@@ -219,5 +216,5 @@
         app:layout_constraintBottom_toTopOf="@+id/btnDone"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,72 +11,66 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.widget.Button
 import com.csit284.matchitmania.R
-import android.graphics.Path
-import android.graphics.Rect
 import android.os.Build
 import android.view.MotionEvent
 import android.view.accessibility.AccessibilityEvent
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.graphics.toRect
+import kotlin.math.abs
 
 
 class MButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-    ): androidx.appcompat.widget.AppCompatButton(context, attrs, defStyleAttr){
+): AppCompatButton(context, attrs, defStyleAttr) {
+
+    // Background properties
     private var backColor: Int = Color.TRANSPARENT
     private var cornerRadius: Float = 20f
     private var borderColor: Int = Color.BLACK
     private var borderWidth: Float = 0f
-    private var gradientColors: IntArray? = null
-    private var gradientOrientation: Int = 0 // 0 = horizontal, 1 = vertical
 
-    //shadow properties
+    // Shadow properties
     private var shadowRadius: Float = 0f
     private var shadowDx: Float = 0f
     private var shadowDy: Float = 0f
     private var shadowColor: Int = Color.DKGRAY
 
-    //image background properties
+    // Image background properties
     private var imageBackground: Drawable? = null
     private var imageScale: Float = 1f
 
-    //offset and scale properties
+    // Offset and scale properties
     private var backWidthScale: Float = 1f
     private var backHeightScale: Float = 1f
     private var backHorizontalOffset: Float = 0f
     private var backVerticalOffset: Float = 0f
 
-    //click state
+    // Click state
     private var isPressed = false
     private var pressedAlpha = 0.7f
 
-    //paints
-    private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG) //anti_alias - smooths out rough edges
+    // Paints
+    private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    //rect
-    private val backgroundRect = RectF() // we use rectF for precise positioning (floats) instead of rect which is just for int
+    // Rects
+    private val backgroundRect = RectF()
     private val imageRect = RectF()
 
-    //onclicklistener
-    private var onClickListener: OnClickListener? = null
+    // Animation properties
+    private var scaleAnimationDuration: Long = 100
+    private var pressedScale: Float = 0.95f
+    private var currentScale: Float = 1f
+    private var animationStartTime: Long = 0
 
-    //
-    private var gradientColor: LinearGradient? = null
-
-    private var isClipped = false
-    init{
-        attrs?.let{
-            attributeSet ->
-            val typedArray = context.obtainStyledAttributes(
-                attributeSet,
-                R.styleable.MButton
-            )
-            try{
+    init {
+        attrs?.let { attributeSet ->
+            val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.MButton)
+            try {
                 backColor = typedArray.getColor(R.styleable.MButton_backColor, backColor)
                 cornerRadius = typedArray.getDimension(R.styleable.MButton_cornerRadius, cornerRadius)
                 borderColor = typedArray.getColor(R.styleable.MButton_borderColor, borderColor)
@@ -91,26 +85,21 @@ class MButton @JvmOverloads constructor(
                 shadowDx = typedArray.getDimension(R.styleable.MButton_shadowDx, shadowDx)
                 shadowDy = typedArray.getDimension(R.styleable.MButton_shadowDy, shadowDy)
                 shadowColor = typedArray.getColor(R.styleable.MButton_shadowColor, shadowColor)
-                val gradientColorsId = typedArray.getResourceId(R.styleable.MButton_gradientColors, 0)
-                if (gradientColorsId != 0) {
-                    gradientColors = resources.getIntArray(gradientColorsId)
-                }
-                gradientOrientation = typedArray.getInt(R.styleable.MButton_gradientOrientation, 0)
-                isClipped = typedArray.getBoolean(R.styleable.MButton_isClipped, isClipped)
-            }finally {
+            } finally {
                 typedArray.recycle()
             }
         }
 
-        // initialize paints
+        // Initialize paints
         backgroundPaint.style = Paint.Style.FILL
-        borderPaint.style = Paint.Style.STROKE
-        shadowPaint.style = Paint.Style.FILL
-        shadowPaint.color = backColor
-        setLayerType(LAYER_TYPE_SOFTWARE, backgroundPaint)
+        backgroundPaint.color = backColor
 
+        borderPaint.style = Paint.Style.STROKE
         borderPaint.strokeWidth = borderWidth
         borderPaint.color = borderColor
+
+        shadowPaint.style = Paint.Style.FILL
+        shadowPaint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
 
         isClickable = true
         isFocusable = true
@@ -121,7 +110,7 @@ class MButton @JvmOverloads constructor(
 
         // Calculate shadow padding
         val shadowPadding = if (shadowRadius > 0) {
-            Math.max(shadowRadius + Math.abs(shadowDx), shadowRadius + Math.abs(shadowDy))
+            maxOf(shadowRadius + abs(shadowDx), shadowRadius + abs(shadowDy))
         } else {
             0f
         }
@@ -147,15 +136,13 @@ class MButton @JvmOverloads constructor(
             verticalOffset + height - borderOffset
         )
 
-        shadowPaint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
-
-        // Calculate image rectangle independently of background position
+        // Calculate image rectangle
         imageBackground?.let { drawable ->
             val drawableWidth = drawable.intrinsicWidth.toFloat()
             val drawableHeight = drawable.intrinsicHeight.toFloat()
 
             // Calculate scale to fit within view bounds while maintaining aspect ratio
-            val scale = Math.min(
+            val scale = minOf(
                 (w - 2 * shadowPadding) / drawableWidth,
                 (h - 2 * shadowPadding) / drawableHeight
             ) * imageScale
@@ -163,7 +150,7 @@ class MButton @JvmOverloads constructor(
             val scaledWidth = drawableWidth * scale
             val scaledHeight = drawableHeight * scale
 
-            // Center the image within the view bounds, not the background
+            // Center the image within the view bounds
             val imageLeft = w / 2f - (scaledWidth / 2)
             val imageTop = h / 2f - (scaledHeight / 2)
 
@@ -174,79 +161,82 @@ class MButton @JvmOverloads constructor(
                 imageTop + scaledHeight
             )
         }
+    }
 
+    private fun handleAnimation() {
+        val currentTime = System.currentTimeMillis()
 
-        if (gradientColors != null) {
-            gradientColor = if (gradientOrientation == 0) {
-                LinearGradient(
-                    backgroundRect.left, backgroundRect.top, backgroundRect.right, backgroundRect.top,
-                    gradientColors!!, null, Shader.TileMode.CLAMP
-                )
-            } else {
-                LinearGradient(
-                    backgroundRect.left, backgroundRect.top, backgroundRect.left, backgroundRect.bottom,
-                    gradientColors!!, null, Shader.TileMode.CLAMP
-                )
+        if (isPressed) {
+            if (animationStartTime == 0L) {
+                animationStartTime = currentTime
+            }
+
+            val elapsedTime = (currentTime - animationStartTime).toFloat()
+            val progress = (elapsedTime / scaleAnimationDuration).coerceIn(0f, 1f)
+            currentScale = 1f + (pressedScale - 1f) * progress
+
+            if (progress < 1f) {
+                postInvalidateOnAnimation()
+            }
+        } else {
+            if (currentScale != 1f) {
+                if (animationStartTime == 0L) {
+                    animationStartTime = currentTime
+                }
+
+                val elapsedTime = (currentTime - animationStartTime).toFloat()
+                val progress = (elapsedTime / scaleAnimationDuration).coerceIn(0f, 1f)
+                currentScale = pressedScale + (1f - pressedScale) * progress
+
+                if (progress < 1f) {
+                    postInvalidateOnAnimation()
+                } else {
+                    currentScale = 1f
+                    animationStartTime = 0L
+                }
             }
         }
     }
 
     override fun onDraw(canvas: Canvas) {
-        // Apply alpha for pressed state
-        val originalAlpha = backgroundPaint.alpha
-        if (isPressed) {
-            backgroundPaint.alpha = (originalAlpha * pressedAlpha).toInt()
-        }
+        // Save the initial canvas state
+        canvas.save()
 
-        // Draw shadow first (before clipping)
+        // Handle animations
+        handleAnimation()
+
+        // Apply scale transformation
+        canvas.scale(currentScale, currentScale, width / 2f, height / 2f)
+
+        // Draw shadow
         if (shadowRadius > 0) {
             canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, shadowPaint)
         }
 
-        if(isClipped) {
-            // Create a clipping path with rounded corners
-            val clipPath = Path().apply {
-                addRoundRect(backgroundRect, cornerRadius, cornerRadius, Path.Direction.CW)
-            }
-            // Save the current canvas state
-            canvas.save()
-
-            // Clip the canvas to the rounded rect
-            canvas.clipPath(clipPath)
-        }
-        // Apply gradient shader if available
-        backgroundPaint.shader = gradientColor
-        if (gradientColors == null) {
-            backgroundPaint.color = backColor
-        }
-
         // Draw background
-        canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, backgroundPaint)
+        if (Color.alpha(backColor) > 0) {
+            canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, backgroundPaint)
+        }
 
-        backgroundPaint.alpha = originalAlpha
-
-        // Draw image background (clipped to rounded corners)
+        // Draw image
         imageBackground?.let { drawable ->
-            if (isPressed) {
-                drawable.alpha = (255 * pressedAlpha).toInt()
-            }
+            drawable.alpha = if (isPressed) (255 * pressedAlpha).toInt() else 255
             drawable.bounds = imageRect.toRect()
             drawable.draw(canvas)
-            drawable.alpha = originalAlpha
         }
-
-        // Restore the canvas state (remove clipping)
-        canvas.restore()
 
         // Draw border
         if (borderWidth > 0) {
+            borderPaint.alpha = if (isPressed) (255 * pressedAlpha).toInt() else 255
             canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, borderPaint)
         }
 
+        // Draw text
         super.onDraw(canvas)
+
+        // Restore the canvas state
+        canvas.restore()
     }
-
-
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (!isEnabled) {
@@ -289,12 +279,10 @@ class MButton @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
-        // Trigger haptic feedback and make sound if accessibility is enabled
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             playSoundEffect(android.view.SoundEffectConstants.CLICK)
         }
-        onClickListener?.onClick(this)
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED)
         return super.performClick()
     }
-    }
+}

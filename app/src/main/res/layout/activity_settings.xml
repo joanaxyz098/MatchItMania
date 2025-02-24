@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -10,131 +10,150 @@
     android:background="@drawable/forest3"
     tools:context=".SettingsActivity">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="329dp"
+        android:layout_height="586dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/gb_rounded_rect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/music"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/poppins"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/music"
+        android:textColor="@color/MWhite"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/sound"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/view" />
 
-        <LinearLayout
-            android:layout_width="329dp"
-            android:layout_height="586dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:background="@drawable/gb_rounded_rect">
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/vibration"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:fontFamily="@font/poppins"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/vibration"
+        android:textColor="@color/MWhite"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/view" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/music"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:text="@string/music"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/MWhite"
-                android:textSize="15sp" />
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/sound"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/poppins"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/sound"
+        android:textColor="@color/MWhite"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/vibration"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/view" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/sound"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:text="@string/sound"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/MWhite"
-                android:textSize="15sp" />
+    <views.MButton
+        android:id="@+id/btnLogIn"
+        android:layout_width="249dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/log_in"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="@string/log_in"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:backColor="@color/MLightGreen"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:cornerRadius="50dp"
+        app:fontWeight="1"
+        app:layout_constraintBottom_toTopOf="@+id/btnAbout"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:shadowColor="@color/MBluishGreen"
+        app:shadowRadius="10dp" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/vibration"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:text="@string/vibration"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/MWhite"
-                android:textSize="15sp" />
+    <views.MButton
+        android:id="@+id/btnAbout"
+        android:layout_width="249dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/log_in"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="About"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:backColor="@color/MLightGreen"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:cornerRadius="50dp"
+        app:fontWeight="1"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:shadowColor="@color/MBluishGreen"
+        app:shadowRadius="10dp" />
 
-            <views.MButton
-                android:id="@+id/btnLogIn"
-                android:layout_width="249dp"
-                android:layout_height="73dp"
-                android:contentDescription="@string/log_in"
-                android:gravity="center"
-                android:text="@string/log_in"
-                android:fontFamily="@font/poppins"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                app:backColor="@color/MLightGreen"
-                app:cornerRadius="50dp"
-                app:fontWeight="1"
-                app:shadowColor="@color/MBluishGreen"
-                app:shadowRadius="10dp"
-                app:borderColor="@color/MBrown"
-                app:borderWidth="2dp"/>
+    <views.MTextView
+        android:id="@+id/tvSettings"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="@string/settings"
+        android:textAlignment="center"
+        android:textColor="@color/MWhite"
+        android:textSize="35sp"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="5dp"
+        app:cornerRadius="20dp"
+        app:endColor="@color/MBluishGreen"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/music"
+        app:layout_constraintEnd_toEndOf="@+id/music"
+        app:layout_constraintStart_toStartOf="@+id/music"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:startColor="@color/MLightGreen">
 
-            <views.MButton
-                android:id="@+id/btnAbout"
-                android:layout_width="249dp"
-                android:layout_height="73dp"
-                android:contentDescription="@string/log_in"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="About"
-                android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                app:backColor="@color/MLightGreen"
-                app:borderColor="@color/MBrown"
-                app:borderWidth="2dp"
-                app:cornerRadius="50dp"
-                app:fontWeight="1"
-                app:shadowColor="@color/MBluishGreen"
-                app:shadowRadius="10dp" />
+    </views.MTextView>
 
-        </LinearLayout>
+    <views.MButton
+        android:id="@+id/btnExit"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_gravity="end"
+        android:padding="100dp"
+        app:backColor="@color/transparent"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="5dp"
+        app:cornerRadius="90dp"
+        app:imageBackground="@drawable/exit"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toTopOf="@+id/music"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvSettings"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <views.MTextView
-            android:id="@+id/tvSettings"
-            android:layout_width="200dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="50dp"
-            android:text="@string/settings"
-            android:fontFamily="@font/poppins"
-            android:textAlignment="center"
-            android:textColor="@color/MWhite"
-            android:textSize="35sp"
-            android:gravity="center"
-            app:startColor="@color/MLightGreen"
-            app:endColor="@color/MBluishGreen"
-            app:cornerRadius="20dp"
-            app:borderWidth="5dp"
-            app:borderColor="@color/MBrown"
-            app:gradientDirection="topToBottom"
-            >
-
-        </views.MTextView>
-
-        <views.MButton
-            android:id="@+id/btnExit"
-            android:layout_width="74dp"
-            android:layout_height="71dp"
-            android:padding="100dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="20dp"
-            app:imageBackground="@drawable/exit"
-            app:imageScale="0.8"
-            app:backColor="@color/transparent"
-            app:borderColor="@color/MBrown"
-            app:borderWidth="5dp"
-            app:cornerRadius="90dp" />
-    </FrameLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.csit284.matchitmania
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -45,6 +46,8 @@ class RegisterActivity : Activity() {
         pbRegister = findViewById(R.id.pbRegister)
 
         val tvLogin = findViewById<TextView>(R.id.tvLogin)
+        tvLogin.paintFlags = tvLogin.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
         tvLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

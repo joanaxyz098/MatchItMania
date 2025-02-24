@@ -36,6 +36,12 @@ class SettingsActivity : Activity() {
             }
             startActivity(intent)
         }
+
+        val btnAbout = findViewById<MButton>(R.id.btnAbout)
+        btnAbout.setOnClickListener{
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
