@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "274373210868",
+    "project_id": "match-it-mania-firebase",
+    "storage_bucket": "match-it-mania-firebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274373210868:android:ddc7bcf71094885a1824a1",
+        "android_client_info": {
+          "package_name": "com.csit284.matchitmania"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkPNbXpgJ11NrNnOh9gVBNW0K2EGyk8fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,7 +22,7 @@
 
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/music"
+        android:id="@+id/scMusic"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -32,13 +32,13 @@
         android:text="@string/music"
         android:textColor="@color/MWhite"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/sound"
+        app:layout_constraintBottom_toTopOf="@+id/scSound"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/vibration"
+        android:id="@+id/scVibration"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="@+id/view" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/sound"
+        android:id="@+id/scSound"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -64,7 +64,7 @@
         android:text="@string/sound"
         android:textColor="@color/MWhite"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/vibration"
+        app:layout_constraintBottom_toTopOf="@+id/scVibration"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/view" />
@@ -130,9 +130,9 @@
         app:cornerRadius="20dp"
         app:endColor="@color/MBluishGreen"
         app:gradientDirection="topToBottom"
-        app:layout_constraintBottom_toTopOf="@+id/music"
-        app:layout_constraintEnd_toEndOf="@+id/music"
-        app:layout_constraintStart_toStartOf="@+id/music"
+        app:layout_constraintBottom_toTopOf="@+id/scMusic"
+        app:layout_constraintEnd_toEndOf="@+id/scMusic"
+        app:layout_constraintStart_toStartOf="@+id/scMusic"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:startColor="@color/MLightGreen">
@@ -151,7 +151,7 @@
         app:cornerRadius="90dp"
         app:imageBackground="@drawable/exit"
         app:imageScale="0.8"
-        app:layout_constraintBottom_toTopOf="@+id/music"
+        app:layout_constraintBottom_toTopOf="@+id/scMusic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvSettings"
         app:layout_constraintTop_toTopOf="parent" />

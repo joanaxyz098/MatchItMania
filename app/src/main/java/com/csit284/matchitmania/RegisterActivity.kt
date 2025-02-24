@@ -1,6 +1,5 @@
 package com.csit284.matchitmania
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -9,11 +8,18 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import views.MButton
+import firebase.FirebaseRepository
+import firebase.UserRepository
+import kotlinx.coroutines.launch
+import userGenerated.UserProfile
 
-class RegisterActivity : Activity() {
+class RegisterActivity : AppCompatActivity() {
     private var etEmail: EditText? = null
     private var etPass: EditText? = null
     private var etUser: EditText? = null
@@ -98,14 +104,16 @@ class RegisterActivity : Activity() {
                     pbRegister?.visibility = View.GONE  // Hide progress bar in both cases
 
                     if (task.isSuccessful) {
-                        Toast.makeText(
-                            this,
-                            "Welcome to Match It Mania! $user has been successfully registered",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        val userId = mAuth?.currentUser?.uid
 
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
+                        val firebaseRepo = UserRepository()
+                        //exclamation forces kotlin to throw an exception if userId is null
+                        lifecycleScope.launch {
+                            firebaseRepo.setUserProfile(userId!!, user, email) // we use set instead of add to link it to the userId from auth
+                            Toast.makeText(this@RegisterActivity, "Player $user registered!", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+
                         finish()
                     } else {
                         val errorMessage = task.exception?.message

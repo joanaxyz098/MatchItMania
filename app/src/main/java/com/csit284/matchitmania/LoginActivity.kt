@@ -1,6 +1,5 @@
 package com.csit284.matchitmania
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,89 +7,82 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import views.MButton
 
-class LoginActivity : Activity() {
-    private var etEmail: EditText? = null
-    private var etPass: EditText? = null
-    private var btnLogIn: MButton? = null
-    private var mAuth: FirebaseAuth? = null
-    private var pbRegister: ProgressBar? = null
+class LoginActivity : AppCompatActivity() {
+    private val auth = FirebaseAuth.getInstance()
 
-    override fun onStart() {
-        super.onStart()
-        val currentUser: FirebaseUser? = mAuth?.currentUser
-        if (currentUser != null) {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
+    private lateinit var etEmail: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialize UI components
-        mAuth = FirebaseAuth.getInstance()
+        setupViews()
+    }
+
+    private fun setupViews() {
+        // Initialize views
         etEmail = findViewById(R.id.etEmail)
-        etPass = findViewById(R.id.etPassword)
-        btnLogIn = findViewById(R.id.btnDone)
-        pbRegister = findViewById(R.id.pbRegister)
+        etPassword = findViewById(R.id.etPassword)
+        progressBar = findViewById(R.id.pbRegister)
 
-        val btnExit = findViewById<MButton>(R.id.btnExit)
-        val tvRegister = findViewById<TextView>(R.id.tvRegister)
-
-        // Exit button listener
-        btnExit.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
+        // Setup button listeners
+        findViewById<MButton>(R.id.btnDone).setOnClickListener {
+            handleLogin()
         }
 
-        // Register button listener
-        tvRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+        findViewById<MButton>(R.id.btnExit).setOnClickListener {
+            finish()
         }
 
-        // Login button listener
-        btnLogIn?.setOnClickListener {
-            pbRegister?.visibility = View.VISIBLE
-            val email = etEmail?.text?.toString()?.trim() ?: ""
-            val password = etPass?.text?.toString() ?: ""
+        findViewById<TextView>(R.id.tvRegister).setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
 
-            // Input validation
-            if (email.isEmpty()) {
-                etEmail?.error = "Email required"
-                pbRegister?.visibility = View.GONE
-                return@setOnClickListener
-            }
+    private fun handleLogin() {
+        val email = etEmail.text.toString().trim()
+        val password = etPassword.text.toString()
 
-            if (password.isEmpty()) {
-                etPass?.error = "Password required"
-                pbRegister?.visibility = View.GONE
-                return@setOnClickListener
-            }
+        // Validate input
+        if (email.isEmpty()) {
+            etEmail.error = "Email required"
+            return
+        }
 
-            // Firebase Authentication
-            mAuth?.signInWithEmailAndPassword(email, password)
-                ?.addOnCompleteListener { task ->
-                    pbRegister?.visibility = View.GONE  // Always hide ProgressBar
-                    if (task.isSuccessful) {
-                        val user = mAuth?.currentUser
-                        Toast.makeText(this, "Welcome back, ${user?.email}!", Toast.LENGTH_SHORT).show()
+        if (password.isEmpty()) {
+            etPassword.error = "Password required"
+            return
+        }
 
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
-                        finish()  // Close LoginActivity
-                    } else {
-                        val errorMessage = task.exception?.message
-                        Toast.makeText(this, "Error: $errorMessage", Toast.LENGTH_SHORT).show()
-                    }
+        // Show loading
+        progressBar.visibility = View.VISIBLE
+
+        // Attempt login
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                progressBar.visibility = View.GONE
+
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Welcome back!", Toast.LENGTH_SHORT).show()
+                    navigateToHome()
+                } else {
+                    val errorMessage = task.exception?.message ?: "Authentication failed"
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
                 }
+            }
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(this, HomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
+        startActivity(intent)
+        finish()
     }
 }

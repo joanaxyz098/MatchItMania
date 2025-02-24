@@ -11,6 +11,7 @@
     <string name="log_in">Log In</string>
     <string name="profile">Profile</string>
     <string name="username">Username</string>
+    <string name="usernameDef">Guest</string>
     <string name="lvl">lvl</string>
     <string name="achievements">Achievements</string>
     <string name="johndoe_gmail_com">johndoe@gmail.com</string>

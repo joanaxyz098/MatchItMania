@@ -50,42 +50,58 @@
         android:background="#9CC6C0"
         android:layout_marginBottom="20dp"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="190dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_height="190dp"
-        android:background="@drawable/bg_rounded_rect"
-        android:orientation="horizontal">
+        android:background="@drawable/bg_rounded_rect">
 
+        <!-- Player Label -->
+        <views.MTextView
+            android:id="@+id/tvPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Player: "
+            android:fontFamily="@font/poppins"
+            android:textColor="#3F2829"
+            android:textSize="20sp"/>
+
+        <!-- Username (Beside Player Label) -->
+        <views.MTextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/usernameDef"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/MBWhite"
+            android:textSize="20sp"
+            android:layout_toEndOf="@id/tvPlayer"/>
+
+        <!-- Profile Image (Below Player Label) -->
         <views.MButton
+            android:id="@+id/btnProfile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
             app:backColor="#4189A6"
             app:borderColor="@color/MBrown"
             app:borderWidth="10dp"
             app:cornerRadius="10dp"
             app:imageBackground="@drawable/avatar1"
-            app:imageScale="0.9" />
+            app:imageScale="0.9"
+            android:layout_below="@id/tvPlayer"/>
 
-        <views.MTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/username"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/MBWhite"
-            android:textSize="20sp"
-            app:endColor="@color/transparent"
-            app:startColor="@color/transparent"/>
-
+        <!-- Level Display (Right Side) -->
         <views.MTextView
             android:layout_width="103dp"
             android:layout_height="95dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="@string/lvl"
@@ -99,8 +115,11 @@
             app:startColor="#F9D38D"
             app:gradientDirection="topToBottom"
             app:borderWidth="3dp"
-            app:borderColor="#3F2829"/>
-    </LinearLayout>
+            app:borderColor="#3F2829"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
