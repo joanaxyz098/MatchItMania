@@ -26,7 +26,7 @@ class MButton @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
     ): androidx.appcompat.widget.AppCompatButton(context, attrs, defStyleAttr){
-    private var backColor: Int = Color.BLUE
+    private var backColor: Int = Color.TRANSPARENT
     private var cornerRadius: Float = 20f
     private var borderColor: Int = Color.BLACK
     private var borderWidth: Float = 0f
@@ -56,6 +56,7 @@ class MButton @JvmOverloads constructor(
     //paints
     private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG) //anti_alias - smooths out rough edges
     private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     //rect
     private val backgroundRect = RectF() // we use rectF for precise positioning (floats) instead of rect which is just for int
@@ -64,6 +65,10 @@ class MButton @JvmOverloads constructor(
     //onclicklistener
     private var onClickListener: OnClickListener? = null
 
+    //
+    private var gradientColor: LinearGradient? = null
+
+    private var isClipped = false
     init{
         attrs?.let{
             attributeSet ->
@@ -91,6 +96,7 @@ class MButton @JvmOverloads constructor(
                     gradientColors = resources.getIntArray(gradientColorsId)
                 }
                 gradientOrientation = typedArray.getInt(R.styleable.MButton_gradientOrientation, 0)
+                isClipped = typedArray.getBoolean(R.styleable.MButton_isClipped, isClipped)
             }finally {
                 typedArray.recycle()
             }
@@ -99,12 +105,10 @@ class MButton @JvmOverloads constructor(
         // initialize paints
         backgroundPaint.style = Paint.Style.FILL
         borderPaint.style = Paint.Style.STROKE
+        shadowPaint.style = Paint.Style.FILL
+        shadowPaint.color = backColor
+        setLayerType(LAYER_TYPE_SOFTWARE, backgroundPaint)
 
-        //initialize shadow
-        if (shadowRadius > 0) {
-            backgroundPaint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
-            setLayerType(LAYER_TYPE_SOFTWARE, backgroundPaint)
-        }
         borderPaint.strokeWidth = borderWidth
         borderPaint.color = borderColor
 
@@ -143,6 +147,8 @@ class MButton @JvmOverloads constructor(
             verticalOffset + height - borderOffset
         )
 
+        shadowPaint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
+
         // Calculate image rectangle independently of background position
         imageBackground?.let { drawable ->
             val drawableWidth = drawable.intrinsicWidth.toFloat()
@@ -168,18 +174,10 @@ class MButton @JvmOverloads constructor(
                 imageTop + scaledHeight
             )
         }
-    }
 
-    override fun onDraw(canvas : Canvas){
-        // Apply alpha for pressed state
-        val originalAlpha = backgroundPaint.alpha
-        if (isPressed) {
-            backgroundPaint.alpha = (originalAlpha * pressedAlpha).toInt()
-        }
 
-        // Draw background (solid or gradient)
         if (gradientColors != null) {
-            val gradient = if (gradientOrientation == 0) {
+            gradientColor = if (gradientOrientation == 0) {
                 LinearGradient(
                     backgroundRect.left, backgroundRect.top, backgroundRect.right, backgroundRect.top,
                     gradientColors!!, null, Shader.TileMode.CLAMP
@@ -190,24 +188,45 @@ class MButton @JvmOverloads constructor(
                     gradientColors!!, null, Shader.TileMode.CLAMP
                 )
             }
-            backgroundPaint.shader = gradient
-        } else {
-            backgroundPaint.shader = null
+        }
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        // Apply alpha for pressed state
+        val originalAlpha = backgroundPaint.alpha
+        if (isPressed) {
+            backgroundPaint.alpha = (originalAlpha * pressedAlpha).toInt()
+        }
+
+        // Draw shadow first (before clipping)
+        if (shadowRadius > 0) {
+            canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, shadowPaint)
+        }
+
+        if(isClipped) {
+            // Create a clipping path with rounded corners
+            val clipPath = Path().apply {
+                addRoundRect(backgroundRect, cornerRadius, cornerRadius, Path.Direction.CW)
+            }
+            // Save the current canvas state
+            canvas.save()
+
+            // Clip the canvas to the rounded rect
+            canvas.clipPath(clipPath)
+        }
+        // Apply gradient shader if available
+        backgroundPaint.shader = gradientColor
+        if (gradientColors == null) {
             backgroundPaint.color = backColor
         }
+
+        // Draw background
         canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, backgroundPaint)
 
-        // Restore original alpha
         backgroundPaint.alpha = originalAlpha
 
-        // Draw border
-        if (borderWidth > 0) {
-            canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, borderPaint)
-        }
-
-        // Draw image background
+        // Draw image background (clipped to rounded corners)
         imageBackground?.let { drawable ->
-            val originalAlpha = drawable.alpha
             if (isPressed) {
                 drawable.alpha = (255 * pressedAlpha).toInt()
             }
@@ -215,8 +234,19 @@ class MButton @JvmOverloads constructor(
             drawable.draw(canvas)
             drawable.alpha = originalAlpha
         }
+
+        // Restore the canvas state (remove clipping)
+        canvas.restore()
+
+        // Draw border
+        if (borderWidth > 0) {
+            canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, borderPaint)
+        }
+
         super.onDraw(canvas)
     }
+
+
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (!isEnabled) {

@@ -15,8 +15,13 @@
     <string name="achievements">Achievements</string>
     <string name="johndoe_gmail_com">johndoe@gmail.com</string>
     <string name="password">Password</string>
-    <string name="passwordhint">***************</string>
+    <string name="passwordhint">***********</string>
     <string name="done">Done</string>
     <string name="registerMsg">Don\'t have an account? REGISTER</string>
     <string name="email">Email</string>
+    <string name="devDesc">These are the developers behind the design, coding, and mechanics that bring this game to life. From crafting smooth gameplay to solving complex challenges.</string>
+    <string name="joanaDesc">Driven by creativity and a shared vision, evolving their ideas and skills to bring their game to life from concept to completion.</string>
+    <string name="luisDesc">Passionately collaborated, overcoming challenges and pushing creative boundaries to deliver a memorable gaming experience.</string>
+    <string name="loginMsg">Already have an account? LOG IN</string>
+
 </resources>

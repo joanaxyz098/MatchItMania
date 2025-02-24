@@ -11,7 +11,7 @@
         android:id="@+id/view"
         android:layout_width="329dp"
         android:layout_height="586dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/gb_rounded_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,13 +28,13 @@
         android:textSize="20sp"
         app:borderColor="@color/MBrown"
         app:borderWidth="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etUsername"
+        app:layout_constraintBottom_toBottomOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/etUsername"
+        app:layout_constraintTop_toTopOf="@+id/etEmail"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etEmail"
         android:layout_width="180dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
@@ -42,6 +42,7 @@
         android:background="@color/MLightGreen"
         android:gravity="center_vertical|start"
         android:hint="@string/johndoe_gmail_com"
+        android:inputType="textEmailAddress"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textColor="@color/black"
@@ -68,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toEndOf="@+id/tvPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <views.MTextView
         android:id="@+id/tvPassword"
@@ -91,10 +92,11 @@
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/log_in"
         android:textColor="@color/MWhite"
-        android:textSize="25sp"
+        android:textSize="35sp"
         app:borderColor="@color/MBrown"
         app:borderWidth="5dp"
         app:cornerRadius="20dp"
@@ -112,8 +114,9 @@
         android:layout_height="73dp"
         android:layout_marginBottom="244dp"
         android:contentDescription="@string/done"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
-        android:text="@string/log_in"
+        android:text="@string/done"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:backColor="@color/MLightGreen"
@@ -133,6 +136,7 @@
         android:layout_height="wrap_content"
         android:text="@string/registerMsg"
         android:textColor="@color/MWhite"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.495"
@@ -152,9 +156,68 @@
         app:cornerRadius="90dp"
         app:imageBackground="@drawable/exit"
         app:imageScale="0.8"
-        app:layout_constraintBottom_toTopOf="@+id/etUsername"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvSettings"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <views.MButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        app:backColor="@color/MBWhite"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/google"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/btnDone"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+        app:layout_constraintVertical_bias="0.506" />
+
+    <views.MButton
+        android:id="@+id/btnFb"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        app:backColor="@color/MBWhite"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/fb"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/btnTwitter"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnGoogle"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+        app:layout_constraintVertical_bias="0.506" />
+
+    <views.MButton
+        android:id="@+id/btnTwitter"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
+        app:backColor="@color/MBWhite"
+        app:borderColor="@color/MBrown"
+        app:borderWidth="2dp"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/twitter"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/btnDone"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <ProgressBar
+        android:id="@+id/pbRegister"
+        android:layout_width="131dp"
+        android:layout_height="112dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnDone"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
 </androidx.constraintlayout.widget.ConstraintLayout>

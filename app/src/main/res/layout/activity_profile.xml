@@ -18,13 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:text="@string/profile"
+            android:fontFamily="@font/poppins"
             android:textAlignment="center"
-            android:textColor="@color/MWhite"
-            android:textSize="25sp"
+            android:textColor="@color/MBWhite"
+            android:textSize="40sp"
             android:gravity="center"
             app:gradientDirection="topToBottom"
-            app:startColor="@color/MGreen"
-            app:endColor="@color/MBluishGreen"
+            app:startColor="#3F2829"
+            app:endColor="@color/MBrown"
             >
         </views.MTextView>
 
@@ -38,8 +39,7 @@
             android:layout_marginEnd="20dp"
             app:imageBackground="@drawable/exit"
             app:backColor="@color/transparent"
-            app:borderColor="@color/MBrown"
-            app:borderWidth="5dp"
+
             app:cornerRadius="90dp"
             app:imageScale="0.8" />
     </FrameLayout>
@@ -47,11 +47,13 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_gravity="center_vertical"
-        android:background="@color/MBrown"
+        android:background="#9CC6C0"
         android:layout_marginBottom="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_height="190dp"
         android:background="@drawable/bg_rounded_rect"
         android:orientation="horizontal">
@@ -71,9 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/username"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/MBWhite"
             android:textSize="20sp"
             app:endColor="@color/transparent"
@@ -82,31 +85,32 @@
         <views.MTextView
             android:layout_width="103dp"
             android:layout_height="95dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="@string/lvl"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/MBWhite"
             android:textSize="30sp"
             android:shadowColor="@color/black"
             android:shadowRadius="10"
             app:cornerRadius="300dp"
-            app:endColor="@color/MLightGreen"
-            app:startColor="@color/MBluishGreen"
+            app:endColor="#955D40"
+            app:startColor="#F9D38D"
             app:gradientDirection="topToBottom"
-            app:borderWidth="6dp"
-            app:borderColor="@color/MBrown"/>
+            app:borderWidth="3dp"
+            app:borderColor="#3F2829"/>
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_gravity="center_vertical"
-            android:background="@color/MBrown" />
+            android:background="#9CC6C0" />
 
         <views.MTextView
             android:layout_width="wrap_content"
@@ -116,26 +120,28 @@
             android:shadowColor="@color/black"
             android:shadowRadius="10"
             android:text="@string/achievements"
+            android:fontFamily="@font/poppins"
             android:gravity="center"
             android:textColor="@color/MBWhite"
             android:textSize="25sp"
-            app:borderColor="@color/MBrown"
-            app:borderWidth="5dp"
-            app:endColor="@color/MLightGreen"
+            app:borderColor="#3F2829"
+            app:borderWidth="3dp"
             app:gradientDirection="topToBottom"
-            app:startColor="@color/MBluishGreen" />
+            app:endColor="#955D40"
+            app:startColor="#F9D38D"
+            app:cornerRadius="20dp"/>
     </FrameLayout>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:rowCount="2"
+        android:layout_height="277dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_rounded_rect"
         android:columnCount="2"
         android:padding="16dp"
-        android:background="@drawable/bg_rounded_rect"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:rowCount="2">
 
         <!-- First Item -->
         <LinearLayout
@@ -155,15 +161,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
                 android:text="Achievement1"
-                android:textColor="@color/MYellow"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:textColor="@color/MBWhite"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite"/>
+                android:background="@color/MBWhite" />
         </LinearLayout>
 
 
@@ -183,15 +190,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
                 android:text="Achievement2"
-                android:textColor="@color/MYellow"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:textColor="@color/MBWhite"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite"/>
+                android:background="@color/MBWhite" />
         </LinearLayout>
 
         <LinearLayout
@@ -205,21 +213,23 @@
                 android:layout_width="46dp"
                 android:layout_height="62dp"
                 android:background="@drawable/time"
-                android:scaleType="centerInside"/>
+                android:scaleType="centerInside" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
                 android:text="Achievement3"
-                android:textColor="@color/MYellow"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:textColor="@color/MBWhite"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite"/>
+                android:background="@color/MBWhite" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -230,23 +240,24 @@
             <ImageView
                 android:layout_width="58dp"
                 android:layout_height="54dp"
-                android:background="@drawable/coin"
-                android:scaleType="centerInside"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/coin"
+                android:scaleType="centerInside" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
                 android:text="Achievement4"
-                android:textColor="@color/MYellow"
-                android:textSize="16sp"
-                android:gravity="center"/>
+                android:textColor="@color/MBWhite"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite"/>
+                android:background="@color/MBWhite" />
         </LinearLayout>
     </GridLayout>
 </LinearLayout>

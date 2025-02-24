@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MBWhite">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text = "&quot;Meet the developers&quot;"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <views.MTextView
+        android:id="@+id/tvSettings"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="About"
+        android:textColor="@color/MBWhite"
+        android:textSize="25sp"
+        app:endColor="@color/MBrown"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startColor="#3F2829" />
+
+    <views.MButton
+        android:id="@+id/btnExit"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_gravity="end"
+        android:padding="100dp"
+        app:backColor="@color/transparent"
+        app:cornerRadius="90dp"
+
+        app:imageBackground="@drawable/exit"
+        app:imageScale="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <views.MView
+        android:id="@+id/mvJoana"
+        android:layout_width="246dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="76dp"
+        app:backColor="#DFB27350"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+
+    <views.MView
+        android:id="@+id/mvLuis"
+        android:layout_width="246dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="52dp"
+        app:backColor="#DFB27350"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mvJoana" />
+
+    <views.MButton
+        android:id="@+id/mbJoana"
+        android:layout_width="97dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="28dp"
+        android:shadowColor="@color/black"
+        android:shadowDy="10"
+        android:shadowRadius="150"
+        app:backColor="@color/MBWhite"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/joana"
+        app:imageScale="1.3"
+        app:isClipped="true"
+        app:layout_constraintEnd_toEndOf="@+id/mvJoana"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/mvJoana"
+        app:layout_constraintTop_toTopOf="@+id/mvJoana" />
+
+    <TextView
+        android:layout_width="219dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/joanaDesc"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/mvJoana"
+        app:layout_constraintStart_toStartOf="@+id/mvJoana"
+        app:layout_constraintTop_toBottomOf="@+id/mbJoana" />
+
+    <views.MButton
+        android:id="@+id/mbLuis"
+        android:layout_width="97dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="20dp"
+        app:backColor="@color/MBWhite"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/luis"
+        app:imageScale="1.3"
+        app:isClipped="true"
+        app:layout_constraintEnd_toEndOf="@+id/mvLuis"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/mvLuis"
+        app:layout_constraintTop_toTopOf="@+id/mvLuis" />
+
+    <TextView
+        android:layout_width="219dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/luisDesc"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/mvLuis"
+        app:layout_constraintStart_toStartOf="@+id/mvLuis"
+        app:layout_constraintTop_toBottomOf="@+id/mbLuis" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

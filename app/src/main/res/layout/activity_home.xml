@@ -48,6 +48,7 @@
         android:layout_centerInParent="true"
         android:contentDescription="@string/play_button"
         android:text="PLAY"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -67,7 +68,7 @@
             android:id="@+id/HorizontalB"
             android:layout_width="match_parent"
             android:layout_height="78dp"
-            android:background="#2B5460"
+            android:background="@color/MBluishGreen"
             android:layout_gravity="bottom"/>
 
         <views.MButton

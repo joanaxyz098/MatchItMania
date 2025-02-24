@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Common attributes that can be shared across custom views -->
+    <attr name="backColor" format="color" />
     <attr name="borderColor" format="color" />
     <attr name="borderWidth" format="dimension" />
     <attr name="cornerRadius" format="dimension" />
@@ -8,6 +9,7 @@
     <attr name="shadowDx" format="dimension" />
     <attr name="shadowDy" format="dimension" />
     <attr name="shadowColor" format="color" />
+    <attr name="gradientColors" format="reference" />
     <attr name="gradientDirection" format="enum">
         <enum name="leftToRight" value="0" />
         <enum name="topToBottom" value="1" />
@@ -15,10 +17,11 @@
         <enum name="angle" value="3" />
     </attr>
     <attr name="gradientAngle" format="float" />
+    <attr name="isClipped" format="boolean"/>
 
     <!-- MButton specific attributes -->
     <declare-styleable name="MButton">
-        <attr name="backColor" format="color" />
+        <attr name="backColor" />
         <attr name="cornerRadius" />
         <attr name="shadowRadius" />
         <attr name="shadowDx" />
@@ -36,7 +39,7 @@
         <attr name="borderWidth" />
         <attr name="imageBackground" format="reference" />
         <attr name="imageScale" format="float" />
-        <attr name="gradientColors" format="reference" />
+        <attr name="gradientColors" />
         <attr name="gradientOrientation" format="enum">
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
@@ -49,14 +52,7 @@
             <enum name="italic" value="2" />
             <enum name="bold_italic" value="3" />
         </attr>
-    </declare-styleable>
-
-    <!-- Profile button attributes -->
-    <declare-styleable name="ProfileButton">
-        <attr name="frameImage" format="reference" />
-        <attr name="contentImage" format="reference" />
-        <attr name="contentScale" format="float" />
-        <attr name="backgroundColor" format="color" />
+        <attr name="isClipped"/>
     </declare-styleable>
 
     <!-- MTextView attributes -->
@@ -69,4 +65,14 @@
         <attr name="gradientDirection" />
         <attr name="gradientAngle" />
     </declare-styleable>
+
+    <declare-styleable name="MView">
+        <attr name="backColor" />
+        <attr name="borderColor"  />
+        <attr name="borderWidth" />
+        <attr name="cornerRadius" />
+        <attr name="gradientColors" />
+        <attr name="gradientAngle" />
+    </declare-styleable>
+
 </resources>

@@ -32,6 +32,7 @@
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:text="@string/music"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/MWhite"
                 android:textSize="15sp" />
 
@@ -43,6 +44,7 @@
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:text="@string/sound"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/MWhite"
                 android:textSize="15sp" />
 
@@ -54,6 +56,7 @@
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:text="@string/vibration"
+                android:fontFamily="@font/poppins"
                 android:textColor="@color/MWhite"
                 android:textSize="15sp" />
 
@@ -63,7 +66,8 @@
                 android:layout_height="73dp"
                 android:contentDescription="@string/log_in"
                 android:gravity="center"
-                android:text="@string/done"
+                android:text="@string/log_in"
+                android:fontFamily="@font/poppins"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 app:backColor="@color/MLightGreen"
@@ -74,6 +78,25 @@
                 app:borderColor="@color/MBrown"
                 app:borderWidth="2dp"/>
 
+            <views.MButton
+                android:id="@+id/btnAbout"
+                android:layout_width="249dp"
+                android:layout_height="73dp"
+                android:contentDescription="@string/log_in"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="About"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                app:backColor="@color/MLightGreen"
+                app:borderColor="@color/MBrown"
+                app:borderWidth="2dp"
+                app:cornerRadius="50dp"
+                app:fontWeight="1"
+                app:shadowColor="@color/MBluishGreen"
+                app:shadowRadius="10dp" />
+
         </LinearLayout>
 
         <views.MTextView
@@ -83,9 +106,10 @@
             android:layout_gravity="center|top"
             android:layout_marginTop="50dp"
             android:text="@string/settings"
+            android:fontFamily="@font/poppins"
             android:textAlignment="center"
             android:textColor="@color/MWhite"
-            android:textSize="25sp"
+            android:textSize="35sp"
             android:gravity="center"
             app:startColor="@color/MLightGreen"
             app:endColor="@color/MBluishGreen"

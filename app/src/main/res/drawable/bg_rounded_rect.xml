@@ -1,11 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <gradient
-        android:angle="40"
-        android:startColor="@color/MBluishGreen"
-        android:endColor="#B7ACAAA6"
-        android:type="linear"/> <!-- Change to radial or sweep if needed -->
+    <solid android:color="#E6955D40"/>
 
     <corners android:radius="20dp"/> <!-- Rounded corners -->
-    <stroke android:width="4dp" android:color="@color/MBrown"/> <!-- Black border -->
+    <stroke android:width="3dp" android:color="#ED3F2829"/> <!-- Border -->
 </shape>
