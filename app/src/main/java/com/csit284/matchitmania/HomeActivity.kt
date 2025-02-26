@@ -51,11 +51,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         findViewById<MButton>(R.id.btnProfile).setOnClickListener {
-            if (auth.currentUser == null) {
-                startActivity(Intent(this, LoginActivity::class.java))
-            } else {
-                startActivity(Intent(this, ProfileActivity::class.java))
-            }
+            startActivity(Intent(this, ProfileActivity::class.java))
         }
     }
 
@@ -69,8 +65,7 @@ class HomeActivity : AppCompatActivity() {
 
                 if (documentSData != null) {
                     userSettings = UserSettings.fromMap(documentSData)
-                    Log.i("HomeActivity", "Settings loaded: music=${userSettings.music}")
-                    Log.i("HomeActivity", "Settings loaded: sound=${userSettings.sound}")
+                    Log.i("HomeActivity", "Settings loaded: ${userSettings}")
 
                     // Play or stop music based on updated settings
                     if (userSettings.music) {

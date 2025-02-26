@@ -35,6 +35,11 @@ class SettingsActivity : AppCompatActivity() {
         loadUserSettings()
     }
 
+    override fun onDestroy() {
+        updateSettings()
+        super.onDestroy()
+    }
+
     private fun setupViews() {
         // Initialize switches
         scMusic = findViewById(R.id.scMusic)
@@ -51,56 +56,40 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<MButton>(R.id.btnAbout).setOnClickListener {
             startActivity(Intent(this, AboutActivity::class.java))
         }
+        // Setup login/logout button
+        updateLoginButton()
+        onScMusic()
+    }
 
-        // Setup switch listeners
-        scSound.setOnCheckedChangeListener { _, isChecked -> updateSettings(sound = isChecked) }
-        scVib.setOnCheckedChangeListener { _, isChecked -> updateSettings(vibration = isChecked) }
-
-
+    private fun onScMusic(){
         scMusic.setOnCheckedChangeListener { _, isChecked ->
-            updateSettings(music = isChecked)
             if (isChecked) {
                 BackgroundMusic.play()
             } else {
                 BackgroundMusic.pause()
             }
         }
-        // Setup login/logout button
-        updateLoginButton()
     }
 
-    private fun initializeSettings() {
+    private fun updateSwitch() {
         Log.i("TASK", "Initializing Settings: nimal1 $userSettings")
-
-        // Temporarily remove listeners to prevent unwanted triggers
-        scMusic.setOnCheckedChangeListener(null)
-        scSound.setOnCheckedChangeListener(null)
-        scVib.setOnCheckedChangeListener(null)
 
         // Set the correct values from userSettings
         scMusic.isChecked = userSettings?.music ?: true
         scSound.isChecked = userSettings?.sound ?: true
         scVib.isChecked = userSettings?.vibration ?: true
 
-        // Re-enable listeners AFTER setting values
-        scMusic.setOnCheckedChangeListener { _, isChecked -> updateSettings(music = isChecked) }
-        scSound.setOnCheckedChangeListener { _, isChecked -> updateSettings(sound = isChecked) }
-        scVib.setOnCheckedChangeListener { _, isChecked -> updateSettings(vibration = isChecked) }
-
         Log.i("TASK", "Initializing Settings: nimal2 $userSettings")
     }
 
 
-    private fun updateSettings(
-        music: Boolean? = null,
-        sound: Boolean? = null,
-        vibration: Boolean? = null
-    ) {
+    private fun updateSettings() {
         Log.i("TASK", "Before Updating Settings: $userSettings")
+
         userSettings = UserSettings(
-            music = music ?: scMusic.isChecked,
-            sound = sound ?: scSound.isChecked,
-            vibration = vibration ?: scVib.isChecked
+            scMusic.isChecked,
+            scSound.isChecked,
+            scVib.isChecked
         )
 
         // Save settings to Firebase only if user is logged in
@@ -128,11 +117,11 @@ class SettingsActivity : AppCompatActivity() {
                     userSettings = UserSettings.fromMap(documentData)
 
                     Log.i("TASK", "documentdata: $documentData userSettings: $userSettings")
-                    initializeSettings()
+                    updateSwitch()
 
                 } else {
                     userSettings = UserSettings()
-                    initializeSettings()
+                    updateSwitch()
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@SettingsActivity, "Failed to load settings", Toast.LENGTH_SHORT).show()
@@ -155,11 +144,13 @@ class SettingsActivity : AppCompatActivity() {
     private fun handleLogout() {
         val intent = Intent(this, LogoutActivity::class.java)
         startActivity(intent)
+        updateSettings()
         finish()
     }
 
     private fun navigateToHome() {
         val intent = Intent(this, HomeActivity::class.java)
+        updateSettings()
         startActivity(intent)
         finish()
     }
