@@ -79,7 +79,7 @@
         android:id="@+id/tvJoana"
         android:layout_width="306dp"
         android:layout_height="33dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="17dp"
         android:background="#4C60A8"
         android:fontFamily="@font/poppins"
         android:gravity="center"
@@ -114,6 +114,44 @@
         app:layout_constraintStart_toStartOf="@+id/mvJoana"
         app:layout_constraintTop_toBottomOf="@+id/tvJoana"
         app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/llJoana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvJoanaE"
+        app:layout_constraintStart_toStartOf="@id/mvJoana"
+        app:layout_constraintEnd_toEndOf="@id/mvJoana"
+        app:layout_constraintBottom_toTopOf="@id/vectorArrowJ">
+        <TextView
+            android:id="@+id/tvJBday"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="@string/joanaBday"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            android:paddingStart="10dp" />
+        <TextView
+            android:id="@+id/tvJHobbies"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="@string/joanaHobbies"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            android:paddingStart="10dp" />
+
+        <TextView
+            android:id="@+id/tvJDesc"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="@string/joanaDesc"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            android:justificationMode="inter_word"
+            android:paddingStart="10dp" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/vectorArrowJ"
@@ -161,7 +199,7 @@
         android:id="@+id/tvLuis"
         android:layout_width="306dp"
         android:layout_height="33dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="17dp"
         android:background="#4C60A8"
         android:fontFamily="@font/poppins"
         android:gravity="center"
@@ -197,6 +235,43 @@
         app:layout_constraintTop_toBottomOf="@+id/tvLuis"
         app:layout_constraintVertical_bias="0.0" />
 
+    <LinearLayout
+        android:id="@+id/llLuis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvLuisE"
+        app:layout_constraintStart_toStartOf="@id/mvLuis"
+        app:layout_constraintEnd_toEndOf="@id/mvLuis"
+        app:layout_constraintBottom_toTopOf="@id/vectorArrowL">
+        <TextView
+            android:id="@+id/tvLBday"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="@string/luisBday"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            android:paddingStart="10dp" />
+        <TextView
+            android:id="@+id/tvLHobbies"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="@string/luisHobbies"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            android:paddingStart="10dp" />
+
+        <TextView
+            android:id="@+id/tvLDesc"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:text="@string/luisDesc"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            android:justificationMode="inter_word"
+            android:paddingStart="10dp"/>
+    </LinearLayout>
     <ImageView
         android:id="@+id/vectorArrowL"
         android:layout_width="50dp"
