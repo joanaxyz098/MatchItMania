@@ -3,76 +3,75 @@ package firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-open class FirebaseRepository<T>(private val collectionName: String, private val clazz: Class<T>) {
+object FirebaseRepository {
     private val db = FirebaseFirestore.getInstance()
-    private val collectionRef = db.collection(collectionName)
 
-    // 🔹 Fetch a single document by ID
-    suspend fun getDocumentById(id: String): T? {
+    // Fetch a single document as a Map
+    suspend fun getDocumentById(collectionName: String, id: String): Map<String, Any>? {
         return try {
-            val document = collectionRef.document(id).get().await()
-            document.toObject(clazz)  // Convert Firestore document to an object of type T
+            val document = db.collection(collectionName).document(id).get().await()
+            document.data
         } catch (e: Exception) {
             e.printStackTrace()
             null
         }
     }
 
-    suspend fun <R> getPartialDocument(id: String, field: String, clazz: Class<R>): R? {
+    // Fetch a specific field from a document
+    suspend fun getPartialDocument(collectionName: String, id: String, field: String): Any? {
         return try {
-            val document = collectionRef.document(id).get().await()
-            val data = document.get(field, clazz)  // Get only the specific field
-            data
+            val document = db.collection(collectionName).document(id).get().await()
+            document.get(field)
         } catch (e: Exception) {
             e.printStackTrace()
             null
         }
     }
 
-
-    // 🔹 Fetch all documents in the collection
-    suspend fun getAllDocuments(): List<T> {
+    // Fetch all documents as a List of Maps
+    suspend fun getAllDocuments(collectionName: String): List<Map<String, Any>> {
         return try {
-            val snapshot = collectionRef.get().await()
-            snapshot.documents.mapNotNull { it.toObject(clazz) }  // Convert Firestore documents to List<T>
+            val snapshot = db.collection(collectionName).get().await()
+            snapshot.documents.mapNotNull { it.data }
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList()
         }
     }
 
-    // 🔹 Add a new document (Auto-generated ID)
-    suspend fun addDocument(data: T): String? {
+    // Add a new document with auto-generated ID
+    suspend fun addDocument(collectionName: String, data: Map<String, Any>): String? {
         return try {
-            val documentRef = collectionRef.add(data as Any).await()  // Force type to Any
-            documentRef.id  // Return document ID
+            val documentRef = db.collection(collectionName).add(data).await()
+            documentRef.id
         } catch (e: Exception) {
             e.printStackTrace()
             null
         }
     }
-    // 🔹 Update an existing document by ID
-    suspend fun updateDocument(id: String, data: Map<String, Any>) {
+
+    // Update an existing document by ID
+    suspend fun updateDocument(collectionName: String, id: String, data: Map<String, Any>) {
         try {
-            collectionRef.document(id).update(data).await()
+            db.collection(collectionName).document(id).update(data).await()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    suspend fun setDocument(id: String, data: Map<String, Any>) {
+    // Set (overwrite) a document
+    suspend fun setDocument(collectionName: String, id: String, data: Map<String, Any>) {
         try {
-            collectionRef.document(id).set(data).await() // Overwrites or creates a new document
+            db.collection(collectionName).document(id).set(data).await()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-
-    // 🔹 Delete a document by ID
-    suspend fun deleteDocument(id: String) {
+    // Delete a document by ID
+    suspend fun deleteDocument(collectionName: String, id: String) {
         try {
-            collectionRef.document(id).delete().await()
+            db.collection(collectionName).document(id).delete().await()
         } catch (e: Exception) {
             e.printStackTrace()
         }

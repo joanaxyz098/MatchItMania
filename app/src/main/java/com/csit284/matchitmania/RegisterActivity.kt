@@ -12,28 +12,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
-import views.MButton
 import firebase.FirebaseRepository
-import firebase.UserRepository
+import views.MButton
 import kotlinx.coroutines.launch
-import userGenerated.UserProfile
 
 class RegisterActivity : AppCompatActivity() {
-    private var etEmail: EditText? = null
-    private var etPass: EditText? = null
-    private var etUser: EditText? = null
-    private var etConfirmPass: EditText? = null
-    private var btnRegister: MButton? = null
-    private var mAuth: FirebaseAuth? = null
-    private var pbRegister: ProgressBar? = null
+    private lateinit var etEmail: EditText
+    private lateinit var etPass: EditText
+    private lateinit var etUser: EditText
+    private lateinit var etConfirmPass: EditText
+    private lateinit var btnRegister: MButton
+    private lateinit var pbRegister: ProgressBar
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onStart() {
         super.onStart()
-        val currentUser: FirebaseUser? = mAuth?.currentUser
+        val currentUser: FirebaseUser? = mAuth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
     }
@@ -55,68 +51,66 @@ class RegisterActivity : AppCompatActivity() {
         tvLogin.paintFlags = tvLogin.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         tvLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        val btnExit = findViewById<MButton>(R.id.btnExit)
-        btnExit.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
+        findViewById<MButton>(R.id.btnExit).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
 
-        btnRegister?.setOnClickListener {
-            pbRegister?.visibility = View.VISIBLE
+        btnRegister.setOnClickListener {
+            pbRegister.visibility = View.VISIBLE
 
-            val user = etUser?.text?.toString()?.trim() ?: ""
-            val email = etEmail?.text?.toString()?.trim() ?: ""
-            val password = etPass?.text?.toString() ?: ""
-            val cPassword = etConfirmPass?.text?.toString() ?: ""
+            val user = etUser.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+            val password = etPass.text.toString()
+            val cPassword = etConfirmPass.text.toString()
 
             // Input validation
-            if (user.isEmpty()) {
-                etUser?.error = "Username required"
-                pbRegister?.visibility = View.GONE
-                return@setOnClickListener
-            }
-
-            if (email.isEmpty()) {
-                etEmail?.error = "Email required"
-                pbRegister?.visibility = View.GONE
-                return@setOnClickListener
-            }
-
-            if (password.isEmpty()) {
-                etPass?.error = "Password required"
-                pbRegister?.visibility = View.GONE
-                return@setOnClickListener
-            }
-
-            if (password != cPassword) {
-                etConfirmPass?.error = "Passwords don't match"
-                pbRegister?.visibility = View.GONE
-                return@setOnClickListener
+            when {
+                user.isEmpty() -> {
+                    etUser.error = "Username required"
+                    pbRegister.visibility = View.GONE
+                    return@setOnClickListener
+                }
+                email.isEmpty() -> {
+                    etEmail.error = "Email required"
+                    pbRegister.visibility = View.GONE
+                    return@setOnClickListener
+                }
+                password.isEmpty() -> {
+                    etPass.error = "Password required"
+                    pbRegister.visibility = View.GONE
+                    return@setOnClickListener
+                }
+                password != cPassword -> {
+                    etConfirmPass.error = "Passwords don't match"
+                    pbRegister.visibility = View.GONE
+                    return@setOnClickListener
+                }
             }
 
             // Firebase Authentication
-            mAuth?.createUserWithEmailAndPassword(email, password)
-                ?.addOnCompleteListener { task ->
-                    pbRegister?.visibility = View.GONE  // Hide progress bar in both cases
-
+            mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        val userId = mAuth?.currentUser?.uid
-
-                        val firebaseRepo = UserRepository()
-                        //exclamation forces kotlin to throw an exception if userId is null
-                        lifecycleScope.launch {
-                            firebaseRepo.setUserProfile(userId!!, user, email) // we use set instead of add to link it to the userId from auth
-                            Toast.makeText(this@RegisterActivity, "Player $user registered!", Toast.LENGTH_SHORT).show()
-                            finish()
+                        val userId = mAuth.currentUser?.uid
+                        if (userId != null) {
+                            lifecycleScope.launch {
+                                FirebaseRepository.setDocument("users",
+                                    userId,
+                                    mapOf("username" to user, "email" to email)
+                                )
+                                Toast.makeText(this@RegisterActivity, "Player $user registered!", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+                        } else {
+                            pbRegister.visibility = View.GONE
+                            Toast.makeText(this, "User registration failed", Toast.LENGTH_SHORT).show()
                         }
-
-                        finish()
                     } else {
-                        val errorMessage = task.exception?.message
+                        pbRegister.visibility = View.GONE
+                        val errorMessage = task.exception?.message ?: "Registration failed"
                         Toast.makeText(this, "Error: $errorMessage", Toast.LENGTH_SHORT).show()
                     }
                 }

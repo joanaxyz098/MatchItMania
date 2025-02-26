@@ -8,12 +8,16 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
+import firebase.FirebaseRepository
+import kotlinx.coroutines.launch
 import views.MButton
 
 class LoginActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
-
+    private val userID = auth.currentUser?.uid
+    private var username: String ?= null
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var progressBar: ProgressBar
@@ -23,6 +27,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         setupViews()
+    }
+
+    private fun fetchUsername(){
+        if(userID != null){
+            lifecycleScope.launch {
+                username = FirebaseRepository.getPartialDocument("users", userID, "username") as String
+            }
+        }
     }
 
     private fun setupViews() {
@@ -69,8 +81,10 @@ class LoginActivity : AppCompatActivity() {
                 progressBar.visibility = View.GONE
 
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Welcome back!", Toast.LENGTH_SHORT).show()
+                    fetchUsername()
+                    Toast.makeText(this, "Welcome back! $username", Toast.LENGTH_SHORT).show()
                     navigateToHome()
+                    finish()
                 } else {
                     val errorMessage = task.exception?.message ?: "Authentication failed"
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()

@@ -14,8 +14,6 @@ import userGenerated.UserProfile
 
 class ProfileActivity : AppCompatActivity() {
     private val userId = FirebaseAuth.getInstance().currentUser?.uid
-    private val userRepository = FirebaseRepository("users", UserProfile::class.java)
-
     private var tvUser: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +35,16 @@ class ProfileActivity : AppCompatActivity() {
     private fun fetchUserProfile() {
         if (userId != null) {
             lifecycleScope.launch {
-                val userProfile = userRepository.getDocumentById(userId)
-                if (userProfile != null) {
-                    tvUser?.setText(userProfile.username)
+                val documentData = FirebaseRepository.getDocumentById("users", userId)
+                if (documentData != null) {
+                    val userProfile = UserProfile.fromMap(documentData)
+                    tvUser?.text = userProfile.username
                 } else {
                     Log.e("Firestore", "User not found")
+                    tvUser?.text = "User not found"
                 }
             }
         }
     }
+
 }

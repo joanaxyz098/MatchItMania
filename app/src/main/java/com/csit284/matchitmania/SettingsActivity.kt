@@ -1,22 +1,22 @@
 package com.csit284.matchitmania
 
-import UserSettings
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
-import firebase.UserSettingsRepository
+import firebase.FirebaseRepository
 import kotlinx.coroutines.launch
 import music.BackgroundMusic
 import userGenerated.UserProfile
+import userGenerated.UserSettings
 import views.MButton
 
 class SettingsActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
-    private val userSettingsRepository = UserSettingsRepository()
 
     private lateinit var scMusic: SwitchCompat
     private lateinit var scSound: SwitchCompat
@@ -25,19 +25,14 @@ class SettingsActivity : AppCompatActivity() {
 
     private var userSettings: UserSettings? = null
     private var userProfile: UserProfile? = null
-    private var isGuest: Boolean = true
+    private var isGuest = auth.currentUser == null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        // Get data from intent
-        userSettings = intent.getParcelableExtra("userSettings")
-        userProfile = intent.getParcelableExtra("userProfile")
-        isGuest = intent.getBooleanExtra("isGuest", true)
-
         setupViews()
-        initializeSettings()
+        loadUserSettings()
     }
 
     private fun setupViews() {
@@ -58,12 +53,9 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         // Setup switch listeners
-        scMusic.setOnCheckedChangeListener { _, isChecked -> updateSettings(music = isChecked) }
         scSound.setOnCheckedChangeListener { _, isChecked -> updateSettings(sound = isChecked) }
         scVib.setOnCheckedChangeListener { _, isChecked -> updateSettings(vibration = isChecked) }
 
-        // Setup login/logout button
-        updateLoginButton()
 
         scMusic.setOnCheckedChangeListener { _, isChecked ->
             updateSettings(music = isChecked)
@@ -73,19 +65,38 @@ class SettingsActivity : AppCompatActivity() {
                 BackgroundMusic.pause()
             }
         }
+        // Setup login/logout button
+        updateLoginButton()
     }
 
     private fun initializeSettings() {
+        Log.i("TASK", "Initializing Settings: nimal1 $userSettings")
+
+        // Temporarily remove listeners to prevent unwanted triggers
+        scMusic.setOnCheckedChangeListener(null)
+        scSound.setOnCheckedChangeListener(null)
+        scVib.setOnCheckedChangeListener(null)
+
+        // Set the correct values from userSettings
         scMusic.isChecked = userSettings?.music ?: true
         scSound.isChecked = userSettings?.sound ?: true
         scVib.isChecked = userSettings?.vibration ?: true
+
+        // Re-enable listeners AFTER setting values
+        scMusic.setOnCheckedChangeListener { _, isChecked -> updateSettings(music = isChecked) }
+        scSound.setOnCheckedChangeListener { _, isChecked -> updateSettings(sound = isChecked) }
+        scVib.setOnCheckedChangeListener { _, isChecked -> updateSettings(vibration = isChecked) }
+
+        Log.i("TASK", "Initializing Settings: nimal2 $userSettings")
     }
+
 
     private fun updateSettings(
         music: Boolean? = null,
         sound: Boolean? = null,
         vibration: Boolean? = null
     ) {
+        Log.i("TASK", "Before Updating Settings: $userSettings")
         userSettings = UserSettings(
             music = music ?: scMusic.isChecked,
             sound = sound ?: scSound.isChecked,
@@ -96,10 +107,35 @@ class SettingsActivity : AppCompatActivity() {
         auth.currentUser?.uid?.let { userId ->
             lifecycleScope.launch {
                 try {
-                    userSettingsRepository.updateUserSettings(userId, userSettings!!)
+                   FirebaseRepository.setDocument("settings", userId, userSettings!!.toMap())
                 } catch (e: Exception) {
                     Toast.makeText(this@SettingsActivity, "Failed to save settings", Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+
+        Log.i("TASK", "After Updating Settings: $userSettings")
+    }
+
+
+    private fun loadUserSettings() {
+        val userId = auth.currentUser?.uid ?: return
+
+        lifecycleScope.launch {
+            try {
+                val documentData = FirebaseRepository.getDocumentById("settings", userId)
+                if (documentData != null) {
+                    userSettings = UserSettings.fromMap(documentData)
+
+                    Log.i("TASK", "documentdata: $documentData userSettings: $userSettings")
+                    initializeSettings()
+
+                } else {
+                    userSettings = UserSettings()
+                    initializeSettings()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@SettingsActivity, "Failed to load settings", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -117,21 +153,13 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun handleLogout() {
-        auth.signOut()
-        userProfile = null
-        userSettings = UserSettings(music = true, sound = true, vibration = true)
-        isGuest = true
-        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-        updateLoginButton()
-        initializeSettings()
+        val intent = Intent(this, LogoutActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun navigateToHome() {
-        val intent = Intent(this, HomeActivity::class.java).apply {
-            putExtra("userSettings", userSettings)
-            putExtra("userProfile", userProfile)
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }

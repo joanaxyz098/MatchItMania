@@ -1,24 +1,22 @@
 package com.csit284.matchitmania
 
-import UserSettings
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
-import firebase.UserRepository
-import firebase.UserSettingsRepository
+import firebase.FirebaseRepository
 import kotlinx.coroutines.launch
 import music.BackgroundMusic
 import userGenerated.UserProfile
+import userGenerated.UserSettings
 import views.MButton
 
 class HomeActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
-    private val userSettingsRepository = UserSettingsRepository()
-    private val userRepository = UserRepository()
     private var userProfile: UserProfile? = null
-    private var userSettings: UserSettings? = null
+    private var userSettings: UserSettings = UserSettings()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +24,6 @@ class HomeActivity : AppCompatActivity() {
 
         // Initialize music at app start
         BackgroundMusic.initialize(this)
-
-        // Start playing if music is enabled
-        if (userSettings?.music != false) {  // Play by default for guest users
-            BackgroundMusic.play()
-        }
 
         setupViews()
         loadUserData()
@@ -43,9 +36,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (userSettings?.music != false) {
-            BackgroundMusic.play()
-        }
+        loadUserData() // Reload settings when returning
     }
 
     override fun onDestroy() {
@@ -54,20 +45,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        // Settings button
         findViewById<MButton>(R.id.btnSettings).setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java).apply {
-                putExtra("userSettings", userSettings)
-                putExtra("userProfile", userProfile)
-                putExtra("isGuest", auth.currentUser == null)
-            }
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
-        // Profile button
         findViewById<MButton>(R.id.btnProfile).setOnClickListener {
             if (auth.currentUser == null) {
-                // If guest, prompt to login
                 startActivity(Intent(this, LoginActivity::class.java))
             } else {
                 startActivity(Intent(this, ProfileActivity::class.java))
@@ -76,35 +60,35 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun loadUserData() {
-        val userId = auth.currentUser?.uid
-
-        if (userId == null) {
-            // Guest user - use default settings
-            userSettings = UserSettings(
-                music = true,
-                sound = true,
-                vibration = true
-            )
-            return
-        }
+        val userId = auth.currentUser?.uid ?: return
 
         lifecycleScope.launch {
             try {
-                // Load user settings
-                userSettings = userSettingsRepository.loadUserSettings(userId) ?: UserSettings(
-                    music = true,
-                    sound = true,
-                    vibration = true
-                )
+                val documentSData = FirebaseRepository.getDocumentById("settings", userId)
+                val documentPData = FirebaseRepository.getDocumentById("users", userId)
 
-                // Load user profile
-                userProfile = userRepository.loadUserProfile(userId)
+                if (documentSData != null) {
+                    userSettings = UserSettings.fromMap(documentSData)
+                    Log.i("HomeActivity", "Settings loaded: music=${userSettings.music}")
+                    Log.i("HomeActivity", "Settings loaded: sound=${userSettings.sound}")
 
-                // Update settings if needed
-                userSettingsRepository.updateUserSettings(userId, userSettings!!)
+                    // Play or stop music based on updated settings
+                    if (userSettings.music) {
+                        BackgroundMusic.play()
+                    } else {
+                        BackgroundMusic.pause()
+                    }
+                } else {
+                    userSettings = UserSettings() // Default settings
+                }
+
+                if (documentPData != null) {
+                    userProfile = UserProfile.fromMap(documentPData)
+                }
             } catch (e: Exception) {
-                // Handle error appropriately
+                Log.e("HomeActivity", "Failed to load user data", e)
             }
         }
     }
+
 }
