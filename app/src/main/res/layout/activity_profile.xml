@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/indoors"
+    android:background="@drawable/indoor"
     tools:context=".SettingsActivity">
 
     <FrameLayout
@@ -20,12 +20,12 @@
             android:text="@string/profile"
             android:fontFamily="@font/poppins"
             android:textAlignment="center"
-            android:textColor="@color/MBWhite"
+            android:textColor="@color/white"
             android:textSize="40sp"
             android:gravity="center"
             app:gradientDirection="topToBottom"
-            app:startColor="#3F2829"
-            app:endColor="@color/MBrown"
+            app:startColor="#1B3D6A"
+            app:endColor="#C31B3D6A"
             >
         </views.MTextView>
 
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_gravity="center_vertical"
-        android:background="#9CC6C0"
+        android:background="@color/MYellow"
         android:layout_marginBottom="20dp"/>
 
     <RelativeLayout
@@ -66,7 +66,7 @@
             android:layout_marginTop="10dp"
             android:text="Player: "
             android:fontFamily="@font/poppins"
-            android:textColor="#3F2829"
+            android:textColor="@color/MYellow"
             android:textSize="20sp"/>
 
         <!-- Username (Beside Player Label) -->
@@ -78,7 +78,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/usernameDef"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/MBWhite"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_toEndOf="@id/tvPlayer"/>
 
@@ -89,9 +89,9 @@
             android:layout_height="100dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
-            app:backColor="#4189A6"
-            app:borderColor="@color/MBrown"
-            app:borderWidth="10dp"
+            app:backColor="@color/MBlue"
+            app:borderColor="#201A1C"
+            app:borderWidth="8dp"
             app:cornerRadius="10dp"
             app:imageBackground="@drawable/avatar1"
             app:imageScale="0.9"
@@ -106,13 +106,13 @@
             android:gravity="center"
             android:text="@string/lvl"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/MBWhite"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:shadowColor="@color/black"
             android:shadowRadius="10"
             app:cornerRadius="300dp"
-            app:endColor="#955D40"
-            app:startColor="#F9D38D"
+            app:endColor="#D03703"
+            app:startColor="#FECC02"
             app:gradientDirection="topToBottom"
             app:borderWidth="3dp"
             app:borderColor="#3F2829"
@@ -129,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_gravity="center_vertical"
-            android:background="#9CC6C0" />
+            android:background="@color/MShader" />
 
         <views.MTextView
             android:layout_width="wrap_content"
@@ -141,13 +141,13 @@
             android:text="@string/achievements"
             android:fontFamily="@font/poppins"
             android:gravity="center"
-            android:textColor="@color/MBWhite"
+            android:textColor="@color/white"
             android:textSize="25sp"
             app:borderColor="#3F2829"
             app:borderWidth="3dp"
             app:gradientDirection="topToBottom"
-            app:endColor="#955D40"
-            app:startColor="#F9D38D"
+            app:endColor="#D03703"
+            app:startColor="#FECC02"
             app:cornerRadius="20dp"/>
     </FrameLayout>
 
@@ -183,13 +183,13 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="Achievement1"
-                android:textColor="@color/MBWhite"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite" />
+                android:background="#FB9F04" />
         </LinearLayout>
 
 
@@ -212,13 +212,13 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="Achievement2"
-                android:textColor="@color/MBWhite"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite" />
+                android:background="#FB9F04" />
         </LinearLayout>
 
         <LinearLayout
@@ -240,13 +240,13 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="Achievement3"
-                android:textColor="@color/MBWhite"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite" />
+                android:background="#FB9F04" />
         </LinearLayout>
 
         <LinearLayout
@@ -270,13 +270,13 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:text="Achievement4"
-                android:textColor="@color/MBWhite"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="20dp"
-                android:background="@color/MBWhite" />
+                android:background="#FB9F04" />
         </LinearLayout>
     </GridLayout>
 </LinearLayout>

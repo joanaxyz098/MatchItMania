@@ -8,15 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="MYellow">#F9C80E</color>
-    <color name="MPink">#FF5E99</color>
-    <color name="MBluishGreen">#2B5460</color>
-    <color name="MBlue">#51c0d6</color>
-    <color name="MBrown">#b27350</color>
-    <color name="MDarkBlue">#2b8195</color>
-    <color name="MGreen">#2c5d61</color>
-    <color name="MWhite">#cde7ee</color>
-    <color name="MLightGreen">#8ac38c</color>
-    <color name="MBWhite">#e5c7a1</color>
-    <color name="MLightPink">#FFE29FC0</color>
+    <color name="MBlue">#AED9D2</color>
+    <color name="MYellow">#FEA705</color>
+    <color name="MPurple">#704A65</color>
+    <color name="MLavender">#8795C2</color>
+    <color name="MShader">#FF201A1C</color>
+    <color name="MDarkPurple">#30287F</color>
 </resources>

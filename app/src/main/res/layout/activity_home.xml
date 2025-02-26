@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home"
+    android:background="@drawable/home2"
     android:textAlignment="center"
     tools:context=".HomeActivity">
 
@@ -20,8 +20,8 @@
             android:layout_height="94dp"
             android:contentDescription="@string/profile_button"
             android:layout_alignParentStart="true"
-            app:backColor="#4189A6"
-            app:borderColor="@color/MBrown"
+            app:backColor="@color/MBlue"
+            app:borderColor="@color/MPurple"
             app:borderWidth="10dp"
             app:imageBackground="@drawable/avatar1"
             app:imageScale="0.9"
@@ -55,7 +55,7 @@
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:shadowColor="@color/MPink"
+        app:shadowColor="@color/MPurple"
         app:shadowRadius="20dp" />
 
     <FrameLayout
@@ -67,7 +67,7 @@
             android:id="@+id/HorizontalB"
             android:layout_width="match_parent"
             android:layout_height="78dp"
-            android:background="@color/MBluishGreen"
+            android:background="#565580"
             android:layout_gravity="bottom"/>
 
         <views.MButton

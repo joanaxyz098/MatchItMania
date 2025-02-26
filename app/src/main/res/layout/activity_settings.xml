@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/forest3"
+    android:background="@drawable/bg"
     tools:context=".SettingsActivity">
 
     <View
@@ -30,7 +30,7 @@
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/music"
-        android:textColor="@color/MWhite"
+        android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/scSound"
         app:layout_constraintEnd_toEndOf="@+id/view"
@@ -46,7 +46,7 @@
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/vibration"
-        android:textColor="@color/MWhite"
+        android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
         app:layout_constraintEnd_toEndOf="@+id/view"
@@ -62,7 +62,7 @@
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/sound"
-        android:textColor="@color/MWhite"
+        android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/scVibration"
         app:layout_constraintEnd_toEndOf="@+id/view"
@@ -80,15 +80,14 @@
         android:text="@string/log_in"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:backColor="@color/MLightGreen"
-        app:borderColor="@color/MBrown"
+        app:backColor="@color/MShader"
         app:borderWidth="2dp"
         app:cornerRadius="50dp"
         app:fontWeight="1"
         app:layout_constraintBottom_toTopOf="@+id/btnAbout"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:shadowColor="@color/MBluishGreen"
+        app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
     <views.MButton
@@ -102,15 +101,14 @@
         android:text="About"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:backColor="@color/MLightGreen"
-        app:borderColor="@color/MBrown"
+        app:backColor="@color/MShader"
         app:borderWidth="2dp"
         app:cornerRadius="50dp"
         app:fontWeight="1"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:shadowColor="@color/MBluishGreen"
+        app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
     <views.MTextView
@@ -123,21 +121,18 @@
         android:gravity="center"
         android:text="@string/settings"
         android:textAlignment="center"
-        android:textColor="@color/MWhite"
+        android:textColor="@color/white"
         android:textSize="35sp"
-        app:borderColor="@color/MBrown"
+        app:borderColor="@color/MShader"
         app:borderWidth="5dp"
         app:cornerRadius="20dp"
-        app:endColor="@color/MBluishGreen"
+        app:endColor="#30287F"
         app:gradientDirection="topToBottom"
-        app:layout_constraintBottom_toTopOf="@+id/scMusic"
-        app:layout_constraintEnd_toEndOf="@+id/scMusic"
-        app:layout_constraintStart_toStartOf="@+id/scMusic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:startColor="@color/MLightGreen">
-
-    </views.MTextView>
+        app:startColor="@color/MPurple" />
 
     <views.MButton
         android:id="@+id/btnExit"
@@ -145,8 +140,8 @@
         android:layout_height="71dp"
         android:layout_gravity="end"
         android:padding="100dp"
-        app:backColor="@color/transparent"
-        app:borderColor="@color/MBrown"
+        app:backColor="#68FEA705"
+        app:borderColor="@color/MShader"
         app:borderWidth="5dp"
         app:cornerRadius="90dp"
         app:imageBackground="@drawable/exit"

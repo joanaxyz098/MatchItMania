@@ -2,10 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
     <gradient
         android:angle="40"
-        android:startColor="@color/MGreen"
-        android:endColor="@color/MDarkBlue"
+        android:startColor="@color/MDarkPurple"
+        android:endColor="#81FEA705"
         android:type="linear"/> <!-- Change to radial or sweep if needed -->
 
     <corners android:radius="20dp"/> <!-- Rounded corners -->
-    <stroke android:width="4dp" android:color="@color/MBrown"/> <!-- Black border -->
+    <stroke android:width="4dp" android:color="@color/MShader"/> <!-- Black border -->
 </shape>
