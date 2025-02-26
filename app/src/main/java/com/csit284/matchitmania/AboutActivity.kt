@@ -101,15 +101,15 @@ class AboutActivity: Activity() {
 
     private fun setUpJListener() {
         Jbtn?.setOnClickListener {
-            isJClicked = toggleViewHeight(Lbtn, Jmv, Lmv, Ltv, Ltv2, Jll, isJClicked)
             Jbtn?.animate()?.rotation(if (isJClicked) 0f else 180f)?.setDuration(300)?.start()
+            isJClicked = toggleViewHeight(Lbtn, Jmv, Lmv, Ltv, Ltv2, Jll, isJClicked)
         }
     }
 
     private fun setUpLListener() {
         Lbtn?.setOnClickListener {
-            isLClicked = toggleViewHeight(Jbtn, Lmv, Jmv, Jtv, Jtv2, Lll, isLClicked)
             Lbtn?.animate()?.rotation(if (isLClicked) 0f else 180f)?.setDuration(300)?.start()
+            isLClicked = toggleViewHeight(Jbtn, Lmv, Jmv, Jtv, Jtv2, Lll, isLClicked)
         }
     }
 
