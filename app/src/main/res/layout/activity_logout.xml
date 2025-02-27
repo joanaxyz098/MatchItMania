@@ -8,21 +8,21 @@
 
 
     <!--    <views.MTextView-->
-<!--        android:id="@+id/MTextView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="4dp"-->
-<!--        android:layout_marginTop="48dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:fontFamily="@font/poppins"-->
-<!--        android:text="MATCH IT MANIA"-->
-<!--        android:shadowRadius="10"-->
-<!--        android:shadowDy="19"-->
-<!--        android:shadowColor="#4E4B4B"-->
-<!--        android:textColor="#F4FAEC"-->
-<!--        android:textSize="28sp"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/imageView"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        android:id="@+id/MTextView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="4dp"-->
+    <!--        android:layout_marginTop="48dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:fontFamily="@font/poppins"-->
+    <!--        android:text="MATCH IT MANIA"-->
+    <!--        android:shadowRadius="10"-->
+    <!--        android:shadowDy="19"-->
+    <!--        android:shadowColor="#4E4B4B"-->
+    <!--        android:textColor="#F4FAEC"-->
+    <!--        android:textSize="28sp"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/imageView"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 
     <ImageView
@@ -37,37 +37,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/MView"
+        android:id="@+id/mvlogout"
         android:layout_width="315dp"
         android:layout_height="236dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/gb_rounded_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"  />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="234dp"
         android:layout_height="68dp"
         android:layout_marginTop="28dp"
-        android:text="Are you sure you want to log out?"
-        android:textColor="#F3F9EB"
-        android:shadowRadius="10"
-        android:shadowColor="@color/MShader"
-        android:textAlignment="center"
-        android:textSize="25sp"
         android:fontFamily="@font/poppins"
-        app:layout_constraintEnd_toEndOf="@+id/MView"
-        app:layout_constraintStart_toStartOf="@+id/MView"
-        app:layout_constraintTop_toTopOf="@+id/MView" />
+        android:shadowColor="@color/MShader"
+        android:shadowRadius="10"
+        android:text="Are you sure you want to log out?"
+        android:textAlignment="center"
+        android:textColor="#F3F9EB"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/mvlogout"
+        app:layout_constraintStart_toStartOf="@+id/mvlogout"
+        app:layout_constraintTop_toTopOf="@+id/mvlogout" />
 
     <views.MButton
         android:id="@+id/btnYes"
         android:layout_width="125dp"
         android:layout_height="74dp"
-        android:layout_marginBottom="220dp"
-        android:layout_marginRight="140dp"
         android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
         android:gravity="center"
@@ -77,17 +75,17 @@
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/mvlogout"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo"
+        app:layout_constraintStart_toStartOf="@+id/mvlogout"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:shadowColor="@color/MDarkPurple"
-        app:shadowRadius="10dp"/>
+        app:shadowRadius="10dp" />
 
     <views.MButton
         android:id="@+id/btnNo"
         android:layout_width="125dp"
         android:layout_height="74dp"
-        android:layout_marginBottom="220dp"
         android:layout_marginLeft="140dp"
         android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
@@ -98,10 +96,13 @@
         app:backColor="@color/MOrange"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/mvlogout"
+        app:layout_constraintEnd_toEndOf="@+id/mvlogout"
+        app:layout_constraintHorizontal_bias="0.777"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintVertical_bias="0.515"
         app:shadowColor="@color/MDarkPurple"
-        app:shadowRadius="10dp"/>
+        app:shadowRadius="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
