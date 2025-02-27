@@ -48,7 +48,7 @@
         android:id="@+id/mvJoana"
         android:layout_width="342dp"
         android:layout_height="270dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="17dp"
         app:backColor="#BAFEA705"
         app:borderColor="#4C60A8"
         app:borderWidth="4dp"
@@ -78,7 +78,7 @@
     <TextView
         android:id="@+id/tvJoana"
         android:layout_width="306dp"
-        android:layout_height="33dp"
+        android:layout_height="30dp"
         android:layout_marginTop="17dp"
         android:background="#4C60A8"
         android:fontFamily="@font/poppins"
@@ -149,7 +149,6 @@
             android:text="@string/joanaDesc"
             android:textColor="#4C60A8"
             android:textSize="20sp"
-            android:justificationMode="inter_word"
             android:paddingStart="10dp" />
     </LinearLayout>
 
@@ -164,11 +163,12 @@
         app:layout_constraintEnd_toEndOf="@id/mvJoana"
         app:layout_constraintBottom_toBottomOf="@id/mvJoana"/>
 
+
     <views.MView
         android:id="@+id/mvLuis"
         android:layout_width="342dp"
         android:layout_height="270dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         app:backColor="#BAFEA705"
         app:borderColor="#4C60A8"
         app:borderWidth="4dp"
@@ -269,7 +269,6 @@
             android:text="@string/luisDesc"
             android:textColor="#4C60A8"
             android:textSize="20sp"
-            android:justificationMode="inter_word"
             android:paddingStart="10dp"/>
     </LinearLayout>
     <ImageView

@@ -66,7 +66,7 @@ class AboutActivity: Activity() {
         lLayout: LinearLayout?,
         isClicked: Boolean
     ): Boolean {
-        val newExpandHeight = if (isClicked) origMvHeight ?: 0 else 1200
+        val newExpandHeight = if (isClicked) origMvHeight ?: 0 else 1100
         val newShrinkHeight = if (isClicked) origMvHeight ?: 0 else 320
 
         // Animate expanding view
