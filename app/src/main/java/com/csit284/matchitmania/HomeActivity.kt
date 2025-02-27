@@ -52,8 +52,8 @@ class HomeActivity : AppCompatActivity() {
         findViewById<MButton>(R.id.btnProfile).setOnClickListener {
 
             val intent = Intent(this, ProfileActivity::class.java)
-            intent.putExtra("userName", userProfile?.username)
-            startActivity( Intent(this, ProfileActivity::class.java))
+            intent.putExtra("userProfile", userProfile)
+            startActivity(intent)
             Log.i("TASK", "userProfile has been passed to Profile Activity: ")
             Log.i("TASK", "UserProfile ${userProfile?.username}")
         }
