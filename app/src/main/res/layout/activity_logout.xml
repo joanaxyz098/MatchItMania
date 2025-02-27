@@ -20,13 +20,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
         android:text="MATCH IT MANIA"
         android:shadowRadius="10"
         android:shadowDy="19"
         android:shadowColor="#4E4B4B"
         android:textColor="#F4FAEC"
-        android:textSize="30sp"
+        android:textSize="28sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
