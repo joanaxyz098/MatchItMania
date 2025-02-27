@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        userProfile = intent.getStringExtra("userName") as? UserProfile
+        userProfile = intent.getSerializableExtra("userProfile") as? UserProfile
 
 
         tvUser = findViewById(R.id.tvUsername)
