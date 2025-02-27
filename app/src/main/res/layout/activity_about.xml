@@ -49,14 +49,16 @@
         android:layout_width="342dp"
         android:layout_height="270dp"
         android:layout_marginTop="17dp"
-        app:backColor="#BAFEA705"
+        android:background="@drawable/gb_rounded_rect"
+        app:backColor="@color/transparent"
         app:borderColor="#4C60A8"
         app:borderWidth="4dp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAbout"
+        />
 
     <views.MButton
         android:id="@+id/mbJoana"
@@ -130,7 +132,7 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:text="@string/joanaBday"
-            android:textColor="#4C60A8"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingStart="10dp" />
         <TextView
@@ -138,7 +140,7 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:text="@string/joanaHobbies"
-            android:textColor="#4C60A8"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingStart="10dp" />
 
@@ -147,7 +149,7 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:text="@string/joanaDesc"
-            android:textColor="#4C60A8"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingStart="10dp" />
     </LinearLayout>
@@ -169,7 +171,8 @@
         android:layout_width="342dp"
         android:layout_height="270dp"
         android:layout_marginTop="15dp"
-        app:backColor="#BAFEA705"
+        android:background="@drawable/gb_rounded_rect"
+        app:backColor="@color/transparent"
         app:borderColor="#4C60A8"
         app:borderWidth="4dp"
         app:cornerRadius="10dp"
@@ -250,7 +253,7 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:text="@string/luisBday"
-            android:textColor="#4C60A8"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingStart="10dp" />
         <TextView
@@ -258,7 +261,7 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:text="@string/luisHobbies"
-            android:textColor="#4C60A8"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingStart="10dp" />
 
@@ -267,7 +270,7 @@
             android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:text="@string/luisDesc"
-            android:textColor="#4C60A8"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:paddingStart="10dp"/>
     </LinearLayout>

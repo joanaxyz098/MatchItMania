@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/log_out_image">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="25dp"
-        android:src="@drawable/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 
     <!--    <views.MTextView-->
 <!--        android:id="@+id/MTextView"-->
@@ -34,15 +24,27 @@
 <!--        app:layout_constraintStart_toEndOf="@+id/imageView"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <views.MView
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
         android:id="@+id/MView"
         android:layout_width="315dp"
         android:layout_height="236dp"
         android:layout_marginTop="25dp"
-        app:backColor="#7AD066"
+        android:background="@drawable/gb_rounded_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"  />
 
     <TextView
         android:id="@+id/textView"
@@ -62,47 +64,44 @@
 
     <views.MButton
         android:id="@+id/btnYes"
-        android:layout_width="87dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="44dp"
-        android:contentDescription="@string/play_button"
+        android:layout_width="125dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="220dp"
+        android:layout_marginRight="140dp"
+        android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
         android:gravity="center"
-        android:text="YES"
-        android:textAlignment="center"
+        android:text="Yes"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:backColor="#F2AA1F"
-        app:cornerRadius="10dp"
-        app:borderWidth="2dp"
+        app:backColor="@color/MYellow"
+        app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="@+id/MView"
-        app:layout_constraintEnd_toStartOf="@+id/btnNo"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/MView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.505" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shadowColor="@color/MDarkPurple"
+        app:shadowRadius="10dp"/>
 
     <views.MButton
         android:id="@+id/btnNo"
-        android:layout_width="87dp"
-        android:layout_height="54dp"
-        android:layout_centerInParent="true"
-        android:layout_marginEnd="48dp"
-        android:contentDescription="@string/play_button"
+        android:layout_width="125dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="220dp"
+        android:layout_marginLeft="140dp"
+        android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
         android:gravity="center"
-        android:text="NO"
-        app:borderWidth="2dp"
-        android:textAlignment="center"
+        android:text="No"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:backColor="#FE7105"
-        app:cornerRadius="10dp"
+        app:backColor="@color/MOrange"
+        app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="@+id/MView"
-        app:layout_constraintEnd_toEndOf="@+id/MView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.505" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shadowColor="@color/MDarkPurple"
+        app:shadowRadius="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

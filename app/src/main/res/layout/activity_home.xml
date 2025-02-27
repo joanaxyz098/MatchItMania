@@ -40,11 +40,20 @@
     </RelativeLayout>
 
     <!-- Play Button in the Center -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        />
+
     <views.MButton
         android:id="@+id/btnPlay"
-        android:layout_width="303dp"
+        android:layout_width="300dp"
         android:layout_height="101dp"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="420dp"
         android:contentDescription="@string/play_button"
         android:fontFamily="@font/poppins"
         android:gravity="center"
@@ -56,7 +65,9 @@
         app:cornerRadius="50dp"
         app:fontWeight="1"
         app:shadowColor="@color/MPurple"
-        app:shadowRadius="20dp" />
+        app:shadowRadius="20dp"
+        android:layout_centerHorizontal="true" />
+
 
     <FrameLayout
         android:layout_width="match_parent"
