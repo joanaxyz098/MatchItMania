@@ -4,42 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MLavender">
+    android:background="@drawable/log_out_image">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="126dp"
-        android:layout_height="131dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="25dp"
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <views.MTextView
-        android:id="@+id/MTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/poppins"
-        android:text="MATCH IT MANIA"
-        android:shadowRadius="10"
-        android:shadowDy="19"
-        android:shadowColor="#4E4B4B"
-        android:textColor="#F4FAEC"
-        android:textSize="28sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <views.MTextView-->
+<!--        android:id="@+id/MTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:layout_marginTop="48dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:fontFamily="@font/poppins"-->
+<!--        android:text="MATCH IT MANIA"-->
+<!--        android:shadowRadius="10"-->
+<!--        android:shadowDy="19"-->
+<!--        android:shadowColor="#4E4B4B"-->
+<!--        android:textColor="#F4FAEC"-->
+<!--        android:textSize="28sp"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/imageView"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <views.MView
         android:id="@+id/MView"
         android:layout_width="315dp"
         android:layout_height="236dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="25dp"
         app:backColor="#7AD066"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView"

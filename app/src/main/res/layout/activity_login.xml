@@ -117,7 +117,7 @@
         android:text="@string/done"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:backColor="@color/MShader"
+        app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
         app:layout_constraintBottom_toBottomOf="parent"
