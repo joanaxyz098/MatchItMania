@@ -17,7 +17,6 @@ class HomeActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private var userProfile: UserProfile? = null
     private var userSettings: UserSettings = UserSettings()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -25,8 +24,8 @@ class HomeActivity : AppCompatActivity() {
         // Initialize music at app start
         BackgroundMusic.initialize(this)
 
-        setupViews()
         loadUserData()
+        setupViews()
     }
 
     override fun onPause() {
@@ -51,7 +50,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         findViewById<MButton>(R.id.btnProfile).setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra("userName", userProfile?.username)
+            startActivity( Intent(this, ProfileActivity::class.java))
+            Log.i("TASK", "userProfile has been passed to Profile Activity: ")
+            Log.i("TASK", "UserProfile ${userProfile?.username}")
         }
     }
 
@@ -79,6 +83,8 @@ class HomeActivity : AppCompatActivity() {
 
                 if (documentPData != null) {
                     userProfile = UserProfile.fromMap(documentPData)
+                    Log.i("TASK", "userProfile has been mapped")
+                    Log.i("TASK", "UserProfile ${userProfile?.username}")
                 }
             } catch (e: Exception) {
                 Log.e("HomeActivity", "Failed to load user data", e)
