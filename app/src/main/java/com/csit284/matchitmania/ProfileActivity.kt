@@ -20,13 +20,13 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        val userName = intent.getStringExtra("userName")
+        userProfile = intent.getSerializableExtra("userProfile") as? UserProfile
 
 
         tvUser = findViewById(R.id.tvUsername)
         Log.i("TASK", "Username in profile activity ${userProfile?.username}")
 
-        tvUser?.text = userName
+        tvUser?.text = userProfile?.username
 
         val btnExit = findViewById<MButton>(R.id.btnExit)
 

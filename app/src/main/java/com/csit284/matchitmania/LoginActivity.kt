@@ -2,6 +2,7 @@ package com.csit284.matchitmania
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -11,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import firebase.FirebaseRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import views.MButton
 
 class LoginActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
-    private val userID = auth.currentUser?.uid
+    private var userID : String ?= null
     private var username: String ?= null
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
@@ -30,10 +32,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun fetchUsername(){
+        userID = auth.currentUser?.uid
         if(userID != null){
             lifecycleScope.launch {
-                username = FirebaseRepository.getPartialDocument("users", userID, "username") as String
+                username = FirebaseRepository.getPartialDocument("users", userID!!, "username") as String
+                Log.i("TASK", "Fetching username: $username")
+                runOnUiThread{
+                    Toast.makeText(this@LoginActivity, "Welcome back! $username", Toast.LENGTH_SHORT).show()
+                }
             }
+        }else{
+            Log.i("TASK", "userID is null")
         }
     }
 
@@ -82,7 +91,6 @@ class LoginActivity : AppCompatActivity() {
 
                 if (task.isSuccessful) {
                     fetchUsername()
-                    Toast.makeText(this, "Welcome back! $username", Toast.LENGTH_SHORT).show()
                     navigateToHome()
                     finish()
                 } else {

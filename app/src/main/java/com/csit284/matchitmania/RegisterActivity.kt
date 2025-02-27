@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import extensions.fieldEmpty
 import firebase.FirebaseRepository
 import views.MButton
 import kotlinx.coroutines.launch
@@ -66,20 +67,19 @@ class RegisterActivity : AppCompatActivity() {
             val password = etPass.text.toString()
             val cPassword = etConfirmPass.text.toString()
 
+
+
             // Input validation
             when {
-                user.isEmpty() -> {
-                    etUser.error = "Username required"
+                user.fieldEmpty(etUser) -> {
                     pbRegister.visibility = View.GONE
                     return@setOnClickListener
                 }
-                email.isEmpty() -> {
-                    etEmail.error = "Email required"
+                email.fieldEmpty(etEmail)-> {
                     pbRegister.visibility = View.GONE
                     return@setOnClickListener
                 }
-                password.isEmpty() -> {
-                    etPass.error = "Password required"
+                password.fieldEmpty(etPass) -> {
                     pbRegister.visibility = View.GONE
                     return@setOnClickListener
                 }
