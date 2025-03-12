@@ -9,9 +9,11 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="329dp"
-        android:layout_height="586dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="80dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/gb_rounded_rect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,18 +70,18 @@
         android:layout_width="170dp"
         android:layout_height="34dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/edittext_border"
         android:gravity="center_vertical|start"
+        android:maxLength="10"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:maxLength="10"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toEndOf="@+id/tvUsername"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
 
     <views.MTextView
         android:id="@+id/tvUsername"
@@ -153,13 +155,13 @@
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <views.MTextView
-        android:id="@+id/tvSettings"
+        android:id="@+id/tvRegister"
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="Register"
-        android:fontFamily="@font/poppins"
         android:textColor="@color/white"
         android:textSize="35sp"
         app:borderColor="@color/MShader"
@@ -221,7 +223,7 @@
         app:imageScale="0.8"
         app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvSettings"
+        app:layout_constraintStart_toEndOf="@+id/tvRegister"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
@@ -232,6 +234,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btnDone"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

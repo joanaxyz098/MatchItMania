@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/indoor">
+
+    <View
+        android:id="@+id/vEdit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/gb_rounded_rect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <views.MTextView
+        android:id="@+id/tvEdit"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Edit Profile"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:borderColor="@color/MShader"
+        app:borderWidth="5dp"
+        app:cornerRadius="20dp"
+        app:endColor="#30287F"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startColor="@color/MPurple" />
+
+    <View
+        android:id="@+id/profileSection"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/gb_rounded_rect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEdit"/>
+
+
+    <views.MTextView
+        android:id="@+id/tvPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="Player: "
+        android:textColor="@color/MYellow"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profileSection" />
+
+    <EditText
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@color/transparent"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:text="@string/usernameDef"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvPlayer"
+        app:layout_constraintStart_toEndOf="@id/tvPlayer"
+        app:layout_constraintTop_toTopOf="@id/tvPlayer" />
+
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/edit"
+        app:layout_constraintBottom_toBottomOf="@id/tvUsername"
+        app:layout_constraintStart_toEndOf="@+id/tvUsername"
+        app:layout_constraintTop_toTopOf="@id/tvUsername" />
+
+    <views.MButton
+        android:id="@+id/btnProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        app:backColor="@color/MBlue"
+        app:borderColor="#201A1C"
+        app:borderWidth="8dp"
+        app:cornerRadius="10dp"
+        app:imageBackground="@drawable/avatar1"
+        app:imageScale="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPlayer" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

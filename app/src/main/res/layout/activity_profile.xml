@@ -52,7 +52,7 @@
 
     <!-- Profile section -->
 
-    <View
+        <View
         android:id="@+id/profileSection"
         android:layout_width="0dp"
         android:layout_height="190dp"
