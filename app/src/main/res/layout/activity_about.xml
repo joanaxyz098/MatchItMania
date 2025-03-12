@@ -38,7 +38,6 @@
         android:padding="100dp"
         app:backColor="@color/transparent"
         app:cornerRadius="90dp"
-
         app:imageBackground="@drawable/exit"
         app:imageScale="0.8"
         app:layout_constraintEnd_toEndOf="parent"

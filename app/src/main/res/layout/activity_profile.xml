@@ -1,88 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="@drawable/indoor"
     tools:context=".SettingsActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp" >
-        <views.MTextView
-            android:id="@+id/tvSettings"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:text="@string/profile"
-            android:fontFamily="@font/poppins"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            android:gravity="center"
-            app:gradientDirection="topToBottom"
-            app:startColor="#1B3D6A"
-            app:endColor="#C31B3D6A"
-            >
-        </views.MTextView>
+    <!-- Header section -->
+    <views.MTextView
+        android:id="@+id/tvSettings"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="@string/profile"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:endColor="#C31B3D6A"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startColor="#1B3D6A" />
 
-        <views.MButton
-            android:id="@+id/btnExit"
-            android:layout_width="74dp"
-            android:layout_height="71dp"
-            android:padding="100dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            app:imageBackground="@drawable/exit"
-            app:backColor="@color/transparent"
+    <views.MButton
+        android:id="@+id/btnExit"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="20dp"
+        android:padding="100dp"
+        app:backColor="@color/transparent"
+        app:cornerRadius="90dp"
+        app:imageBackground="@drawable/exit"
+        app:imageScale="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvSettings"
+        app:layout_constraintVertical_bias="0.5" />
 
-            app:cornerRadius="90dp"
-            app:imageScale="0.8" />
-    </FrameLayout>
     <View
-        android:layout_width="match_parent"
+        android:id="@+id/yellowDivider"
+        android:layout_width="0dp"
         android:layout_height="10dp"
-        android:layout_gravity="center_vertical"
         android:background="@color/MYellow"
-        android:layout_marginBottom="20dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSettings" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <!-- Profile section -->
+
+    <View
+        android:id="@+id/profileSection"
+        android:layout_width="0dp"
         android:layout_height="190dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/bg_rounded_rect">
+        android:background="@drawable/gb_rounded_rect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yellowDivider"/>
 
-        <!-- Player Label -->
+
         <views.MTextView
             android:id="@+id/tvPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
-            android:text="Player: "
             android:fontFamily="@font/poppins"
+            android:text="Player: "
             android:textColor="@color/MYellow"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profileSection" />
 
-        <!-- Username (Beside Player Label) -->
-        <views.MTextView
+        <EditText
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/usernameDef"
+            android:background="@color/transparent"
             android:fontFamily="@font/poppins"
+            android:gravity="center_vertical"
+            android:text="@string/usernameDef"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_toEndOf="@id/tvPlayer"/>
+            app:layout_constraintBottom_toBottomOf="@id/tvPlayer"
+            app:layout_constraintStart_toEndOf="@id/tvPlayer"
+            app:layout_constraintTop_toTopOf="@id/tvPlayer" />
 
-        <!-- Profile Image (Below Player Label) -->
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/edit"
+            app:layout_constraintBottom_toBottomOf="@id/tvUsername"
+            app:layout_constraintStart_toEndOf="@+id/tvUsername"
+            app:layout_constraintTop_toTopOf="@id/tvUsername" />
+
         <views.MButton
             android:id="@+id/btnProfile"
             android:layout_width="100dp"
@@ -95,187 +115,224 @@
             app:cornerRadius="10dp"
             app:imageBackground="@drawable/avatar1"
             app:imageScale="0.9"
-            android:layout_below="@id/tvPlayer"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPlayer" />
 
-        <!-- Level Display (Right Side) -->
         <views.MTextView
+            android:id="@+id/tvLevel"
             android:layout_width="103dp"
             android:layout_height="95dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:text="@string/lvl"
             android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowRadius="10"
+            android:text="@string/lvl"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:shadowColor="@color/black"
-            android:shadowRadius="10"
+            app:borderColor="#3F2829"
+            app:borderWidth="3dp"
             app:cornerRadius="300dp"
             app:endColor="#D03703"
-            app:startColor="#FECC02"
             app:gradientDirection="topToBottom"
-            app:borderWidth="3dp"
-            app:borderColor="#3F2829"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+            app:layout_constraintBottom_toBottomOf="@id/profileSection"
+            app:layout_constraintEnd_toEndOf="@id/profileSection"
+            app:layout_constraintTop_toTopOf="@id/profileSection"
+            app:startColor="#FECC02" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp">
+    <!-- Achievements header -->
+    <View
+        android:id="@+id/achievementDivider"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/MShader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileSection" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/MShader" />
+    <views.MTextView
+        android:id="@+id/tvAchievements"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:padding="10dp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="10"
+        android:text="@string/achievements"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:borderColor="#3F2829"
+        app:borderWidth="3dp"
+        app:cornerRadius="20dp"
+        app:endColor="#D03703"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toBottomOf="@id/achievementDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/achievementDivider"
+        app:startColor="#FECC02" />
 
-        <views.MTextView
-            android:layout_width="wrap_content"
-            android:layout_height="66dp"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:shadowColor="@color/black"
-            android:shadowRadius="10"
-            android:text="@string/achievements"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            app:borderColor="#3F2829"
-            app:borderWidth="3dp"
-            app:gradientDirection="topToBottom"
-            app:endColor="#D03703"
-            app:startColor="#FECC02"
-            app:cornerRadius="20dp"/>
-    </FrameLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="277dp"
+    <!-- Achievements grid section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/achievementsContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_rounded_rect"
-        android:columnCount="2"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/gb_rounded_rect"
         android:padding="16dp"
-        android:rowCount="2">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAchievements">
 
-        <!-- First Item -->
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- Achievement 1 -->
+        <ImageView
+            android:id="@+id/imgAchievement1"
+            android:layout_width="46dp"
+            android:layout_height="62dp"
+            android:background="@drawable/award"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtAchievement1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
+            android:fontFamily="@font/poppins"
             android:gravity="center"
+            android:text="Achievement1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgAchievement1" />
+
+        <TextView
+            android:id="@+id/progressAchievement1"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:background="#FB9F04"
+            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtAchievement1" />
+
+        <!-- Achievement 2 -->
+        <ImageView
+            android:id="@+id/imgAchievement2"
+            android:layout_width="46dp"
+            android:layout_height="62dp"
+            android:background="@drawable/energy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtAchievement2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Achievement2"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
+            app:layout_constraintTop_toBottomOf="@id/imgAchievement2" />
+
+        <TextView
+            android:id="@+id/progressAchievement2"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:background="#FB9F04"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
+            app:layout_constraintTop_toBottomOf="@id/txtAchievement2" />
+
+        <!-- Achievement 3 -->
+        <ImageView
+            android:id="@+id/imgAchievement3"
+            android:layout_width="46dp"
+            android:layout_height="62dp"
+            android:background="@drawable/time"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressAchievement1"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <TextView
+            android:id="@+id/txtAchievement3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Achievement3"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgAchievement3" />
+
+        <TextView
+            android:id="@+id/progressAchievement3"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:background="#FB9F04"
+            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtAchievement3" />
+
+        <!-- Achievement 4 -->
+        <ImageView
+            android:id="@+id/imgAchievement4"
+            android:layout_width="58dp"
+            android:layout_height="54dp"
+            android:background="@drawable/coin"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
+            app:layout_constraintTop_toBottomOf="@id/progressAchievement2"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <TextView
+            android:id="@+id/txtAchievement4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Achievement4"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
+            app:layout_constraintTop_toBottomOf="@id/imgAchievement4" />
+
+        <TextView
+            android:id="@+id/progressAchievement4"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:background="#FB9F04"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
+            app:layout_constraintTop_toBottomOf="@id/txtAchievement4" />
+
+        <!-- Guidelines for columns -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/achievement1Guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="10dp">
+            app:layout_constraintGuide_percent="0.5" />
 
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="62dp"
-                android:background="@drawable/award"
-                android:scaleType="centerCrop" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="Achievement1"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:background="#FB9F04" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="62dp"
-                android:background="@drawable/energy" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="Achievement2"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:background="#FB9F04" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="46dp"
-                android:layout_height="62dp"
-                android:background="@drawable/time"
-                android:scaleType="centerInside" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="Achievement3"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:background="#FB9F04" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="58dp"
-                android:layout_height="54dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/coin"
-                android:scaleType="centerInside" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="Achievement4"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="20dp"
-                android:background="#FB9F04" />
-        </LinearLayout>
-    </GridLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

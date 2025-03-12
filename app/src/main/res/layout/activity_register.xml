@@ -75,6 +75,7 @@
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:maxLength="10"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toEndOf="@+id/tvUsername"
