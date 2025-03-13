@@ -77,16 +77,6 @@
         app:layout_constraintStart_toEndOf="@id/tvPlayer"
         app:layout_constraintTop_toTopOf="@id/tvPlayer" />
 
-    <ImageButton
-        android:id="@+id/btnEdit"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/edit"
-        app:layout_constraintBottom_toBottomOf="@id/tvUsername"
-        app:layout_constraintStart_toEndOf="@+id/tvUsername"
-        app:layout_constraintTop_toTopOf="@id/tvUsername" />
-
     <views.MButton
         android:id="@+id/btnProfile"
         android:layout_width="100dp"

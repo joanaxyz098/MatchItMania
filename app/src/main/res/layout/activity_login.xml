@@ -9,37 +9,35 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/glH94"
+        app:layout_constraintEnd_toStartOf="@+id/glV9"
+        app:layout_constraintStart_toStartOf="@+id/glV1"
+        app:layout_constraintTop_toTopOf="@id/glH11" />
 
     <views.MTextView
         android:id="@+id/tvUsername"
-        android:layout_width="100dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height=".dp"
+        android:fontFamily="@font/poppins"
         android:gravity="start|center_vertical"
         android:text="@string/email"
-        android:fontFamily="@font/poppins"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/etEmail"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/etEmail"
-        app:layout_constraintVertical_bias="0.0" />
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/glH33"
+        app:layout_constraintEnd_toStartOf="@+id/glV4"
+        app:layout_constraintStart_toStartOf="@+id/glV15"
+        app:layout_constraintTop_toTopOf="@+id/glV29" />
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="170dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="212dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/edittext_border"
         android:gravity="center_vertical|start"
         android:inputType="textEmailAddress"
@@ -47,17 +45,16 @@
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/glH33"
+        app:layout_constraintEnd_toStartOf="@+id/glV85"
         app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toEndOf="@+id/tvUsername"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/glV44"
+        app:layout_constraintTop_toTopOf="@+id/glV29" />
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="170dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/edittext_border"
         android:gravity="center_vertical|start"
         android:inputType="textPassword"
@@ -65,82 +62,95 @@
         android:paddingEnd="10dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/glH46"
+        app:layout_constraintEnd_toStartOf="@+id/glV85"
         app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toEndOf="@+id/tvPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintStart_toStartOf="@+id/glV44"
+        app:layout_constraintTop_toTopOf="@+id/glH41" />
 
     <views.MTextView
         android:id="@+id/tvPassword"
-        android:layout_width="100dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
         android:gravity="start|center_vertical"
         android:text="@string/password"
-        android:fontFamily="@font/poppins"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/etPassword"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="1.0" />
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/glH46"
+        app:layout_constraintEnd_toStartOf="@+id/glV4"
+        app:layout_constraintStart_toStartOf="@+id/glV15"
+        app:layout_constraintTop_toTopOf="@+id/glH41" />
 
     <views.MTextView
         android:id="@+id/tvLogin"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/log_in"
         android:textColor="@color/white"
-        android:textSize="35sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="35sp"
+        app:autoSizeStepGranularity="2sp"
         app:borderColor="@color/MShader"
         app:borderWidth="5dp"
         app:cornerRadius="20dp"
         app:endColor="#30287F"
         app:gradientDirection="topToBottom"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glH16"
+        app:layout_constraintEnd_toStartOf="@+id/glV74"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glV25"
+        app:layout_constraintTop_toTopOf="@+id/glH06"
         app:startColor="@color/MPurple" />
 
     <views.MButton
         android:id="@+id/btnDone"
-        android:layout_width="249dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/done"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintDimensionRatio="3.8:1"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintBottom_toTopOf="@+id/glH62"
+        app:layout_constraintEnd_toStartOf="@+id/glV85"
+        app:layout_constraintStart_toStartOf="@+id/glV15"
+        app:layout_constraintTop_toTopOf="@+id/glH52"
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
     <TextView
         android:id="@+id/tvRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:text="@string/registerMsg"
         android:textColor="@color/white"
-
-        android:textSize="18sp"
+        android:gravity="center"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="18sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/glV85"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/glV15"
         app:layout_constraintTop_toBottomOf="@+id/btnDone"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.223" />
 
     <views.MButton
         android:id="@+id/btnExit"
@@ -176,7 +186,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btnGoogle"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister"
-        app:layout_constraintVertical_bias="0.353" />
+        app:layout_constraintVertical_bias="0.187" />
+
+    <views.MButton
+        android:id="@+id/btnTwitter"
+        android:layout_width="65dp"
+        android:layout_height="63dp"
+        app:backColor="@color/MYellow"
+        app:borderColor="@color/MShader"
+        app:borderWidth="2dp"
+        app:cornerRadius="100dp"
+        app:imageBackground="@drawable/twitter"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/tvRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
+        app:layout_constraintVertical_bias="0.24" />
 
     <views.MButton
         android:id="@+id/btnGoogle"
@@ -190,24 +215,9 @@
         app:imageBackground="@drawable/google"
         app:imageScale="0.8"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/btnDone"
+        app:layout_constraintStart_toStartOf="@+id/tvRegister"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister"
-        app:layout_constraintVertical_bias="0.353" />
-
-    <views.MButton
-        android:id="@+id/btnTwitter"
-        android:layout_width="65dp"
-        android:layout_height="63dp"
-        app:backColor="@color/MYellow"
-        app:borderColor="@color/MShader"
-        app:borderWidth="2dp"
-        app:cornerRadius="100dp"
-        app:imageBackground="@drawable/twitter"
-        app:imageScale="0.8"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/btnDone"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegister"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.177" />
 
     <ProgressBar
         android:id="@+id/pbRegister"
@@ -218,4 +228,114 @@
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.41" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.46" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.62" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.44" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV74"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.74" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
