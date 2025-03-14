@@ -99,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
                             lifecycleScope.launch {
                                 FirebaseRepository.setDocument("users",
                                     userId,
-                                    mapOf("username" to user, "email" to email)
+                                    mapOf("username" to user, "email" to email, "profileImageId" to "avatar1")
                                 )
                                 Toast.makeText(this@RegisterActivity, "Player $user registered!", Toast.LENGTH_SHORT).show()
                                 finish()

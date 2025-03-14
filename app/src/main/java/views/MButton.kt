@@ -27,7 +27,13 @@ class MButton @JvmOverloads constructor(
 ): AppCompatButton(context, attrs, defStyleAttr) {
 
     // Background properties
-    private var backColor: Int = Color.TRANSPARENT
+    // In MButton class
+    var backColor: Int = Color.TRANSPARENT
+        set(value) {
+            field = value
+            backgroundPaint.color = value
+            invalidate()
+        }
     private var cornerRadius: Float = 20f
     private var borderColor: Int = Color.BLACK
     private var borderWidth: Float = 0f
@@ -39,7 +45,7 @@ class MButton @JvmOverloads constructor(
     private var shadowColor: Int = Color.DKGRAY
 
     // Image background properties
-    private var imageBackground: Drawable? = null
+    var imageBackground: Drawable? = null
     private var imageScale: Float = 1f
 
     // Offset and scale properties

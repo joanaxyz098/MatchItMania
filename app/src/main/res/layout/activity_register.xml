@@ -193,11 +193,11 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="30sp"
         app:autoSizeStepGranularity="2sp"
-        app:layout_constraintDimensionRatio="3.8:1"
+        app:layout_constraintDimensionRatio="3.5:1"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toTopOf="@+id/glH78"
+        app:layout_constraintBottom_toTopOf="@+id/glH77"
         app:layout_constraintEnd_toStartOf="@+id/glV85"
         app:layout_constraintStart_toStartOf="@+id/glV15"
         app:layout_constraintTop_toTopOf="@+id/glH68"
@@ -221,7 +221,7 @@
 
     <views.MButton
         android:id="@+id/btnExit"
-        android:layout_width="74dp"
+        android:layout_width="71dp"
         android:layout_height="71dp"
         android:layout_gravity="end"
         android:padding="100dp"
@@ -349,11 +349,11 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.68" />
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH78"
+        android:id="@+id/glH77"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
+        app:layout_constraintGuide_percent="0.77" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV1"
         android:layout_width="wrap_content"

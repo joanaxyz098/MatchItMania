@@ -20,7 +20,7 @@
     <views.MTextView
         android:id="@+id/tvUsername"
         android:layout_width="0dp"
-        android:layout_height=".dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:gravity="start|center_vertical"
         android:text="@string/email"
@@ -122,14 +122,14 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="30sp"
         app:autoSizeStepGranularity="2sp"
-        app:layout_constraintDimensionRatio="3.8:1"
+        app:layout_constraintDimensionRatio="3.5:1"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
         app:layout_constraintBottom_toTopOf="@+id/glH62"
         app:layout_constraintEnd_toStartOf="@+id/glV85"
         app:layout_constraintStart_toStartOf="@+id/glV15"
-        app:layout_constraintTop_toTopOf="@+id/glH52"
+        app:layout_constraintTop_toTopOf="@+id/glH53"
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
@@ -154,9 +154,10 @@
 
     <views.MButton
         android:id="@+id/btnExit"
-        android:layout_width="74dp"
-        android:layout_height="71dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="end"
+        app:layout_constraintDimensionRatio="1:1"
         android:padding="100dp"
         app:backColor="#68FEA705"
         app:borderColor="@color/MShader"
@@ -164,10 +165,10 @@
         app:cornerRadius="90dp"
         app:imageBackground="@drawable/exit"
         app:imageScale="0.8"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvLogin"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/glH19"
+        app:layout_constraintEnd_toStartOf="@+id/glV96"
+        app:layout_constraintStart_toStartOf="@+id/glV77"
+        app:layout_constraintTop_toTopOf="@+id/glH09" />
 
     <views.MButton
         android:id="@+id/btnFb"
@@ -278,17 +279,29 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.06" />
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH52"
+        android:id="@+id/glH53"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
+        app:layout_constraintGuide_percent="0.53" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH62"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.62" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH09"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV1"
         android:layout_width="wrap_content"
@@ -337,5 +350,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.4" />
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.77" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV96"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
 </androidx.constraintlayout.widget.ConstraintLayout>
