@@ -14,7 +14,10 @@
         android:gravity="center"
         android:text="About"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:endColor="#C42A3D80"
         app:gradientDirection="topToBottom"
         app:layout_constraintBottom_toTopOf="@id/glH1"
@@ -43,138 +46,181 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <views.MView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mvJoana"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/gb_rounded_rect"
-        app:layout_constraintWidth_max="500dp"
         app:backColor="@color/transparent"
         app:borderColor="#4C60A8"
         app:borderWidth="4dp"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/glH53"
+        app:layout_constraintBottom_toTopOf="@+id/glH55"
         app:layout_constraintEnd_toStartOf="@+id/glV91"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/glV08"
-        app:layout_constraintTop_toTopOf="@+id/glH165" />
+        app:layout_constraintTop_toTopOf="@+id/glH165">
 
-    <views.MButton
-        android:id="@+id/mbJoana"
-        android:layout_width="97dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="12dp"
-        app:backColor="@color/white"
-        app:borderColor="#4C60A8"
-        app:borderWidth="5dp"
-        app:cornerRadius="20dp"
-        app:imageBackground="@drawable/joana"
-        app:imageScale="1"
-        app:isClipped="true"
-        app:layout_constraintEnd_toEndOf="@+id/mvJoana"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/mvJoana"
-        app:layout_constraintTop_toTopOf="@+id/mvJoana" />
-
-    <TextView
-        android:id="@+id/tvJoana"
-        android:layout_width="306dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="17dp"
-        android:background="#4C60A8"
-        android:fontFamily="@font/poppins"
-        android:gravity="center"
-        android:shadowColor="@color/MShader"
-        android:shadowRadius="10"
-        android:text="Joana Carla Gako"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/mvJoana"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="@+id/mvJoana"
-        app:layout_constraintTop_toBottomOf="@+id/mbJoana" />
-
-    <views.MTextView
-        android:id="@+id/tvJoanaE"
-        android:layout_width="306dp"
-        android:layout_height="42dp"
-        android:fontFamily="@font/poppins"
-        android:gravity="center"
-        android:shadowColor="@color/white"
-        android:shadowRadius="10"
-        android:text="&quot;Frontend/Backend Dev&quot;"
-        android:textAlignment="center"
-        android:textColor="#4C60A8"
-        android:textSize="20sp"
-        app:borderColor="#4C60A8"
-        app:borderWidth="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/mvJoana"
-        app:layout_constraintEnd_toEndOf="@+id/mvJoana"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="@+id/mvJoana"
-        app:layout_constraintTop_toBottomOf="@+id/tvJoana"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <LinearLayout
-        android:id="@+id/llJoana"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/vectorArrowJ"
-        app:layout_constraintEnd_toEndOf="@id/mvJoana"
-        app:layout_constraintStart_toStartOf="@id/mvJoana"
-        app:layout_constraintTop_toBottomOf="@id/tvJoanaE">
+        <views.MButton
+            android:id="@+id/mbJoana"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:backColor="@color/white"
+            app:borderColor="#4C60A8"
+            app:borderWidth="5dp"
+            app:cornerRadius="20dp"
+            app:imageBackground="@drawable/joana"
+            app:imageScale="1"
+            app:isClipped="true"
+            app:layout_constraintBottom_toTopOf="@+id/glH4J"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glH04J" />
 
         <TextView
-            android:id="@+id/tvJBday"
-            android:layout_width="306dp"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="@string/joanaBday"
+            android:id="@+id/tvJoana"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/MDarkLavender"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:shadowColor="@color/MShader"
+            android:shadowRadius="10"
+            android:text="Joana Carla Gako"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/glH59J"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glH45J" />
 
-        <TextView
-            android:id="@+id/tvJHobbies"
-            android:layout_width="306dp"
+        <views.MTextView
+            android:id="@+id/tvJoanaE"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:shadowRadius="10"
+            android:text="&quot;Frontend/Backend Dev&quot;"
+            android:textAlignment="center"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            app:borderColor="#4C60A8"
+            app:borderWidth="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/glH75J"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJoana"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:id="@+id/llJoana"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="@string/joanaHobbies"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/vectorArrowJ"
+            app:layout_constraintEnd_toEndOf="@id/mvJoana"
+            app:layout_constraintStart_toStartOf="@id/mvJoana"
+            app:layout_constraintTop_toBottomOf="@id/glH75J">
 
-        <TextView
-            android:id="@+id/tvJDesc"
-            android:layout_width="306dp"
+            <TextView
+                android:id="@+id/tvJBday"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/joanaBday"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvJHobbies"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/joanaHobbies"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvJDesc"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/joanaDesc"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/vectorArrowJ"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/arrow_down"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/glH77J"
+            app:layout_constraintBottom_toTopOf="@id/glH96J"
+            app:tint="#4C60A8" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH04J"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="@string/joanaDesc"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.04" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH4J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH45J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH59J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.59" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH75J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH77J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.77" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH96J"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.96" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/vectorArrowJ"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/arrow_down"
-        app:layout_constraintBottom_toBottomOf="@id/mvJoana"
-        app:layout_constraintEnd_toEndOf="@id/mvJoana"
-        app:layout_constraintStart_toStartOf="@id/mvJoana"
-        app:tint="#4C60A8" />
 
 
-    <views.MView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mvLuis"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/gb_rounded_rect"
-        app:layout_constraintWidth_max="500dp"
         app:backColor="@color/transparent"
         app:borderColor="#4C60A8"
         app:borderWidth="4dp"
@@ -182,142 +228,160 @@
         app:layout_constraintBottom_toTopOf="@+id/glH935"
         app:layout_constraintEnd_toStartOf="@+id/glV91"
         app:layout_constraintStart_toStartOf="@+id/glV08"
-        app:layout_constraintTop_toTopOf="@+id/glH53" />
+        app:layout_constraintTop_toTopOf="@+id/glH55">
 
-    <views.MButton
-        android:id="@+id/mbLuis"
-        android:layout_width="97dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="12dp"
-        app:backColor="@color/white"
-        app:borderColor="#4C60A8"
-        app:borderWidth="5dp"
-        app:cornerRadius="20dp"
-        app:imageBackground="@drawable/luis"
-        app:imageScale="1"
-        app:isClipped="true"
-        app:layout_constraintEnd_toEndOf="@+id/mvLuis"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/mvLuis"
-        app:layout_constraintTop_toTopOf="@+id/mvLuis" />
-
-    <TextView
-        android:id="@+id/tvLuis"
-        android:layout_width="306dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="17dp"
-        android:background="#4C60A8"
-        android:fontFamily="@font/poppins"
-        android:gravity="center"
-        android:shadowColor="@color/MShader"
-        android:shadowRadius="10"
-        android:text="Christian Luis Fernandez"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/mvLuis"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="@+id/mvLuis"
-        app:layout_constraintTop_toBottomOf="@+id/mbLuis" />
-
-    <views.MTextView
-        android:id="@+id/tvLuisE"
-        android:layout_width="306dp"
-        android:layout_height="42dp"
-        android:fontFamily="@font/poppins"
-        android:gravity="center"
-        android:shadowColor="@color/white"
-        android:shadowRadius="10"
-        android:text="&quot;Frontend/Backend Dev&quot;"
-        android:textAlignment="center"
-        android:textColor="#4C60A8"
-        android:textSize="20sp"
-        app:borderColor="#4C60A8"
-        app:borderWidth="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/mvLuis"
-        app:layout_constraintEnd_toEndOf="@+id/mvLuis"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="@+id/mvLuis"
-        app:layout_constraintTop_toBottomOf="@+id/tvLuis"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <LinearLayout
-        android:id="@+id/llLuis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/vectorArrowL"
-        app:layout_constraintEnd_toEndOf="@id/mvLuis"
-        app:layout_constraintStart_toStartOf="@id/mvLuis"
-        app:layout_constraintTop_toBottomOf="@id/tvLuisE">
+        <views.MButton
+            android:id="@+id/mbLuis"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:backColor="@color/white"
+            app:borderColor="#4C60A8"
+            app:borderWidth="5dp"
+            app:cornerRadius="20dp"
+            app:imageBackground="@drawable/luis"
+            app:imageScale="1"
+            app:isClipped="true"
+            app:layout_constraintBottom_toTopOf="@+id/glH4L"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glH04L" />
 
         <TextView
-            android:id="@+id/tvLBday"
-            android:layout_width="306dp"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="@string/luisBday"
+            android:id="@+id/tvLuis"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#4C60A8"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:shadowColor="@color/MShader"
+            android:shadowRadius="10"
+            android:text="Christian Luis Fernandez"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/glH59L"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.472"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glH45L" />
 
-        <TextView
-            android:id="@+id/tvLHobbies"
-            android:layout_width="306dp"
+        <views.MTextView
+            android:id="@+id/tvLuisE"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:shadowRadius="10"
+            android:text="&quot;Frontend/Backend Dev&quot;"
+            android:textAlignment="center"
+            android:textColor="#4C60A8"
+            android:textSize="20sp"
+            app:borderColor="#4C60A8"
+            app:borderWidth="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/glH75L"
+            app:layout_constraintEnd_toEndOf="@+id/mvLuis"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/mvLuis"
+            app:layout_constraintTop_toTopOf="@+id/glH59L"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:id="@+id/llLuis"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="@string/luisHobbies"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/vectorArrowL"
+            app:layout_constraintEnd_toEndOf="@id/mvLuis"
+            app:layout_constraintStart_toStartOf="@id/mvLuis"
+            app:layout_constraintTop_toBottomOf="@id/glH75L">
 
-        <TextView
-            android:id="@+id/tvLDesc"
-            android:layout_width="306dp"
+            <TextView
+                android:id="@+id/tvLBday"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/luisBday"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvLHobbies"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/luisHobbies"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvLDesc"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:text="@string/luisDesc"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/vectorArrowL"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:src="@drawable/arrow_down"
+            app:layout_constraintBottom_toTopOf="@+id/glH96L"
+            app:layout_constraintEnd_toEndOf="@id/mvLuis"
+            app:layout_constraintStart_toStartOf="@id/mvLuis"
+            app:layout_constraintTop_toTopOf="@+id/glH77L"
+            app:tint="#4C60A8" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH04L"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="@string/luisDesc"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.04" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH4L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH45L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH59L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.59" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH75L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH77L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.77" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glH96L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.96" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/vectorArrowL"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/arrow_down"
-        app:layout_constraintBottom_toBottomOf="@id/mvLuis"
-        app:layout_constraintEnd_toEndOf="@id/mvLuis"
-        app:layout_constraintStart_toStartOf="@id/mvLuis"
-        app:tint="#4C60A8" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.11" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH165"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.165" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH53"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH935"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.935" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV08"
@@ -325,12 +389,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.08" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV91"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.91" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH165"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16552667" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH935"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.935" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

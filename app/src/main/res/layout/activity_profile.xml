@@ -12,19 +12,23 @@
     <views.MTextView
         android:id="@+id/tvSettings"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/profile"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        app:autoSizeMaxTextSize="40sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:endColor="#C31B3D6A"
         app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/glH11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:startColor="#1B3D6A" />
+        app:startColor="@color/MNavy" />
 
     <views.MButton
         android:id="@+id/btnExit"
@@ -44,101 +48,96 @@
     <View
         android:id="@+id/yellowDivider"
         android:layout_width="0dp"
-        android:layout_height="10dp"
+        android:layout_height="0dp"
         android:background="@color/MYellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSettings" />
+        app:layout_constraintTop_toBottomOf="@id/glH11"
+        app:layout_constraintBottom_toTopOf="@id/glH12"/>
 
     <!-- Profile section -->
 
-        <View
+    <View
         android:id="@+id/profileSection"
         android:layout_width="0dp"
-        android:layout_height="190dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yellowDivider"/>
+        app:layout_constraintBottom_toTopOf="@+id/glH405"
+        app:layout_constraintEnd_toStartOf="@+id/glV97"
+        app:layout_constraintStart_toStartOf="@+id/glV02"
+        app:layout_constraintTop_toTopOf="@+id/glH148" />
 
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/transparent"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:text="@string/usernameDef"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH21"
+        app:layout_constraintEnd_toStartOf="@+id/glV83"
+        app:layout_constraintStart_toStartOf="@+id/glV07"
+        app:layout_constraintTop_toTopOf="@+id/glH16" />
 
-        <views.MTextView
-            android:id="@+id/tvPlayer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins"
-            android:text="Player: "
-            android:textColor="@color/MYellow"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/profileSection" />
+    <ImageButton
+        android:id="@+id/btnEdit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/edit"
+        app:layout_constraintBottom_toTopOf="@+id/glH21"
+        app:layout_constraintEnd_toStartOf="@+id/glV93"
+        app:layout_constraintStart_toStartOf="@+id/glV83"
+        app:layout_constraintTop_toTopOf="@+id/glH16" />
 
-        <EditText
-            android:id="@+id/tvUsername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:background="@color/transparent"
-            android:fontFamily="@font/poppins"
-            android:gravity="center_vertical"
-            android:text="@string/usernameDef"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/tvPlayer"
-            app:layout_constraintStart_toEndOf="@id/tvPlayer"
-            app:layout_constraintTop_toTopOf="@id/tvPlayer" />
+    <views.MButton
+        android:id="@+id/btnProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="end"
+        app:layout_constraintDimensionRatio="1:1"
+        app:backColor="@color/MBlue"
+        app:borderColor="#201A1C"
+        app:borderWidth="8dp"
+        app:cornerRadius="10dp"
+        app:imageBackground="@drawable/avatar1"
+        app:imageScale="0.9"
+        app:layout_constraintBottom_toTopOf="@+id/glH36"
+        app:layout_constraintEnd_toStartOf="@+id/glV313"
+        app:layout_constraintStart_toStartOf="@+id/glV07"
+        app:layout_constraintTop_toTopOf="@+id/glH22" />
 
-        <ImageButton
-            android:id="@+id/btnEdit"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/edit"
-            app:layout_constraintBottom_toBottomOf="@id/tvUsername"
-            app:layout_constraintStart_toEndOf="@+id/tvUsername"
-            app:layout_constraintTop_toTopOf="@id/tvUsername" />
-
-        <views.MButton
-            android:id="@+id/btnProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            app:backColor="@color/MBlue"
-            app:borderColor="#201A1C"
-            app:borderWidth="8dp"
-            app:cornerRadius="10dp"
-            app:imageBackground="@drawable/avatar1"
-            app:imageScale="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPlayer" />
-
-        <views.MTextView
-            android:id="@+id/tvLevel"
-            android:layout_width="103dp"
-            android:layout_height="95dp"
-            android:layout_marginEnd="15dp"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:shadowColor="@color/black"
-            android:shadowRadius="10"
-            android:text="@string/lvl"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            app:borderColor="#3F2829"
-            app:borderWidth="3dp"
-            app:cornerRadius="300dp"
-            app:endColor="#D03703"
-            app:gradientDirection="topToBottom"
-            app:layout_constraintBottom_toBottomOf="@id/profileSection"
-            app:layout_constraintEnd_toEndOf="@id/profileSection"
-            app:layout_constraintTop_toTopOf="@id/profileSection"
-            app:startColor="#FECC02" />
+    <views.MTextView
+        android:id="@+id/tvLevel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowRadius="10"
+        android:text="@string/lvl"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:borderColor="#3F2829"
+        app:borderWidth="3dp"
+        app:cornerRadius="300dp"
+        app:endColor="#D03703"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/glH36"
+        app:layout_constraintEnd_toStartOf="@+id/glV93"
+        app:layout_constraintStart_toStartOf="@+id/glV68"
+        app:layout_constraintTop_toTopOf="@+id/glH22"
+        app:startColor="#FECC02" />
 
     <!-- Achievements header -->
     <View
@@ -153,8 +152,8 @@
 
     <views.MTextView
         android:id="@+id/tvAchievements"
-        android:layout_width="wrap_content"
-        android:layout_height="66dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:padding="10dp"
@@ -162,177 +161,391 @@
         android:shadowRadius="10"
         android:text="@string/achievements"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:borderColor="#3F2829"
         app:borderWidth="3dp"
         app:cornerRadius="20dp"
         app:endColor="#D03703"
         app:gradientDirection="topToBottom"
-        app:layout_constraintBottom_toBottomOf="@id/achievementDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/achievementDivider"
+        app:layout_constraintBottom_toTopOf="@+id/glH535"
+        app:layout_constraintEnd_toStartOf="@+id/glV83"
+        app:layout_constraintStart_toStartOf="@+id/glV24"
+        app:layout_constraintTop_toTopOf="@+id/glH45"
         app:startColor="#FECC02" />
 
     <!-- Achievements grid section -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <View
         android:id="@+id/achievementsContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/gb_rounded_rect"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAchievements">
+        app:layout_constraintBottom_toTopOf="@+id/glH985"
+        app:layout_constraintEnd_toStartOf="@+id/glV95"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH55"/>
 
         <!-- Achievement 1 -->
-        <ImageView
-            android:id="@+id/imgAchievement1"
-            android:layout_width="46dp"
-            android:layout_height="62dp"
-            android:background="@drawable/award"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtAchievement1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:text="Achievement1"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgAchievement1" />
 
-        <TextView
-            android:id="@+id/progressAchievement1"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:background="#FB9F04"
-            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtAchievement1" />
+    <ImageView
+        android:id="@+id/imgAchievement1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1.5"
+        android:background="@drawable/award"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/glH665"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH58" />
 
-        <!-- Achievement 2 -->
-        <ImageView
-            android:id="@+id/imgAchievement2"
-            android:layout_width="46dp"
-            android:layout_height="62dp"
-            android:background="@drawable/energy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txtAchievement1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Achievement1"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH705"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH665" />
 
-        <TextView
-            android:id="@+id/txtAchievement2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:text="Achievement2"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
-            app:layout_constraintTop_toBottomOf="@id/imgAchievement2" />
+    <TextView
+        android:id="@+id/progressAchievement1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="2:0.5"
+        android:background="#FB9F04"
+        app:layout_constraintBottom_toTopOf="@+id/glH734"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH705" />
 
-        <TextView
-            android:id="@+id/progressAchievement2"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:background="#FB9F04"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
-            app:layout_constraintTop_toBottomOf="@id/txtAchievement2" />
+    <ImageView
+        android:id="@+id/imgAchievement2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1.5"
+        android:background="@drawable/energy"
+        app:layout_constraintBottom_toTopOf="@+id/glH665"
+        app:layout_constraintEnd_toStartOf="@+id/glV95"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH58" />
 
-        <!-- Achievement 3 -->
-        <ImageView
-            android:id="@+id/imgAchievement3"
-            android:layout_width="46dp"
-            android:layout_height="62dp"
-            android:background="@drawable/time"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/progressAchievement1"
-            app:layout_constraintVertical_bias="0.3" />
+    <TextView
+        android:id="@+id/txtAchievement2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Achievement2"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH705"
+        app:layout_constraintEnd_toStartOf="@+id/glV93"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH665" />
 
-        <TextView
-            android:id="@+id/txtAchievement3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:text="Achievement3"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgAchievement3" />
+    <TextView
+        android:id="@+id/progressAchievement2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="2:0.5"
+        android:background="#FB9F04"
+        app:layout_constraintBottom_toTopOf="@+id/glH734"
+        app:layout_constraintEnd_toStartOf="@+id/glV95"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH705" />
 
-        <TextView
-            android:id="@+id/progressAchievement3"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:background="#FB9F04"
-            app:layout_constraintEnd_toEndOf="@id/achievement1Guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtAchievement3" />
 
-        <!-- Achievement 4 -->
-        <ImageView
-            android:id="@+id/imgAchievement4"
-            android:layout_width="58dp"
-            android:layout_height="54dp"
-            android:background="@drawable/coin"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
-            app:layout_constraintTop_toBottomOf="@id/progressAchievement2"
-            app:layout_constraintVertical_bias="0.3" />
+    <ImageView
+        android:id="@+id/imgAchievement3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1.5"
+        android:background="@drawable/time"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/glH89"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH8" />
 
-        <TextView
-            android:id="@+id/txtAchievement4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:text="Achievement4"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
-            app:layout_constraintTop_toBottomOf="@id/imgAchievement4" />
+    <TextView
+        android:id="@+id/txtAchievement3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Achievement3"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH93"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH89" />
 
-        <TextView
-            android:id="@+id/progressAchievement4"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:background="#FB9F04"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/achievement1Guideline"
-            app:layout_constraintTop_toBottomOf="@id/txtAchievement4" />
+    <TextView
+        android:id="@+id/progressAchievement3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="2:0.5"
+        android:background="#FB9F04"
+        app:layout_constraintBottom_toTopOf="@+id/glH959"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
+        app:layout_constraintStart_toStartOf="@+id/glV05"
+        app:layout_constraintTop_toTopOf="@+id/glH93" />
 
-        <!-- Guidelines for columns -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/achievement1Guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+    <ImageView
+        android:id="@+id/imgAchievement4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/coin"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/glH89"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/glV95"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH8" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/txtAchievement4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Achievement4"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH93"
+        app:layout_constraintEnd_toStartOf="@+id/glV95"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH89" />
 
+    <TextView
+        android:id="@+id/progressAchievement4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="2:0.5"
+        android:background="#FB9F04"
+        app:layout_constraintBottom_toTopOf="@+id/glH959"
+        app:layout_constraintEnd_toStartOf="@+id/glV95"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH93" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.02" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV97"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV313"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.313" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV68"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV93"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.93" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV83"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.83" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.24" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.21" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH148"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.148" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH405"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.405" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH985"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.985" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.77" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.22" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH535"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.535" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.58" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH665"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.665" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH705"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.705" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH734"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.734" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH89"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.89" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH93"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH959"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.959" />
 </androidx.constraintlayout.widget.ConstraintLayout>

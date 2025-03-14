@@ -6,68 +6,58 @@
     android:layout_height="match_parent"
     android:background="@drawable/garden">
 
-
-    <!--    <views.MTextView-->
-    <!--        android:id="@+id/MTextView"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="4dp"-->
-    <!--        android:layout_marginTop="48dp"-->
-    <!--        android:layout_marginEnd="20dp"-->
-    <!--        android:fontFamily="@font/poppins"-->
-    <!--        android:text="MATCH IT MANIA"-->
-    <!--        android:shadowRadius="10"-->
-    <!--        android:shadowDy="19"-->
-    <!--        android:shadowColor="#4E4B4B"-->
-    <!--        android:textColor="#F4FAEC"-->
-    <!--        android:textSize="28sp"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/imageView"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="334dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/logo"
+        app:layout_constraintDimensionRatio="1.5:1"
+        app:layout_constraintBottom_toTopOf="@+id/glH363"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/glH02" />
 
     <View
         android:id="@+id/mvlogout"
-        android:layout_width="315dp"
-        android:layout_height="236dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
+        app:layout_constraintBottom_toTopOf="@+id/glH66"
+        app:layout_constraintDimensionRatio="1.5:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/glH389" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="234dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:shadowColor="@color/MShader"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:shadowRadius="10"
         android:text="Are you sure you want to log out?"
         android:textAlignment="center"
         android:textColor="#F3F9EB"
-        android:textSize="25sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH52"
         app:layout_constraintEnd_toEndOf="@+id/mvlogout"
         app:layout_constraintStart_toStartOf="@+id/mvlogout"
-        app:layout_constraintTop_toTopOf="@+id/mvlogout" />
+        app:layout_constraintTop_toTopOf="@+id/glH428" />
 
     <views.MButton
         android:id="@+id/btnYes"
-        android:layout_width="125dp"
-        android:layout_height="74dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
+        app:layout_constraintDimensionRatio="2:1"
         android:gravity="center"
         android:text="Yes"
         android:textColor="#FFFFFF"
@@ -75,34 +65,88 @@
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="@+id/mvlogout"
-        app:layout_constraintEnd_toStartOf="@+id/btnNo"
+        app:layout_constraintBottom_toTopOf="@+id/glH64"
+        app:layout_constraintEnd_toStartOf="@+id/glV5"
         app:layout_constraintStart_toStartOf="@+id/mvlogout"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/glH54"
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
     <views.MButton
         android:id="@+id/btnNo"
-        android:layout_width="125dp"
-        android:layout_height="74dp"
-        android:layout_marginLeft="140dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:contentDescription="@string/done"
         android:fontFamily="@font/poppins"
         android:gravity="center"
+        app:layout_constraintDimensionRatio="2:1"
         android:text="No"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:backColor="@color/MOrange"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="@+id/mvlogout"
+        app:layout_constraintBottom_toTopOf="@+id/glH64"
         app:layout_constraintEnd_toEndOf="@+id/mvlogout"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintVertical_bias="0.515"
+        app:layout_constraintStart_toStartOf="@+id/glV5"
+        app:layout_constraintTop_toTopOf="@+id/glH54"
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH363"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.363" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH389"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.389" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.54" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH428"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.428" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52" />
 </androidx.constraintlayout.widget.ConstraintLayout>

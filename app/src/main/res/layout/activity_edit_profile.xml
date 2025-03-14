@@ -1,96 +1,944 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/indoor">
 
     <View
-        android:id="@+id/vEdit"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/glH94"
+        app:layout_constraintEnd_toStartOf="@+id/glV579"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="@+id/glV571"
+        app:layout_constraintTop_toTopOf="@+id/glH11" />
 
     <views.MTextView
         android:id="@+id/tvEdit"
-        android:layout_width="250dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="Edit Profile"
         android:textColor="@color/white"
-        android:textSize="35sp"
+        app:autoSizeMaxTextSize="35sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:borderColor="@color/MShader"
         app:borderWidth="5dp"
         app:cornerRadius="20dp"
         app:endColor="#30287F"
         app:gradientDirection="topToBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glH16"
+        app:layout_constraintEnd_toStartOf="@+id/glV5785"
+        app:layout_constraintStart_toStartOf="@+id/glV5715"
+        app:layout_constraintTop_toTopOf="@+id/glH06"
         app:startColor="@color/MPurple" />
 
     <View
         android:id="@+id/profileSection"
         android:layout_width="0dp"
-        android:layout_height="190dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEdit"/>
-
-
-    <views.MTextView
-        android:id="@+id/tvPlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins"
-        android:text="Player: "
-        android:textColor="@color/MYellow"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/profileSection" />
+        app:layout_constraintBottom_toTopOf="@+id/glH35"
+        app:layout_constraintEnd_toStartOf="@+id/glV579"
+        app:layout_constraintStart_toStartOf="@+id/glV571"
+        app:layout_constraintTop_toTopOf="@+id/glH19" />
 
     <EditText
         android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:background="@color/transparent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/light_yellow_rounded_rect"
         android:fontFamily="@font/poppins"
         android:gravity="center_vertical"
-        android:text="@string/usernameDef"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvPlayer"
-        app:layout_constraintStart_toEndOf="@id/tvPlayer"
-        app:layout_constraintTop_toTopOf="@id/tvPlayer" />
+        android:paddingStart="10dp"
+        android:text="Guest"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/glH3"
+        app:layout_constraintEnd_toStartOf="@+id/glV5785"
+        app:layout_constraintStart_toStartOf="@+id/glV5743"
+        app:layout_constraintTop_toTopOf="@+id/glH24" />
 
     <views.MButton
         android:id="@+id/btnProfile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:backColor="@color/MBlue"
         app:borderColor="#201A1C"
         app:borderWidth="8dp"
         app:cornerRadius="10dp"
         app:imageBackground="@drawable/avatar1"
         app:imageScale="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPlayer" />
+        app:layout_constraintBottom_toTopOf="@+id/glH335"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/glV5739"
+        app:layout_constraintStart_toStartOf="@+id/glV5715"
+        app:layout_constraintTop_toTopOf="@+id/glV572" />
+
+    <views.MButton
+        android:id="@+id/btnExit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        app:layout_constraintDimensionRatio="1:1"
+        android:padding="100dp"
+        app:backColor="#68FEA705"
+        app:borderColor="@color/MShader"
+        app:borderWidth="5dp"
+        app:cornerRadius="90dp"
+        app:imageBackground="@drawable/exit"
+        app:imageScale="0.8"
+        app:layout_constraintBottom_toTopOf="@+id/glH19"
+        app:layout_constraintEnd_toStartOf="@+id/glV5796"
+        app:layout_constraintStart_toStartOf="@+id/glV5777"
+        app:layout_constraintTop_toTopOf="@+id/glH09" />
+
+    <View
+        android:id="@+id/editContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/light_yellow_rounded_rect"
+        app:layout_constraintStart_toStartOf="@id/glV5715"
+        app:layout_constraintEnd_toEndOf="@id/glV5785"
+        app:layout_constraintTop_toBottomOf="@id/glH37"
+        app:layout_constraintBottom_toTopOf="@id/glH8"
+        />
+
+    <views.MButton
+        android:id="@+id/btnAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:contentDescription="@string/play_button"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Avatar"
+        android:textAlignment="center"
+        android:textColor="#ECDAB5"
+        app:backColor="@color/MPurple"
+        app:borderColor="@color/MShader"
+        app:borderWidth="2dp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/glH44"
+        app:layout_constraintEnd_toStartOf="@+id/glV5743"
+        app:layout_constraintStart_toStartOf="@+id/glV5725"
+        app:layout_constraintTop_toTopOf="@+id/glH39" />
+
+    <views.MButton
+        android:id="@+id/btnBG"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:contentDescription="@string/play_button"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="BG"
+        android:textAlignment="center"
+        android:textColor="#ECDAB5"
+        app:backColor="@color/MPurple"
+        app:borderColor="@color/MShader"
+        app:borderWidth="2dp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/glH44"
+        app:layout_constraintEnd_toStartOf="@+id/glV5777"
+        app:layout_constraintStart_toStartOf="@+id/glV57"
+        app:layout_constraintTop_toTopOf="@+id/glH39" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="#A89874"
+        app:layout_constraintStart_toEndOf="@id/glV5725"
+        app:layout_constraintEnd_toEndOf="@id/glV5777"
+        app:layout_constraintTop_toBottomOf="@id/glH456"/>
+
+    <ScrollView
+        android:id="@+id/svAvatar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="false"
+        app:layout_constraintBottom_toBottomOf="@+id/editContainer"
+        app:layout_constraintEnd_toEndOf="@+id/editContainer"
+        app:layout_constraintStart_toStartOf="@+id/editContainer"
+        app:layout_constraintTop_toTopOf="@+id/glH456">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:id="@+id/gridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:padding="8dp"
+                android:rowCount="3"
+                android:useDefaultMargins="true">
+
+                <!-- First row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Second row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar6"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Third row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar7"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar7"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar8"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar8"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar9"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar9"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Third row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar10"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar10"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar11"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar11"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/avatar12"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:imageBackground="@drawable/avatar12"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/svBG"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editContainer"
+        app:layout_constraintEnd_toStartOf="@+id/glV5777"
+        app:layout_constraintStart_toStartOf="@+id/glV5725"
+        app:layout_constraintTop_toTopOf="@+id/glH456"
+        android:fillViewport="false"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:id="@+id/gridLayoutBG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="3"
+                android:padding="8dp"
+                android:useDefaultMargins="true">
+
+                <!-- First row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+                    <views.MButton
+                        android:id="@+id/MPurple"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MYellow"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MYellow"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MLavender"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MLavender"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Second row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MBlue"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MBlue"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MDarkPurple"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MDarkPurple"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MOrange"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MOrange"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Third row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MShader"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MShader"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MLightYellow"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MLightYellow"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MDarkLavender"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MDarkLavender"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Third row -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/white"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/white"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MNavy"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:backColor="@color/MNavy"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="3dp">
+
+                    <views.MButton
+                        android:id="@+id/MGreen"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:backColor="@color/MGreen"
+                        app:borderColor="@color/MShader"
+                        app:borderWidth="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
+    <views.MButton
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/done"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Save"
+        android:textColor="@color/white"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeStepGranularity="2sp"
+        app:layout_constraintDimensionRatio="3.5:1"
+        app:backColor="@color/MPurple"
+        app:cornerRadius="50dp"
+        app:fontWeight="1"
+        app:layout_constraintBottom_toTopOf="@+id/glH77"
+        app:layout_constraintEnd_toStartOf="@+id/glV5785"
+        app:layout_constraintStart_toStartOf="@+id/glV5715"
+        app:layout_constraintTop_toTopOf="@+id/glH68"
+        app:borderWidth="3dp"
+        app:borderColor="@color/MShader"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH456"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.44" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV572"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.205" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH335"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.335" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.37" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.39" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.43" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH09"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.24" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV571"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5743"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.43" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.57" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5725"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV579"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5715"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5785"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5739"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.39" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5777"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5796"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH68"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

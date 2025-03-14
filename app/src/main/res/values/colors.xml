@@ -15,4 +15,8 @@
     <color name="MShader">#FF201A1C</color>
     <color name="MDarkPurple">#30287F</color>
     <color name="MOrange">#FE7105</color>
+    <color name="MLightYellow">#DCC28A</color>
+    <color name="MDarkLavender">#4C60A8</color>
+    <color name="MNavy">#1B3D6A</color>
+    <color name="MGreen">#D5E25C</color>
 </resources>

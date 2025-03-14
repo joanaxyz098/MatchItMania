@@ -53,6 +53,8 @@
             <enum name="bold_italic" value="3" />
         </attr>
         <attr name="isClipped"/>
+        <attr name="imageHorizontalOffset" format="float" />
+        <attr name="imageVerticalOffset" format="float" />
     </declare-styleable>
 
     <!-- MTextView attributes -->

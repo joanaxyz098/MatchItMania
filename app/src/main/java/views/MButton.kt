@@ -27,26 +27,119 @@ class MButton @JvmOverloads constructor(
 ): AppCompatButton(context, attrs, defStyleAttr) {
 
     // Background properties
-    private var backColor: Int = Color.TRANSPARENT
-    private var cornerRadius: Float = 20f
-    private var borderColor: Int = Color.BLACK
-    private var borderWidth: Float = 0f
+    // In MButton class
+    var backColor: Int = Color.TRANSPARENT
+        set(value) {
+            field = value
+            backgroundPaint.color = value
+            invalidate()
+        }
+
+    var backWidthScale: Float = 1f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var backHeightScale: Float = 1f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var backHorizontalOffset: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var backVerticalOffset: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    // Image properties
+    var imageScale: Float = 1f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var imageHorizontalOffset: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var imageVerticalOffset: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var cornerRadius: Float = 20f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var borderColor: Int = Color.BLACK
+        set(value) {
+            field = value
+            borderPaint.color = value
+            invalidate()
+        }
+
+    var borderWidth: Float = 0f
+        set(value) {
+            field = value
+            borderPaint.strokeWidth = value
+            invalidate()
+        }
 
     // Shadow properties
-    private var shadowRadius: Float = 0f
-    private var shadowDx: Float = 0f
-    private var shadowDy: Float = 0f
-    private var shadowColor: Int = Color.DKGRAY
+    @get:JvmName("buttonShadowRadius")
+    var shadowRadius: Float = 0f
+        set(value) {
+            field = value
+            updateShadowLayer()
+            invalidate()
+        }
 
-    // Image background properties
-    private var imageBackground: Drawable? = null
-    private var imageScale: Float = 1f
+    @get:JvmName("buttonShadowDx")
+    var shadowDx: Float = 0f
+        set(value) {
+            field = value
+            updateShadowLayer()
+            invalidate()
+        }
 
-    // Offset and scale properties
-    private var backWidthScale: Float = 1f
-    private var backHeightScale: Float = 1f
-    private var backHorizontalOffset: Float = 0f
-    private var backVerticalOffset: Float = 0f
+    @get:JvmName("buttonShadowDy")
+    var shadowDy: Float = 0f
+        set(value) {
+            field = value
+            updateShadowLayer()
+            invalidate()
+        }
+
+    @get:JvmName("buttonShadowColor")
+    var shadowColor: Int = Color.DKGRAY
+        set(value) {
+            field = value
+            updateShadowLayer()
+            invalidate()
+        }
+    // Add a helper method to update the shadow layer
+    private fun updateShadowLayer() {
+        shadowPaint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
+    }
+    var imageBackground: Drawable? = null
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+
 
     // Click state
     private var isPressed = false
@@ -77,6 +170,8 @@ class MButton @JvmOverloads constructor(
                 borderWidth = typedArray.getDimension(R.styleable.MButton_borderWidth, borderWidth)
                 imageBackground = typedArray.getDrawable(R.styleable.MButton_imageBackground)
                 imageScale = typedArray.getFloat(R.styleable.MButton_imageScale, 1f)
+                imageHorizontalOffset = typedArray.getFloat(R.styleable.MButton_imageHorizontalOffset, imageHorizontalOffset)
+                imageVerticalOffset = typedArray.getFloat(R.styleable.MButton_imageVerticalOffset, imageVerticalOffset)
                 backWidthScale = typedArray.getFloat(R.styleable.MButton_backWidthScale, backWidthScale)
                 backHeightScale = typedArray.getFloat(R.styleable.MButton_backHeightScale, backHeightScale)
                 backHorizontalOffset = typedArray.getFloat(R.styleable.MButton_backHorizontalOffset, backHorizontalOffset)
@@ -150,9 +245,13 @@ class MButton @JvmOverloads constructor(
             val scaledWidth = drawableWidth * scale
             val scaledHeight = drawableHeight * scale
 
-            // Center the image within the view bounds
-            val imageLeft = w / 2f - (scaledWidth / 2)
-            val imageTop = h / 2f - (scaledHeight / 2)
+            // Calculate offset amounts based on view dimensions
+            val horizontalOffsetAmount = (w - scaledWidth) * imageHorizontalOffset
+            val verticalOffsetAmount = (h - scaledHeight) * imageVerticalOffset
+
+            // Center the image within the view bounds, then apply offsets
+            val imageLeft = (w / 2f - (scaledWidth / 2)) + horizontalOffsetAmount
+            val imageTop = (h / 2f - (scaledHeight / 2)) + verticalOffsetAmount
 
             imageRect.set(
                 imageLeft,

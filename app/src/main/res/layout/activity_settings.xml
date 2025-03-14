@@ -12,129 +12,150 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="329dp"
-        android:layout_height="586dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
+        app:layout_constraintBottom_toTopOf="@+id/glH94"
+        app:layout_constraintDimensionRatio="0.5:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="@+id/glH11"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/scMusic"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/music"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/scSound"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/view" />
+        app:autoSizeMaxTextSize="17sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH33"
+        app:layout_constraintDimensionRatio="3.2:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glH27" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/scVibration"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/vibration"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/view" />
+        app:autoSizeMaxTextSize="17sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH55"
+        app:layout_constraintDimensionRatio="3.2:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glH49" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/scSound"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/poppins"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:text="@string/sound"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/scVibration"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/view" />
+        app:autoSizeMaxTextSize="17sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/glH44"
+        app:layout_constraintDimensionRatio="3.2:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glH38" />
 
     <views.MButton
         android:id="@+id/btnLogIn"
-        android:layout_width="249dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/log_in"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/log_in"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAbout"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/glH62"
+        app:layout_constraintDimensionRatio="3.5:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glH63"
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
     <views.MButton
         android:id="@+id/btnAbout"
-        android:layout_width="249dp"
-        android:layout_height="73dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:contentDescription="@string/log_in"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="About"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/glH84"
+        app:layout_constraintDimensionRatio="3.5:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glH75"
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
     <views.MTextView
         android:id="@+id/tvSettings"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="48dp"
+        app:layout_constraintDimensionRatio="3:1"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/settings"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="35sp"
+        app:autoSizeMaxTextSize="35sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
         app:borderColor="@color/MShader"
         app:borderWidth="5dp"
         app:cornerRadius="20dp"
         app:endColor="#30287F"
         app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/glH16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glH06"
         app:startColor="@color/MPurple" />
 
     <views.MButton
         android:id="@+id/btnExit"
-        android:layout_width="74dp"
+        android:layout_width="71dp"
         android:layout_height="71dp"
-        android:layout_gravity="end"
         android:padding="100dp"
         app:backColor="#68FEA705"
         app:borderColor="@color/MShader"
@@ -142,9 +163,108 @@
         app:cornerRadius="90dp"
         app:imageBackground="@drawable/exit"
         app:imageScale="0.8"
-        app:layout_constraintBottom_toTopOf="@+id/scMusic"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glH19"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvSettings"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/glH09"
+        app:layout_constraintVertical_bias="1.0" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.27" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.38" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.44" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.49" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH09"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.72" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH84"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
 </androidx.constraintlayout.widget.ConstraintLayout>
