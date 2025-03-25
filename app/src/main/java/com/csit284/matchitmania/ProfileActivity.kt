@@ -1,7 +1,6 @@
 package com.csit284.matchitmania
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
@@ -13,25 +12,19 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.launch
 import views.MButton
-import firebase.FirebaseRepository
-import music.BackgroundMusic
 import userGenerated.UserProfile
-import userGenerated.UserSettings
 
 class ProfileActivity : AppCompatActivity() {
-    private val userId = FirebaseAuth.getInstance().currentUser?.uid
     private var tvUser: TextView? = null
     private var userProfile: UserProfile ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        userProfile = intent.getSerializableExtra("userProfile") as? UserProfile
-
+        userProfile = (application as MatchItMania).userProfile
 
         tvUser = findViewById(R.id.tvUsername)
         Log.i("TASK", "Username in profile activity ${userProfile?.username}")

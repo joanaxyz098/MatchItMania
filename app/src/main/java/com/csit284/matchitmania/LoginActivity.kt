@@ -2,18 +2,15 @@ package com.csit284.matchitmania
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
-import firebase.FirebaseRepository
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import extensions.fieldEmpty
 import views.MButton
 
 class LoginActivity : AppCompatActivity() {
@@ -32,18 +29,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun fetchUsername(){
-        userID = auth.currentUser?.uid
-        if(userID != null){
-            lifecycleScope.launch {
-                username = FirebaseRepository.getPartialDocument("users", userID!!, "username") as String
-                Log.i("TASK", "Fetching username: $username")
-                runOnUiThread{
-                    Toast.makeText(this@LoginActivity, "Welcome back! $username", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }else{
-            Log.i("TASK", "userID is null")
-        }
+        username = (application as MatchItMania).userProfile?.username
+        Toast.makeText(this@LoginActivity, "Welcome back! $username", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupViews() {
@@ -51,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         progressBar = findViewById(R.id.pbRegister)
+
 
         // Setup button listeners
         findViewById<MButton>(R.id.btnDone).setOnClickListener {
@@ -71,15 +59,8 @@ class LoginActivity : AppCompatActivity() {
         val password = etPassword.text.toString()
 
         // Validate input
-        if (email.isEmpty()) {
-            etEmail.error = "Email required"
-            return
-        }
-
-        if (password.isEmpty()) {
-            etPassword.error = "Password required"
-            return
-        }
+        if(email.fieldEmpty(etEmail, "Please input your email"))return
+        if (password.fieldEmpty(etPassword, "Please input your password"))return
 
         // Show loading
         progressBar.visibility = View.VISIBLE

@@ -2,25 +2,20 @@ package com.csit284.matchitmania
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import com.google.firebase.auth.FirebaseAuth
-import firebase.FirebaseRepository
-import kotlinx.coroutines.launch
+import com.csit284.matchitmania.app.MatchItMania
 import music.BackgroundMusic
 import userGenerated.UserProfile
 import userGenerated.UserSettings
 import views.MButton
 
 class HomeActivity : AppCompatActivity() {
-    private val auth = FirebaseAuth.getInstance()
-    private var userProfile: UserProfile? = null
-    private var userSettings: UserSettings = UserSettings()
+//    private val auth = FirebaseAuth.getInstance()
+    private var userProfile: UserProfile ?= null
+    private var userSettings: UserSettings ?= null
     private var btnHome: MButton ?= null
     private var btnLeaderb: MButton ?= null
     private var btnFriends: MButton ?= null
@@ -29,10 +24,17 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        val matchItMania = application as MatchItMania
+
+        // Check if data is already loaded
+        userProfile = matchItMania.userProfile
+        userSettings = matchItMania.userSettings
+
         loadUserData()
+        setupViews()
         // Initialize music at app start
         BackgroundMusic.initialize(this)
-        setupViews()
     }
 
     override fun onPause() {
@@ -42,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        loadUserData() // Reload settings when returning
+        loadUserData()
     }
 
     override fun onDestroy() {
@@ -55,7 +57,6 @@ class HomeActivity : AppCompatActivity() {
         btnLeaderb = findViewById(R.id.btnboards)
         btnFriends = findViewById(R.id.btnFriends)
         activeButton = btnHome
-
         // Set initial active button state
         btnHome?.let {
             setButtonActive(it)
@@ -69,7 +70,6 @@ class HomeActivity : AppCompatActivity() {
         findViewById<MButton>(R.id.btnProfile).setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             if(!userProfile?.username.isNullOrEmpty()) {
-                intent.putExtra("userProfile", userProfile)
                 startActivity(intent)
                 Log.i("TASK", "userProfile has been passed to Profile Activity: ")
                 Log.i("TASK", "UserProfile ${userProfile?.username}")
@@ -116,65 +116,55 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun loadUserData() {
-        val userId = auth.currentUser?.uid ?: return
+        val matchItMania = application as MatchItMania
+        userProfile = matchItMania.userProfile
+        userSettings = matchItMania.userSettings
 
-        lifecycleScope.launch {
+        Log.i("AMBOT", "UserSetting in Load User Data of Home: $userSettings")
+
+        // Handle music settings
+        if (userSettings?.music == true) {
+            BackgroundMusic.play()
+        } else {
+            BackgroundMusic.pause()
+        }
+
+        // Handle profile button update
+        val profileImageId = userProfile?.profileImageId
+        val profileColor = userProfile?.profileColor
+
+        if (!profileImageId.isNullOrEmpty()) {
             try {
-                val documentSData = FirebaseRepository.getDocumentById("settings", userId)
-                val documentPData = FirebaseRepository.getDocumentById("users", userId)
+                val drawableId = resources.getIdentifier(profileImageId, "drawable", packageName)
+                val colorId = resources.getIdentifier(profileColor, "color", packageName)
 
-                if (documentSData != null) {
-                    userSettings = UserSettings.fromMap(documentSData)
-                    Log.i("HomeActivity", "Settings loaded: ${userSettings}")
+                Log.d("TASK", "Profile Image ID: $profileImageId")
+                Log.d("TASK", "Profile Color: $profileColor")
+                Log.d("TASK", "Drawable ID: $drawableId")
+                Log.d("TASK", "Color ID: $colorId")
 
-                    // Play or stop music based on updated settings
-                    if (userSettings.music) {
-                        BackgroundMusic.play()
-                    } else {
-                        BackgroundMusic.pause()
+                if (drawableId != 0) {
+                    val profileButton = findViewById<MButton>(R.id.btnProfile)
+
+                    // Set image background
+                    val drawable = ContextCompat.getDrawable(this, drawableId)
+                    profileButton.imageBackground = drawable
+
+                    // Set background color
+                    if (colorId != 0) {
+                        val color = ContextCompat.getColor(this, colorId)
+                        profileButton.backColor = color
                     }
+
+                    Log.i("TASK", "btnProfile updated successfully")
                 } else {
-                    userSettings = UserSettings() // Default settings
-                }
-
-                if (documentPData != null) {
-                    userProfile = UserProfile.fromMap(documentPData)
-                    Log.i("TASK", "userProfile has been mapped")
-                    Log.i("TASK", "UserProfile ${userProfile?.username}")
-                    val profileImageId = userProfile?.profileImageId
-                    val profileColor = userProfile?.profileColor
-                    Log.i("TASK", "UserProfile btnProfile id ${userProfile?.profileImageId}")
-                    if (!profileImageId.isNullOrEmpty()) {
-                        val drawableId = resources.getIdentifier(profileImageId, "drawable", packageName)
-                        val colorId = resources.getIdentifier(profileColor, "color", packageName)
-                        if (drawableId != 0) {
-                            setUpImageBgButton(drawableId)
-                            setupColorButton(R.id.btnProfile, colorId)
-                            Log.i("TASK", "btnProfile is now set to $drawableId")
-                        } else {
-                            Log.e("TASK", "Drawable not found: $profileImageId")
-                        }
-                    } else {
-                        Log.e("TASK", "profileImageId is null or empty")
-                    }
+                    Log.e("TASK", "Drawable not found: $profileImageId")
                 }
             } catch (e: Exception) {
-                Log.e("HomeActivity", "Failed to load user data", e)
+                Log.e("TASK", "Error updating profile button", e)
             }
-        }
-    }
-
-    private fun setUpImageBgButton(avatarResourceId: Int) {
-        findViewById<MButton>(R.id.btnProfile).let { profile ->
-            profile.imageBackground = ContextCompat.getDrawable(this, avatarResourceId)
-            // No need to call invalidate() if proper setter is implemented
-        }
-    }
-
-    private fun setupColorButton(buttonId: Int, colorResourceId: Int) {
-        findViewById<MButton>(buttonId).let { profile ->
-            profile.backColor = ContextCompat.getColor(this, colorResourceId)
-            // No need to call invalidate() if proper setter is implemented
+        } else {
+            Log.e("TASK", "profileImageId is null or empty")
         }
     }
 }

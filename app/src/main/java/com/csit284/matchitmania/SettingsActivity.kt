@@ -7,11 +7,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
-import firebase.FirebaseRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import music.BackgroundMusic
-import userGenerated.UserProfile
 import userGenerated.UserSettings
 import views.MButton
 
@@ -22,11 +23,10 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var scSound: SwitchCompat
     private lateinit var scVib: SwitchCompat
     private lateinit var btnLogIn: MButton
-
-    private var userSettings: UserSettings? = null
-    private var userProfile: UserProfile? = null
+//
+//    private var userSettings: UserSettings? = null
+//    private var userProfile: UserProfile? = null
     private var isGuest = auth.currentUser == null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -71,62 +71,49 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateSwitch() {
+    private fun updateSwitch(userSettings : UserSettings) {
         Log.i("TASK", "Initializing Settings: nimal1 $userSettings")
 
         // Set the correct values from userSettings
-        scMusic.isChecked = userSettings?.music ?: true
-        scSound.isChecked = userSettings?.sound ?: true
-        scVib.isChecked = userSettings?.vibration ?: true
+        scMusic.isChecked = userSettings.music ?: true
+        scSound.isChecked = userSettings.sound ?: true
+        scVib.isChecked = userSettings.vibration ?: true
 
         Log.i("TASK", "Initializing Settings: nimal2 $userSettings")
     }
 
 
     private fun updateSettings() {
-        Log.i("TASK", "Before Updating Settings: $userSettings")
-
-        userSettings = UserSettings(
+        val updatedSettings = mapOf(
+            "music" to scMusic.isChecked,
+            "sound" to scSound.isChecked,
+            "vibration" to scVib.isChecked
+        )
+        (application as MatchItMania).userSettings = UserSettings(
             scMusic.isChecked,
             scSound.isChecked,
             scVib.isChecked
         )
-
-        // Save settings to Firebase only if user is logged in
         auth.currentUser?.uid?.let { userId ->
             lifecycleScope.launch {
                 try {
-                   FirebaseRepository.setDocument("settings", userId, userSettings!!.toMap())
+                    FirebaseFirestore.getInstance()
+                        .collection("settings")
+                        .document(userId)
+                        .set(updatedSettings)
+                        .await()
+
+                    Log.i("TASK", "Settings successfully saved!")
                 } catch (e: Exception) {
+                    Log.e("TASK", "Failed to save settings: ${e.message}", e)
                     Toast.makeText(this@SettingsActivity, "Failed to save settings", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-
-        Log.i("TASK", "After Updating Settings: $userSettings")
+        } ?: Log.e("TASK", "User is not logged in. Cannot save settings.")
     }
 
-
     private fun loadUserSettings() {
-        val userId = auth.currentUser?.uid ?: return
-
-        lifecycleScope.launch {
-            try {
-                val documentData = FirebaseRepository.getDocumentById("settings", userId)
-                if (documentData != null) {
-                    userSettings = UserSettings.fromMap(documentData)
-
-                    Log.i("TASK", "documentdata: $documentData userSettings: $userSettings")
-                    updateSwitch()
-
-                } else {
-                    userSettings = UserSettings()
-                    updateSwitch()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this@SettingsActivity, "Failed to load settings", Toast.LENGTH_SHORT).show()
-            }
-        }
+        updateSwitch((application as MatchItMania).userSettings)
     }
 
     private fun updateLoginButton() {
