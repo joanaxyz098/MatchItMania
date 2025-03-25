@@ -3,7 +3,7 @@ package userGenerated
 import java.io.Serializable
 
 data class UserSettings(
-    val music: Boolean = true,
+    var music: Boolean = true,
     val sound: Boolean = true,
     val vibration: Boolean = true
 ) : Serializable {

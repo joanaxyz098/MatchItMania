@@ -17,9 +17,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
-import firebase.FirebaseRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import userGenerated.UserProfile
 import views.MButton
 
@@ -39,7 +41,7 @@ class EditProfileActivity : AppCompatActivity() {
         svAvatar = findViewById<ScrollView>(R.id.svAvatar)
         svBG = findViewById<ScrollView>(R.id.svBG)
 
-        userProfile = intent.getSerializableExtra("userProfile") as? UserProfile
+        userProfile = (application as MatchItMania).userProfile
 
         tvUser = findViewById(R.id.tvUsername)
         Log.i("TASK", "Username in edit profile activity ${userProfile?.username}")
@@ -52,7 +54,6 @@ class EditProfileActivity : AppCompatActivity() {
 
         btnExit.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
-            intent.putExtra("userProfile", userProfile)
             startActivity(intent)
         }
 
@@ -72,9 +73,18 @@ class EditProfileActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().currentUser?.uid?.let { userId ->
                 lifecycleScope.launch {
                     try {
-                        FirebaseRepository.setDocument("users", userId, userProfile!!.toMap())
+                        (application as MatchItMania).userProfile = userProfile as UserProfile
+                        FirebaseFirestore.getInstance()
+                            .collection("users")
+                            .document(userId)
+                            .set(
+                                mapOf("username" to userProfile?.username,
+                                "email" to userProfile?.email,
+                                "profileImageId" to userProfile?.profileImageId,
+                                "profileColor" to userProfile?.profileColor)
+                            )
+                            .await()
                         val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)
-                        intent.putExtra("userProfile", userProfile)
                         startActivity(intent)
                     } catch (e: Exception) {
                         Toast.makeText(this@EditProfileActivity, "Failed to save username $e", Toast.LENGTH_SHORT).show()

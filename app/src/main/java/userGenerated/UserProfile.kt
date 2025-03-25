@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class UserProfile(
     var username: String = "",
-    val email: String = "",
+    var email: String = "",
     var profileImageId: String = "",
     var profileColor: String = ""
 ) : Serializable {
