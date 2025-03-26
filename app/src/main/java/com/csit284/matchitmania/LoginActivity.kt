@@ -47,10 +47,6 @@ class LoginActivity : AppCompatActivity() {
             handleLogin()
         }
 
-        findViewById<MButton>(R.id.btnExit).setOnClickListener {
-            finish()
-        }
-
         findViewById<TextView>(R.id.tvRegister).setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }

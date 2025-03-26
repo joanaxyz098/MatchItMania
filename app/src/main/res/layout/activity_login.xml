@@ -153,24 +153,6 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <views.MButton
-        android:id="@+id/btnExit"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="end"
-        app:layout_constraintDimensionRatio="1:1"
-        android:padding="100dp"
-        app:backColor="#68FEA705"
-        app:borderColor="@color/MShader"
-        app:borderWidth="5dp"
-        app:cornerRadius="90dp"
-        app:imageBackground="@drawable/exit"
-        app:imageScale="0.8"
-        app:layout_constraintBottom_toTopOf="@+id/glH19"
-        app:layout_constraintEnd_toStartOf="@+id/glV96"
-        app:layout_constraintStart_toStartOf="@+id/glV77"
-        app:layout_constraintTop_toTopOf="@+id/glH09" />
-
-    <views.MButton
         android:id="@+id/btnFb"
         android:layout_width="65dp"
         android:layout_height="63dp"
