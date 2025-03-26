@@ -81,7 +81,8 @@ class EditProfileActivity : AppCompatActivity() {
                                 mapOf("username" to userProfile?.username,
                                 "email" to userProfile?.email,
                                 "profileImageId" to userProfile?.profileImageId,
-                                "profileColor" to userProfile?.profileColor)
+                                "profileColor" to userProfile?.profileColor,
+                                "level" to userProfile?.level)
                             )
                             .await()
                         val intent = Intent(this@EditProfileActivity, ProfileActivity::class.java)

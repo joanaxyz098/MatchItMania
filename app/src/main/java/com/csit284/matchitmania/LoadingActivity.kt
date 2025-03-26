@@ -33,6 +33,7 @@ class LoadingActivity : Activity() {
                         username = document.getString("username") ?: ""
                         profileImageId = document.getString("profileImageId") ?: ""
                         profileColor = document.getString("profileColor") ?: ""
+                        level = document.getLong("level")?.toInt() ?: 0
                     }
 
                     Log.d("LoadingActivity", "User data loaded successfully: ${(application as MatchItMania).userProfile.username}")

@@ -46,6 +46,10 @@
             android:name=".HomeActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".LeaderboardActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

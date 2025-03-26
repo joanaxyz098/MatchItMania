@@ -6,7 +6,8 @@ data class UserProfile(
     var username: String = "",
     var email: String = "",
     var profileImageId: String = "",
-    var profileColor: String = ""
+    var profileColor: String = "",
+    var level: Int = 0
 ) : Serializable {
 
     fun toMap(): Map<String, Any> {

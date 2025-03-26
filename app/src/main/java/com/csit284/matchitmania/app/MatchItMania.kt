@@ -40,6 +40,7 @@ class MatchItMania : Application() {
                         username = document.getString("username") ?: ""
                         profileImageId = document.getString("profileImageId") ?: ""
                         profileColor = document.getString("profileColor") ?: ""
+                        level = document.getLong("level")?.toInt() ?: 0
                     }
                     Log.d("Firestore", "User Profile fetched successfully: ${userProfile.username}")
                 } else {

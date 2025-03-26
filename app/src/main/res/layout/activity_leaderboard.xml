@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home2"
+    android:textAlignment="center"
+    tools:context=".HomeActivity">
+
+    <views.MTextView
+        android:id="@+id/tvLeaderboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Leaderboard"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="35sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:borderColor="@color/MShader"
+        app:borderWidth="5dp"
+        app:cornerRadius="20dp"
+        app:endColor="#30287F"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/glProfileDown"
+        app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
+        app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
+        app:layout_constraintTop_toTopOf="@+id/glProfileUp"
+        app:startColor="@color/MPurple" />
+
+
+    <ListView
+        android:id="@+id/lvboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/glHomeButtonU"
+        app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
+        app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
+        app:layout_constraintTop_toTopOf="@+id/glProfileDown"
+        app:layout_constraintVertical_bias="0.0"
+        android:padding="10dp"
+        android:background="@drawable/gb_rounded_rect" />
+
+    <View
+        android:id="@+id/HorizontalB"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:background="#565580"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glNav" />
+
+    <views.MButton
+        android:id="@+id/btnHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/home_button"
+        app:backColor="@color/MBlue"
+        app:backHeightScale="0.7"
+        app:backVerticalOffset="1.1"
+        app:imageBackground="@drawable/home_button"
+        app:imageScale="1.2"
+        app:imageVerticalOffset="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glHomeButtonR"
+        app:layout_constraintStart_toStartOf="@+id/glHomeButtonL"
+        app:layout_constraintTop_toBottomOf="@+id/glHomeButtonU" />
+
+    <views.MButton
+        android:id="@+id/btnboards"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center|bottom"
+        android:contentDescription="@string/home_button"
+        app:backColor="#56557F"
+        app:backHeightScale="0.58"
+        app:backVerticalOffset="1.1"
+        app:imageBackground="@drawable/leaderboards"
+        app:imageScale="1"
+        app:imageVerticalOffset="0.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glHomeButtonL"
+        app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
+        app:layout_constraintTop_toBottomOf="@+id/glHomeButtonU" />
+
+    <views.MButton
+        android:id="@+id/btnFriends"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center|bottom"
+        android:contentDescription="@string/home_button"
+        app:backColor="#56557F"
+        app:backHeightScale="0.58"
+        app:backVerticalOffset="1.1"
+        app:imageBackground="@drawable/friends"
+        app:imageScale="0.7"
+        app:imageVerticalOffset="0.45"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
+        app:layout_constraintStart_toStartOf="@+id/glHomeButtonR"
+        app:layout_constraintTop_toBottomOf="@+id/glHomeButtonU" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glProfileUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glProfileDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLogoDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPlayButtonR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPlayButtonL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPlayButtonD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glHomeButtonU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.77" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glNav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.89" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glHomeButtonR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.67" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glHomeButtonL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

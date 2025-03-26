@@ -86,6 +86,8 @@ class HomeActivity : AppCompatActivity() {
             setButtonInactive(activeButton)
             setButtonActive(btnLeaderb)
             activeButton = btnLeaderb
+            val intent = Intent(this, LeaderboardActivity::class.java)
+            startActivity(intent)
         }
 
         btnFriends?.setOnClickListener{
