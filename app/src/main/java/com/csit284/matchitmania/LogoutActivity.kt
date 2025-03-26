@@ -3,7 +3,10 @@ package com.csit284.matchitmania
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
+import userGenerated.UserProfile
+import userGenerated.UserSettings
 import views.MButton
 
 class LogoutActivity :Activity() {
@@ -24,11 +27,16 @@ class LogoutActivity :Activity() {
             finish()
         }
 
-        btnYes?.setOnClickListener{
+        btnYes?.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
+            val app = application as MatchItMania
+            app.userProfile = UserProfile()
+            app.userSettings = UserSettings()
+
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
+
     }
 }

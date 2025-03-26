@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
 import extensions.fieldEmpty
+import userGenerated.UserProfile
+import userGenerated.UserSettings
 import views.MButton
 
 class LoginActivity : AppCompatActivity() {
@@ -58,20 +60,21 @@ class LoginActivity : AppCompatActivity() {
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString()
 
-        // Validate input
-        if(email.fieldEmpty(etEmail, "Please input your email"))return
-        if (password.fieldEmpty(etPassword, "Please input your password"))return
+        if(email.fieldEmpty(etEmail, "Please input your email")) return
+        if (password.fieldEmpty(etPassword, "Please input your password")) return
 
-        // Show loading
         progressBar.visibility = View.VISIBLE
 
-        // Attempt login
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 progressBar.visibility = View.GONE
 
                 if (task.isSuccessful) {
-                    fetchUsername()
+                    val app = application as MatchItMania
+                    app.userProfile = UserProfile()
+                    app.userSettings = UserSettings()
+
+                    fetchUsername()  // Load fresh data
                     navigateToHome()
                     finish()
                 } else {
@@ -81,8 +84,9 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+
     private fun navigateToHome() {
-        val intent = Intent(this, HomeActivity::class.java).apply {
+        val intent = Intent(this, LoadingActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intent)

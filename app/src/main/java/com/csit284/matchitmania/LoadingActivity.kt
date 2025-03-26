@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -14,7 +15,6 @@ class LoadingActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
-
         // Check if user is logged in
         val currentUser = auth.currentUser
         if (currentUser != null) {
@@ -28,7 +28,14 @@ class LoadingActivity : Activity() {
         db.collection("users").document(uid).get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    Log.d("LoadingActivity", "User data loaded")
+                    (application as MatchItMania).userProfile.apply {
+                        email = document.getString("email") ?: ""
+                        username = document.getString("username") ?: ""
+                        profileImageId = document.getString("profileImageId") ?: ""
+                        profileColor = document.getString("profileColor") ?: ""
+                    }
+
+                    Log.d("LoadingActivity", "User data loaded successfully: ${(application as MatchItMania).userProfile.username}")
                     navigateToHome()
                 } else {
                     Log.d("LoadingActivity", "No user profile found")
@@ -40,6 +47,7 @@ class LoadingActivity : Activity() {
                 navigateToLogin()
             }
     }
+
 
     private fun navigateToHome() {
         val intent = Intent(this, HomeActivity::class.java)

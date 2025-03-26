@@ -120,8 +120,6 @@ class HomeActivity : AppCompatActivity() {
         userProfile = matchItMania.userProfile
         userSettings = matchItMania.userSettings
 
-        Log.i("AMBOT", "UserSetting in Load User Data of Home: $userSettings")
-
         // Handle music settings
         if (userSettings?.music == true) {
             BackgroundMusic.play()

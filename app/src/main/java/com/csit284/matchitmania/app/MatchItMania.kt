@@ -21,10 +21,9 @@ class MatchItMania : Application() {
             db = FirebaseFirestore.getInstance()
             auth = FirebaseAuth.getInstance()
 
-            // Attempt to fetch user data only if user is logged in
             val currentUser = auth.currentUser
             if (currentUser != null) {
-                fetchUserProfile(currentUser.uid)
+                fetchUserProfile(currentUser.uid) { Log.d("MatchItMania", "User profile loaded in application class") }
                 fetchUserSettings(currentUser.uid)
             }
         } catch (e: Exception) {
@@ -32,7 +31,7 @@ class MatchItMania : Application() {
         }
     }
 
-    private fun fetchUserProfile(uid: String) {
+    private fun fetchUserProfile(uid: String, onComplete: () -> Unit) {
         db.collection("users").document(uid).get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
@@ -46,9 +45,11 @@ class MatchItMania : Application() {
                 } else {
                     Log.d("Firestore", "User profile does not exist")
                 }
+                onComplete()
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error fetching user profile", e)
+                onComplete()
             }
     }
 
