@@ -68,7 +68,7 @@ class RegisterActivity : AppCompatActivity() {
 
         // Input validation
         when {
-            user.fieldEmpty(etUser) || email.fieldEmpty(etEmail) || password.fieldEmpty(etPass) -> {
+            user.fieldEmpty(etUser, "Please input username") || email.fieldEmpty(etEmail, "Please input email") || password.fieldEmpty(etPass, "Please input password") -> {
                 pbRegister.visibility = View.GONE
                 btnRegister.isEnabled = true
                 return
