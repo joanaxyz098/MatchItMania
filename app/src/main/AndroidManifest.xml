@@ -50,6 +50,10 @@
             android:name=".LeaderboardActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".SelectLevelActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
