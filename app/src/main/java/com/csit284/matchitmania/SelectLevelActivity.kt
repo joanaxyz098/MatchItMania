@@ -83,7 +83,7 @@ class SelectLevelActivity : AppCompatActivity() {
             }
 
             button.setOnClickListener {
-                val intent = Intent(this, Test::class.java)
+                val intent = Intent(this, Test2::class.java)
                 intent.putExtra("LEVEL", i)
                 startActivity(intent)
             }
