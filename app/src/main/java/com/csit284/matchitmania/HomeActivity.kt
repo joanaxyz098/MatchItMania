@@ -20,6 +20,8 @@ class HomeActivity : AppCompatActivity() {
     private var btnLeaderb: MButton ?= null
     private var btnFriends: MButton ?= null
     private var activeButton: MButton ?= null
+    private var btnPlay: MButton ?= null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupViews() {
         btnHome = findViewById(R.id.btnHome)
+        btnPlay = findViewById(R.id.btnPlay)
         btnLeaderb = findViewById(R.id.btnboards)
         btnFriends = findViewById(R.id.btnFriends)
         activeButton = btnHome
@@ -76,6 +79,8 @@ class HomeActivity : AppCompatActivity() {
             }else Log.i("TASK", "user profile is empty")
         }
 
+
+
         btnHome?.setOnClickListener{
             setButtonInactive(activeButton)
             setButtonActive(btnHome)
@@ -94,6 +99,14 @@ class HomeActivity : AppCompatActivity() {
             setButtonInactive(activeButton)
             setButtonActive(btnFriends)
             activeButton = btnFriends
+        }
+
+        btnPlay?.setOnClickListener{
+            setButtonInactive(activeButton)
+            setButtonActive(btnPlay)
+            activeButton = btnPlay
+            val intent = Intent(this, SelectLevelActivity::class.java)
+            startActivity(intent)
         }
     }
 
