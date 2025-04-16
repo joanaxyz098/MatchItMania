@@ -34,7 +34,7 @@ class SelectLevelActivity : AppCompatActivity() {
 
     private fun setUpLevels() {
         val gridLayout = findViewById<GridLayout>(R.id.glLevels)
-        val numberOfLevels = 21
+        val numberOfLevels = 100
         val numColumns = 3  // Define the number of columns for the grid
         gridLayout.columnCount = numColumns
 
