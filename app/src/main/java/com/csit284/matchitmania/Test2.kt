@@ -174,8 +174,6 @@ class Test2 : AppCompatActivity() {
 
                         setOnClickListener {
                             handleCLick(this, pieceType)
-                            activePiece = pieceType
-                            activePieceView = this
                         }
                     }
 
@@ -215,6 +213,9 @@ class Test2 : AppCompatActivity() {
             activePieceView.isEnabled = false
             activePieceView.text = null
             activePiece = -1
+        }else{
+            activePiece = currentPiece
+            activePieceView = currentPieceView
         }
     }
 }
