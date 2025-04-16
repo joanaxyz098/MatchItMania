@@ -219,9 +219,11 @@ class Test2 : AppCompatActivity() {
             currentPieceView.background = null
             currentPieceView.backColor = ContextCompat.getColor(this, R.color.transparent)
             currentPieceView.text = null
+            currentPieceView.isEnabled = false
             activePieceView?.background = null
             activePieceView?.backColor = ContextCompat.getColor(this, R.color.transparent)
             activePieceView?.text = null
+            activePieceView?.isEnabled = false
             activePiece = -1
             activePieceView = null
             matchedPieces++
@@ -232,19 +234,16 @@ class Test2 : AppCompatActivity() {
         }
 
         if((params.rows * params.cols) / 2 == matchedPieces){
-            updateLevel()
-            val intent = Intent(this, MessageActivity::class.java)
-            intent.putExtra("MESSAGE", "You won! Congratulations.")
-            intent.putExtra("TYPE", "OK")
-            startActivity(intent)
+            handleWin()
         }
     }
 
-    private fun updateLevel() {
-        (application as MatchItMania).userProfile.level += 1
+    private fun handleWin() {
         auth.currentUser?.uid?.let { userId ->
             lifecycleScope.launch {
                 try {
+                    val app = (application as MatchItMania)
+                    if(level == app.userProfile.level) app.userProfile.level += 1
                     FirebaseFirestore.getInstance()
                         .collection("users")
                         .document(userId)
@@ -252,6 +251,10 @@ class Test2 : AppCompatActivity() {
                         .await()
 
                     Log.i("TASK", "Settings successfully saved!")
+                    val intent = Intent(this@Test2, MessageActivity::class.java)
+                    intent.putExtra("MESSAGE", "You won! Congratulations.")
+                    intent.putExtra("TYPE", "OK")
+                    startActivity(intent)
                 } catch (e: Exception) {
                     Log.e("TASK", "Failed to save settings: ${e.message}", e)
                     Toast.makeText(this@Test2, "Failed to save settings", Toast.LENGTH_SHORT).show()

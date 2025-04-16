@@ -31,11 +31,6 @@ class MessageActivity :Activity() {
             btnYes?.text = "OK"
             btnNo?.isVisible = false
             btnYes?.setOnClickListener {
-                FirebaseAuth.getInstance().signOut()
-                val app = application as MatchItMania
-                app.userProfile = UserProfile()
-                app.userSettings = UserSettings()
-
                 val intent = Intent(this, SelectLevelActivity::class.java)
                 startActivity(intent)
                 finish()

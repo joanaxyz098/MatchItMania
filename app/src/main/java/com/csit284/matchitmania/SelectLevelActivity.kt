@@ -36,7 +36,7 @@ class SelectLevelActivity : AppCompatActivity() {
     private fun setUpLevels() {
         val gridLayout = findViewById<GridLayout>(R.id.glLevels)
         val numberOfLevels = (application as MatchItMania).userProfile.level
-        Log.i("TASK", "level $numberOfLevels")
+        Log.i("TASK", "username ${ (application as MatchItMania).userProfile.username} level $numberOfLevels")
         val numColumns = 3  // Define the number of columns for the grid
         gridLayout.columnCount = numColumns
 
