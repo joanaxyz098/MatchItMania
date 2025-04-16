@@ -19,6 +19,7 @@ import userGenerated.UserProfile
 
 class ProfileActivity : AppCompatActivity() {
     private var tvUser: TextView? = null
+    private var tvLevel: TextView? = null
     private var userProfile: UserProfile ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,8 @@ class ProfileActivity : AppCompatActivity() {
         userProfile = (application as MatchItMania).userProfile
 
         tvUser = findViewById(R.id.tvUsername)
-        Log.i("TASK", "Username in profile activity ${userProfile?.username}")
+        tvLevel = findViewById(R.id.tvLevel)
+        Log.i("TASK", "Username in profile activity ${userProfile?.level}")
 
         val username = userProfile?.username ?: "Unknown Player"
         val fullText = "Player: $username"
@@ -48,6 +50,7 @@ class ProfileActivity : AppCompatActivity() {
 
         tvUser?.text = spannable
 
+        tvLevel?.text = (application as MatchItMania).userProfile.level.toString()
 
         val btnExit = findViewById<MButton>(R.id.btnExit)
 
@@ -63,7 +66,6 @@ class ProfileActivity : AppCompatActivity() {
         }
         loadUserData()
     }
-
 
     private fun loadUserData() {
         try {

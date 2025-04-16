@@ -15,7 +15,8 @@ data class UserProfile(
             "username" to username,
             "email" to email,
             "profileImageId" to profileImageId,
-            "profileColor" to profileColor
+            "profileColor" to profileColor,
+            "level" to level
         )
     }
 
@@ -25,7 +26,8 @@ data class UserProfile(
                 username = map["username"] as? String ?: "",
                 email = map["email"] as? String ?: "",
                 profileImageId = map["profileImageId"] as? String?: "",
-                profileColor = map["profileColor"] as? String?: ""
+                profileColor = map["profileColor"] as? String?: "",
+                level =  map["level"] as? Int?: 1,
             )
         }
     }

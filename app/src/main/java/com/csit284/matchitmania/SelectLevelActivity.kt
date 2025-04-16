@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -22,19 +23,20 @@ class SelectLevelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_level)
-        setUpLevels()
         val btnExit = findViewById<MButton>(R.id.btnExit)
 
         btnExit.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+        setUpLevels()
     }
 
 
     private fun setUpLevels() {
         val gridLayout = findViewById<GridLayout>(R.id.glLevels)
-        val numberOfLevels = 100
+        val numberOfLevels = (application as MatchItMania).userProfile.level
+        Log.i("TASK", "level $numberOfLevels")
         val numColumns = 3  // Define the number of columns for the grid
         gridLayout.columnCount = numColumns
 
@@ -43,7 +45,7 @@ class SelectLevelActivity : AppCompatActivity() {
         gridLayout.rowCount = numRows
 
         for (i in 1..numberOfLevels) {
-            val button = views.MButton(this).apply {
+            val button = MButton(this).apply {
                 text = i.toString()
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
                 setTextColor(Color.WHITE)

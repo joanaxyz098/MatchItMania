@@ -46,58 +46,53 @@
         app:layout_constraintStart_toStartOf="@+id/mvlogout"
         app:layout_constraintTop_toTopOf="@+id/glH428" />
 
-    <views.MButton
-        android:id="@+id/btnYes"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:contentDescription="@string/done"
-        android:fontFamily="@font/poppins"
-        app:layout_constraintDimensionRatio="2:1"
-        android:gravity="center"
-        android:text="Yes"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:backColor="@color/MYellow"
-        app:cornerRadius="50dp"
-        app:fontWeight="1"
-        app:layout_constraintBottom_toTopOf="@+id/glH64"
-        app:layout_constraintEnd_toStartOf="@+id/glV5"
-        app:layout_constraintStart_toStartOf="@+id/mvlogout"
-        app:layout_constraintTop_toTopOf="@+id/glH54"
-        app:shadowColor="@color/MDarkPurple"
-        app:shadowRadius="10dp" />
-
-    <views.MButton
-        android:id="@+id/btnNo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:contentDescription="@string/done"
-        android:fontFamily="@font/poppins"
-        android:gravity="center"
-        app:layout_constraintDimensionRatio="2:1"
-        android:text="No"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:backColor="@color/MOrange"
-        app:cornerRadius="50dp"
-        app:fontWeight="1"
         app:layout_constraintBottom_toTopOf="@+id/glH64"
         app:layout_constraintEnd_toEndOf="@+id/mvlogout"
-        app:layout_constraintStart_toStartOf="@+id/glV5"
-        app:layout_constraintTop_toTopOf="@+id/glH54"
-        app:shadowColor="@color/MDarkPurple"
-        app:shadowRadius="10dp" />
+        app:layout_constraintStart_toStartOf="@+id/mvlogout"
+        app:layout_constraintTop_toTopOf="@+id/glH54">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glV5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        <views.MButton
+            android:id="@+id/btnYes"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/done"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Yes"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:backColor="@color/MYellow"
+            app:cornerRadius="50dp"
+            app:fontWeight="1"
+            app:shadowColor="@color/MDarkPurple"
+            app:shadowRadius="10dp" />
+
+        <views.MButton
+            android:id="@+id/btnNo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/done"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="No"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:backColor="@color/MOrange"
+            app:cornerRadius="50dp"
+            app:fontWeight="1"
+            app:shadowColor="@color/MDarkPurple"
+            app:shadowRadius="10dp" />
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH02"
         android:layout_width="wrap_content"

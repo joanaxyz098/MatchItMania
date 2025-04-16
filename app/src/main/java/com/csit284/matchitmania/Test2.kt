@@ -2,9 +2,11 @@ package com.csit284.matchitmania
 
 import Game.GameParameters
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.GridLayout
@@ -13,6 +15,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.app.MatchItMania
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import userGenerated.UserSettings
 import views.MButton
 import kotlin.math.ln
 import kotlin.math.sqrt
@@ -20,8 +29,10 @@ import kotlin.math.sqrt
 class Test2 : AppCompatActivity() {
     var level: Int = 1
     var activePiece: Int = -1
-    lateinit var activePieceView: MButton
-
+    var activePieceView: MButton ?= null
+    var matchedPieces: Int = 0
+    lateinit var params: GameParameters
+    private val auth = FirebaseAuth.getInstance()
     companion object {
         const val BASE_GRID_SIZE = 2
         const val MAX_GRID_SIZE = 8
@@ -45,7 +56,7 @@ class Test2 : AppCompatActivity() {
         level = intent.getIntExtra("LEVEL", 0)
         tvLevelName.text = "Level $level"
 
-        val params = calculateGameParameters(level)
+        params = calculateGameParameters(level)
         initializeGame(params)
     }
 
@@ -134,7 +145,7 @@ class Test2 : AppCompatActivity() {
 
     private fun initializeGame(params: GameParameters) {
         val glGame = findViewById<GridLayout>(R.id.glGame)
-        glGame.columnCount = params.cols
+        glGame.columnCount = 4
         glGame.rowCount = params.rows
 
         // Create a list of paired numbers
@@ -203,19 +214,49 @@ class Test2 : AppCompatActivity() {
         }
     }
     private fun handleCLick(currentPieceView: MButton, currentPiece: Int){
-        if(activePiece == currentPiece){
+        currentPieceView.background = ContextCompat.getDrawable(this, R.drawable.bg_active)
+        if(activePieceView != currentPieceView && activePiece == currentPiece){
             currentPieceView.background = null
             currentPieceView.backColor = ContextCompat.getColor(this, R.color.transparent)
-            currentPieceView.isEnabled = false
             currentPieceView.text = null
-            activePieceView.background = null
-            activePieceView.backColor = ContextCompat.getColor(this, R.color.transparent)
-            activePieceView.isEnabled = false
-            activePieceView.text = null
+            activePieceView?.background = null
+            activePieceView?.backColor = ContextCompat.getColor(this, R.color.transparent)
+            activePieceView?.text = null
             activePiece = -1
+            activePieceView = null
+            matchedPieces++
         }else{
+            if (activePieceView != currentPieceView && activePieceView != null) activePieceView?.background = ContextCompat.getDrawable(this, R.drawable.bg_card)
             activePiece = currentPiece
             activePieceView = currentPieceView
         }
+
+        if((params.rows * params.cols) / 2 == matchedPieces){
+            updateLevel()
+            val intent = Intent(this, MessageActivity::class.java)
+            intent.putExtra("MESSAGE", "You won! Congratulations.")
+            intent.putExtra("TYPE", "OK")
+            startActivity(intent)
+        }
+    }
+
+    private fun updateLevel() {
+        (application as MatchItMania).userProfile.level += 1
+        auth.currentUser?.uid?.let { userId ->
+            lifecycleScope.launch {
+                try {
+                    FirebaseFirestore.getInstance()
+                        .collection("users")
+                        .document(userId)
+                        .set((application as MatchItMania).userProfile.toMap())
+                        .await()
+
+                    Log.i("TASK", "Settings successfully saved!")
+                } catch (e: Exception) {
+                    Log.e("TASK", "Failed to save settings: ${e.message}", e)
+                    Toast.makeText(this@Test2, "Failed to save settings", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } ?: Log.e("TASK", "User is not logged in. Cannot save settings.")
     }
 }

@@ -126,7 +126,9 @@ class RegisterFragment : Fragment() {
                         mapOf(
                             "username" to username,
                             "email" to email,
-                            "profileImageId" to "avatar1"
+                            "profileImageId" to "avatar1",
+                            "profileColor" to "MBlue",
+                            "level" to 1
                         )
                     ).await()
                 Toast.makeText(requireContext(), "Player $username registered!", Toast.LENGTH_SHORT).show()

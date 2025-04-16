@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.csit284.matchitmania.app.MatchItMania
 import com.csit284.matchitmania.fragments.HomeFragment
+import com.csit284.matchitmania.fragments.LeaderboardFragment
 import com.csit284.matchitmania.fragments.LoginFragment
 import com.csit284.matchitmania.interfaces.Clickable
 import music.BackgroundMusic
@@ -65,14 +66,20 @@ class HomeActivity : AppCompatActivity(), Clickable {
             setButtonInactive(activeButton)
             setButtonActive(btnHome)
             activeButton = btnHome
+            val homeFragment = HomeFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fHome, homeFragment)
+                .commit()
         }
 
         btnLeaderb?.setOnClickListener{
             setButtonInactive(activeButton)
             setButtonActive(btnLeaderb)
             activeButton = btnLeaderb
-            val intent = Intent(this, LeaderboardActivity::class.java)
-            startActivity(intent)
+            val leaderboardFragment = LeaderboardFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fHome, leaderboardFragment)
+                .commit()
         }
 
         btnFriends?.setOnClickListener{
