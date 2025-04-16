@@ -129,7 +129,8 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun handleLogout() {
-        val intent = Intent(this, LogoutActivity::class.java)
+        val intent = Intent(this, MessageActivity::class.java)
+        intent.putExtra("MESSAGE", "Are you sure you want to logout?")
         startActivity(intent)
         updateSettings()
         finish()

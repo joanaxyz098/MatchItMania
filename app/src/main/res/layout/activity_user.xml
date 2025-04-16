@@ -7,7 +7,7 @@
     android:background="@drawable/bg">
 
     <LinearLayout
-        android:id="@+id/vLogin"
+        android:id="@+id/llLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"

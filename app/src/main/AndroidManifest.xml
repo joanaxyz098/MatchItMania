@@ -28,10 +28,7 @@
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".LogoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".MessageActivity"
             android:exported="false" />
         <activity
             android:name=".UserActivity"

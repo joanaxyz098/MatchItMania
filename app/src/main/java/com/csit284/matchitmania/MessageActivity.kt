@@ -3,24 +3,24 @@ package com.csit284.matchitmania
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
 import userGenerated.UserProfile
 import userGenerated.UserSettings
 import views.MButton
 
-class LogoutActivity :Activity() {
-
+class MessageActivity :Activity() {
     var btnYes: MButton ?= null
     var btnNo: MButton ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_logout)
+        setContentView(R.layout.activity_message)
 
         btnYes = findViewById(R.id.btnYes)
         btnNo = findViewById(R.id.btnNo)
-
+        findViewById<TextView>(R.id.tvMessage).text = intent.getStringExtra("MESSAGE")
         btnNo?.setOnClickListener{
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
