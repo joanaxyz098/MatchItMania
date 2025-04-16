@@ -16,6 +16,7 @@ import android.os.Build
 import android.view.MotionEvent
 import android.view.accessibility.AccessibilityEvent
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.toRect
 import kotlin.math.abs
 
@@ -138,8 +139,6 @@ class MButton @JvmOverloads constructor(
             field = value
             invalidate()
         }
-
-
 
     // Click state
     private var isPressed = false

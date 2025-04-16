@@ -16,4 +16,5 @@ class Test : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }
