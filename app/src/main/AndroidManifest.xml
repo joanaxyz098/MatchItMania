@@ -55,6 +55,10 @@
             android:name=".Test"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".Test2"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
