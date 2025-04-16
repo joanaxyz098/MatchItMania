@@ -16,7 +16,6 @@ class UserActivity : AppCompatActivity(), Clickable {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fUser, loginFragment)
             .commit()
-
     }
     override fun onClicked(condition: String) {
         if(condition == "register") {

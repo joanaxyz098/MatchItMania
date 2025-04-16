@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textAlignment="center"
+    tools:context=".HomeActivity">
+
+    <views.MTextView
+        android:id="@+id/tvLeaderboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="Leaderboard"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="35sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="2sp"
+        app:autoSizeTextType="uniform"
+        app:borderColor="@color/MShader"
+        app:borderWidth="5dp"
+        app:cornerRadius="20dp"
+        app:endColor="#30287F"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/glProfileDown"
+        app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
+        app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startColor="@color/MPurple" />
+
+
+    <ListView
+        android:id="@+id/lvboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gb_rounded_rect"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
+        app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
+        app:layout_constraintTop_toTopOf="@+id/glProfileDown"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glProfileDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPlayButtonR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glPlayButtonL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

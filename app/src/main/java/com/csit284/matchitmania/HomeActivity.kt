@@ -7,33 +7,31 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.csit284.matchitmania.app.MatchItMania
+import com.csit284.matchitmania.fragments.HomeFragment
+import com.csit284.matchitmania.fragments.LoginFragment
+import com.csit284.matchitmania.interfaces.Clickable
 import music.BackgroundMusic
 import userGenerated.UserProfile
 import userGenerated.UserSettings
 import views.MButton
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), Clickable {
 //    private val auth = FirebaseAuth.getInstance()
-    private var userProfile: UserProfile ?= null
-    private var userSettings: UserSettings ?= null
     private var btnHome: MButton ?= null
     private var btnLeaderb: MButton ?= null
     private var btnFriends: MButton ?= null
     private var activeButton: MButton ?= null
-    private var btnPlay: MButton ?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val homeFragment = HomeFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fHome, homeFragment)
+            .commit()
 
         val matchItMania = application as MatchItMania
-
-        // Check if data is already loaded
-        userProfile = matchItMania.userProfile
-        userSettings = matchItMania.userSettings
-
-        loadUserData()
         setupViews()
         // Initialize music at app start
         BackgroundMusic.initialize(this)
@@ -46,7 +44,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        loadUserData()
     }
 
     override fun onDestroy() {
@@ -56,7 +53,6 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupViews() {
         btnHome = findViewById(R.id.btnHome)
-        btnPlay = findViewById(R.id.btnPlay)
         btnLeaderb = findViewById(R.id.btnboards)
         btnFriends = findViewById(R.id.btnFriends)
         activeButton = btnHome
@@ -64,22 +60,6 @@ class HomeActivity : AppCompatActivity() {
         btnHome?.let {
             setButtonActive(it)
         }
-
-        findViewById<MButton>(R.id.btnSettings).setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
-
-        findViewById<MButton>(R.id.btnProfile).setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            if(!userProfile?.username.isNullOrEmpty()) {
-                startActivity(intent)
-                Log.i("TASK", "userProfile has been passed to Profile Activity: ")
-                Log.i("TASK", "UserProfile ${userProfile?.username}")
-            }else Log.i("TASK", "user profile is empty")
-        }
-
-
 
         btnHome?.setOnClickListener{
             setButtonInactive(activeButton)
@@ -99,14 +79,6 @@ class HomeActivity : AppCompatActivity() {
             setButtonInactive(activeButton)
             setButtonActive(btnFriends)
             activeButton = btnFriends
-        }
-
-        btnPlay?.setOnClickListener{
-            setButtonInactive(activeButton)
-            setButtonActive(btnPlay)
-            activeButton = btnPlay
-            val intent = Intent(this, SelectLevelActivity::class.java)
-            startActivity(intent)
         }
     }
 
@@ -130,54 +102,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadUserData() {
-        val matchItMania = application as MatchItMania
-        userProfile = matchItMania.userProfile
-        userSettings = matchItMania.userSettings
-
-        // Handle music settings
-        if (userSettings?.music == true) {
-            BackgroundMusic.play()
-        } else {
-            BackgroundMusic.pause()
-        }
-
-        // Handle profile button update
-        val profileImageId = userProfile?.profileImageId
-        val profileColor = userProfile?.profileColor
-
-        if (!profileImageId.isNullOrEmpty()) {
-            try {
-                val drawableId = resources.getIdentifier(profileImageId, "drawable", packageName)
-                val colorId = resources.getIdentifier(profileColor, "color", packageName)
-
-                Log.d("TASK", "Profile Image ID: $profileImageId")
-                Log.d("TASK", "Profile Color: $profileColor")
-                Log.d("TASK", "Drawable ID: $drawableId")
-                Log.d("TASK", "Color ID: $colorId")
-
-                if (drawableId != 0) {
-                    val profileButton = findViewById<MButton>(R.id.btnProfile)
-
-                    // Set image background
-                    val drawable = ContextCompat.getDrawable(this, drawableId)
-                    profileButton.imageBackground = drawable
-
-                    // Set background color
-                    if (colorId != 0) {
-                        val color = ContextCompat.getColor(this, colorId)
-                        profileButton.backColor = color
-                    }
-
-                    Log.i("TASK", "btnProfile updated successfully")
-                } else {
-                    Log.e("TASK", "Drawable not found: $profileImageId")
-                }
-            } catch (e: Exception) {
-                Log.e("TASK", "Error updating profile button", e)
-            }
-        } else {
-            Log.e("TASK", "profileImageId is null or empty")
-        }
+    override fun onClicked(condition: String) {
+       //
     }
 }
