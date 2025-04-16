@@ -19,6 +19,8 @@ import kotlin.math.sqrt
 
 class Test2 : AppCompatActivity() {
     var level: Int = 1
+    var activePiece: Int = -1
+    lateinit var activePieceView: MButton
 
     companion object {
         const val BASE_GRID_SIZE = 2
@@ -171,7 +173,9 @@ class Test2 : AppCompatActivity() {
                         background = ContextCompat.getDrawable(this@Test2, R.drawable.bg_card)
 
                         setOnClickListener {
-                            Toast.makeText(context, "Clicked piece $pieceType", Toast.LENGTH_SHORT).show()
+                            handleCLick(this, pieceType)
+                            activePiece = pieceType
+                            activePieceView = this
                         }
                     }
 
@@ -198,6 +202,19 @@ class Test2 : AppCompatActivity() {
                     glGame.addView(pieceView)
                 }
             }
+        }
+    }
+    private fun handleCLick(currentPieceView: MButton, currentPiece: Int){
+        if(activePiece == currentPiece){
+            currentPieceView.background = null
+            currentPieceView.backColor = ContextCompat.getColor(this, R.color.transparent)
+            currentPieceView.isEnabled = false
+            currentPieceView.text = null
+            activePieceView.background = null
+            activePieceView.backColor = ContextCompat.getColor(this, R.color.transparent)
+            activePieceView.isEnabled = false
+            activePieceView.text = null
+            activePiece = -1
         }
     }
 }
