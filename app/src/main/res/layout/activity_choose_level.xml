@@ -63,31 +63,32 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/light_yellow_rounded_rect"
-        app:layout_constraintStart_toStartOf="@id/glV5715"
+        app:layout_constraintBottom_toTopOf="@id/glH8"
         app:layout_constraintEnd_toEndOf="@id/glV5785"
-        app:layout_constraintTop_toBottomOf="@id/glH37"
-        app:layout_constraintBottom_toTopOf="@id/glH8" />
+        app:layout_constraintStart_toStartOf="@id/glV5715"
+        app:layout_constraintTop_toBottomOf="@id/glH37" />
 
     <ScrollView
-        android:id="@+id/svLevel"
+        android:id="@+id/svBG"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
+        android:fillViewport="false"
         app:layout_constraintBottom_toBottomOf="@+id/editContainer"
         app:layout_constraintEnd_toEndOf="@+id/editContainer"
         app:layout_constraintStart_toStartOf="@+id/editContainer"
         app:layout_constraintTop_toTopOf="@+id/editContainer">
-
-        <GridLayout
-            android:id="@+id/glLevels"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:useDefaultMargins="true"
-            android:padding="10dp">
-        </GridLayout>
+            android:orientation="vertical">
+            <GridLayout
+                android:id="@+id/glLevels"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:rowCount="3"
+                android:useDefaultMargins="true" />
+        </LinearLayout>
     </ScrollView>
 
     <!-- Kept Guidelines that are actually used in the layout -->
