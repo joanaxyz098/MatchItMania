@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="@+id/glH11" />
 
     <views.MTextView
-        android:id="@+id/tvEdit"
+        android:id="@+id/tvHeader"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/poppins"
@@ -69,17 +69,8 @@
         app:layout_constraintBottom_toTopOf="@id/glH8"
         />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:background="#A89874"
-        app:layout_constraintEnd_toEndOf="@id/glV5777"
-        app:layout_constraintStart_toEndOf="@id/glV5725"
-        app:layout_constraintTop_toBottomOf="@id/glH456" />
-
     <ScrollView
-        android:id="@+id/svAvatar"
+        android:id="@+id/svLevel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="false"
