@@ -1,0 +1,25 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Magical gradient background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/MDarkPurple" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- Gradient shimmer overlay -->
+    <item android:right="0dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- Top layer: black border only -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+</layer-list>

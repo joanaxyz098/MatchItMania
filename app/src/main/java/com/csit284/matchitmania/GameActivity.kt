@@ -116,3 +116,51 @@ data class GameParameters(
     val pieceTypes: Int,
     val timeLimit: Int
 )
+
+
+//import android.animation.ValueAnimator;
+//import android.os.Bundle;
+//import android.view.animation.LinearInterpolator;
+//import android.widget.View;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//
+//public class MainActivity extends AppCompatActivity {
+//
+//    private View timerBar;
+//    private int fullWidth; // The full width of the timer bar
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//
+//        timerBar = findViewById(R.id.timerBar);
+//
+//        // Get the full width of the timer bar
+//        timerBar.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                fullWidth = timerBar.getWidth();
+//                startTimerAnimation();
+//            }
+//        });
+//    }
+//
+//    private void startTimerAnimation() {
+//        // Animate the width of the timer bar to shrink over time
+//        ValueAnimator animator = ValueAnimator.ofInt(fullWidth, 0);
+//        animator.setDuration(10000); // Duration in milliseconds (10 seconds for example)
+//        animator.setInterpolator(new LinearInterpolator()); // Set to linear so it shrinks evenly
+//        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                // Update the width of the timer bar as it shrinks
+//                int value = (int) animation.getAnimatedValue();
+//                timerBar.getLayoutParams().width = value;
+//                timerBar.requestLayout(); // Apply the change in width
+//            }
+//        });
+//        animator.start();
+//    }
+//}
