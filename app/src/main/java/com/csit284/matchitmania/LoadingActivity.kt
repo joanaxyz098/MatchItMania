@@ -57,7 +57,7 @@ class LoadingActivity : Activity() {
     }
 
     private fun navigateToLogin() {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, UserActivity::class.java)
         startActivity(intent)
         finish()
     }

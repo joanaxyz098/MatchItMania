@@ -60,7 +60,8 @@ class MatchItMania : Application() {
                 if (document.exists()) {
                     userSettings.apply {
                         music = document.getBoolean("music") ?: true
-                        // Add other settings as needed
+                        sound = document.getBoolean("sound") ?: true
+                        vibration = document.getBoolean("vibration") ?: true
                     }
                     Log.d("Firestore", "User Settings fetched successfully")
                 } else {

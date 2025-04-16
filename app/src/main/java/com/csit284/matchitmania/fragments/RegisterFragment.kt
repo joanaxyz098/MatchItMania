@@ -1,25 +1,37 @@
-package com.csit284.matchitmania
+package com.csit284.matchitmania.fragments
 
-import android.content.Intent
-import android.graphics.Paint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.R
+import com.csit284.matchitmania.interfaces.Clickable
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import extensions.fieldEmpty
-import views.MButton
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import views.MButton
 
-class RegisterActivity : AppCompatActivity() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [RegisterFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class RegisterFragment : Fragment() {
     private lateinit var etEmail: EditText
     private lateinit var etPass: EditText
     private lateinit var etUser: EditText
@@ -27,46 +39,53 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var btnRegister: MButton
     private lateinit var pbRegister: ProgressBar
     private lateinit var mAuth: FirebaseAuth
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-
-        // Initialize UI elements
-        mAuth = FirebaseAuth.getInstance()
-        etUser = findViewById(R.id.etUsername)
-        etEmail = findViewById(R.id.etEmail)
-        etPass = findViewById(R.id.etPassword)
-        etConfirmPass = findViewById(R.id.etCPassword)
-        btnRegister = findViewById(R.id.btnDone)
-        pbRegister = findViewById(R.id.pbRegister)
-
-        val tvLogin = findViewById<TextView>(R.id.tvLogin)
-        tvLogin.paintFlags = tvLogin.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
-        tvLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
-
-        findViewById<MButton>(R.id.btnExit).setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
-
-        btnRegister.setOnClickListener {
-            registerUser()
+    private var clickListener: Clickable? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Clickable) {
+            clickListener = context
         }
     }
 
-    private fun registerUser() {
+    override fun onDetach() {
+        super.onDetach()
+        clickListener = null
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_register, container, false)
+        setupViews(view)
+        return view
+    }
+
+    private fun setupViews(view: View) {
+        mAuth = FirebaseAuth.getInstance()
+        etUser = view.findViewById(R.id.etUsername)
+        etEmail = view.findViewById(R.id.etEmail)
+        etPass = view.findViewById(R.id.etPassword)
+        etConfirmPass = view.findViewById(R.id.etCPassword)
+        btnRegister = view.findViewById(R.id.btnDone)
+        pbRegister = view.findViewById(R.id.pbRegister)
+        view.findViewById<MButton>(R.id.btnDone).setOnClickListener {
+            handleRegister()
+        }
+
+        view.findViewById<TextView>(R.id.tvLogin).setOnClickListener {
+            clickListener?.onClicked("login")
+        }
+    }
+
+    private fun handleRegister() {
         pbRegister.visibility = View.VISIBLE
-        btnRegister.isEnabled = false // Disable button to prevent multiple clicks
+        btnRegister.isEnabled = false
 
         val user = etUser.text.toString().trim()
         val email = etEmail.text.toString().trim()
         val password = etPass.text.toString()
         val cPassword = etConfirmPass.text.toString()
 
-        // Input validation
         when {
             user.fieldEmpty(etUser, "Please input username") || email.fieldEmpty(etEmail, "Please input email") || password.fieldEmpty(etPass, "Please input password") -> {
                 pbRegister.visibility = View.GONE
@@ -110,9 +129,8 @@ class RegisterActivity : AppCompatActivity() {
                             "profileImageId" to "avatar1"
                         )
                     ).await()
-
-                Toast.makeText(this@RegisterActivity, "Player $username registered!", Toast.LENGTH_SHORT).show()
-                finish()
+                Toast.makeText(requireContext(), "Player $username registered!", Toast.LENGTH_SHORT).show()
+                clickListener?.onClicked("done")
             } catch (e: Exception) {
                 Log.e("REGISTER", "Failed to save user data: ${e.message}", e)
                 handleRegistrationFailure("Failed to save user data")
@@ -123,6 +141,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun handleRegistrationFailure(errorMessage: String) {
         pbRegister.visibility = View.GONE
         btnRegister.isEnabled = true
-        Toast.makeText(this, "Error: $errorMessage", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Error: $errorMessage", Toast.LENGTH_SHORT).show()
     }
 }

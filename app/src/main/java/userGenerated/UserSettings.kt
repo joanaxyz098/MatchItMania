@@ -4,8 +4,8 @@ import java.io.Serializable
 
 data class UserSettings(
     var music: Boolean = true,
-    val sound: Boolean = true,
-    val vibration: Boolean = true
+    var sound: Boolean = true,
+    var vibration: Boolean = true
 ) : Serializable {
 
     fun toMap(): Map<String, Any> {

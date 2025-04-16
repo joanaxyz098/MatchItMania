@@ -33,7 +33,7 @@ class LogoutActivity :Activity() {
             app.userProfile = UserProfile()
             app.userSettings = UserSettings()
 
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, UserActivity::class.java)
             startActivity(intent)
             finish()
         }

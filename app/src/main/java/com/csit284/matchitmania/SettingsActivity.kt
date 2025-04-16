@@ -121,7 +121,7 @@ class SettingsActivity : AppCompatActivity() {
 
         btnLogIn.setOnClickListener {
             if (isGuest) {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, UserActivity::class.java))
             } else {
                 handleLogout()
             }

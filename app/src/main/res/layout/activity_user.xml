@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <LinearLayout
+        android:id="@+id/vLogin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gb_rounded_rect"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@id/glH94"
+        app:layout_constraintEnd_toStartOf="@+id/glV9"
+        app:layout_constraintStart_toStartOf="@+id/glV1"
+        app:layout_constraintTop_toTopOf="@id/glH11">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.csit284.matchitmania.fragments.LoginFragment"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <views.MTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="@string/log_in"
+        android:textColor="@color/white"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="35sp"
+        app:autoSizeStepGranularity="2sp"
+        app:borderColor="@color/MShader"
+        app:borderWidth="5dp"
+        app:cornerRadius="20dp"
+        app:endColor="#30287F"
+        app:gradientDirection="topToBottom"
+        app:layout_constraintBottom_toTopOf="@+id/glH16"
+        app:layout_constraintEnd_toStartOf="@+id/glV74"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/glV25"
+        app:layout_constraintTop_toTopOf="@+id/glH06"
+        app:startColor="@color/MPurple" />
+
+    <!-- Only the used guidelines below are kept -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.11" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV74"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.74" />
+</androidx.constraintlayout.widget.ConstraintLayout>
