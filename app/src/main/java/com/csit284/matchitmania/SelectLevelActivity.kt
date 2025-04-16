@@ -21,5 +21,12 @@ class SelectLevelActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+
+        val btnLevel1 = findViewById<MButton>(R.id.level1)
+
+        btnLevel1.setOnClickListener {
+            val intent = Intent(this, Test::class.java)
+            startActivity(intent)
+        }
     }
 }
