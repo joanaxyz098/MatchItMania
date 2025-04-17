@@ -7,7 +7,12 @@ data class UserProfile(
     var email: String = "",
     var profileImageId: String = "",
     var profileColor: String = "",
-    var level: Int = 0
+    var level: Int = 0,
+    var highestScore: Int = 0,
+    var fastestClear: Long = 0,
+    var maxCombo: Int = 0,
+    var losses: Int = 0,
+    var friends: MutableList<String> = mutableListOf()
 ) : Serializable {
 
     fun toMap(): Map<String, Any> {
@@ -16,19 +21,12 @@ data class UserProfile(
             "email" to email,
             "profileImageId" to profileImageId,
             "profileColor" to profileColor,
-            "level" to level
+            "level" to level,
+            "highestScore" to highestScore,
+            "fastestClear" to fastestClear,
+            "maxCombo" to maxCombo,
+            "losses" to losses,
+            "friends" to friends
         )
-    }
-
-    companion object {
-        fun fromMap(map: Map<String, Any>): UserProfile {
-            return UserProfile(
-                username = map["username"] as? String ?: "",
-                email = map["email"] as? String ?: "",
-                profileImageId = map["profileImageId"] as? String?: "",
-                profileColor = map["profileColor"] as? String?: "",
-                level =  map["level"] as? Int?: 1,
-            )
-        }
     }
 }

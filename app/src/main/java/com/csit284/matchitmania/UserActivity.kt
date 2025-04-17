@@ -30,14 +30,18 @@ class UserActivity : AppCompatActivity(), Clickable {
                 .addToBackStack(null)
                 .commit()
             findViewById<TextView>(R.id.tvTitle).text = "Login"
-        }else if(condition == "done"){
-            navigateToHome()
+        }else if(condition == "doneRegister"){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fUser, LoginFragment())
+                .addToBackStack(null)
+                .commit()
+            findViewById<TextView>(R.id.tvTitle).text = "Login"
+        }else if(condition == "doneLogin"){
+            val intent = Intent(this, LoadingActivity::class.java).apply {
+                putExtra("REFRESH_DATA", true)
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            startActivity(intent)
         }
-    }
-
-    private fun navigateToHome() {
-        val intent = Intent(this, LoadingActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
     }
 }

@@ -1,6 +1,7 @@
 package Game
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
@@ -8,6 +9,7 @@ import android.util.SparseArray
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.csit284.matchitmania.R
+import com.csit284.matchitmania.app.MatchItMania
 
 class Piece @JvmOverloads constructor(
     context: Context,
@@ -21,8 +23,8 @@ class Piece @JvmOverloads constructor(
             preloadFrames()
         }
 
-    private val activeFrames = SparseArray<android.graphics.drawable.Drawable>()
-    private val disableFrames = SparseArray<android.graphics.drawable.Drawable>()
+    private var activeFrames = SparseArray<Drawable>()
+    private var disableFrames = SparseArray<Drawable>()
     private val mainHandler = Handler(Looper.getMainLooper())
     private var activeRunnable: Runnable? = null
     private var disableRunnable: Runnable? = null
@@ -33,23 +35,11 @@ class Piece @JvmOverloads constructor(
         activeFrames.clear()
         disableFrames.clear()
 
-        // Preload active animation frames (0-7)
-        for (i in 0..7) {
-            val resName = "blocks_${value}_$i"
-            val resId = resources.getIdentifier(resName, "drawable", context.packageName)
-            if (resId != 0) {
-                activeFrames.put(i, ContextCompat.getDrawable(context, resId))
-            }
-        }
+        val app = context.applicationContext as MatchItMania
 
-        // Preload disable animation frames (0-8)
-        for (i in 0..8) {
-            val resName = "blocksk_${value}_$i"
-            val resId = resources.getIdentifier(resName, "drawable", context.packageName)
-            if (resId != 0) {
-                disableFrames.put(i, ContextCompat.getDrawable(context, resId))
-            }
-        }
+        activeFrames = app.activeFrames[value]
+        disableFrames = app.disableFrames[value]
+
     }
 
     override fun performClick(): Boolean {

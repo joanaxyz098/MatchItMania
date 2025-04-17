@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,8 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        userProfile = (application as MatchItMania).userProfile
+        userProfile = intent.getSerializableExtra("USERPROFILE") as UserProfile?
+        if(userProfile == null) userProfile = (application as MatchItMania).userProfile
 
         tvUser = findViewById(R.id.tvUsername)
         tvLevel = findViewById(R.id.tvLevel)
@@ -49,8 +51,34 @@ class ProfileActivity : AppCompatActivity() {
         )
 
         tvUser?.text = spannable
-
-        tvLevel?.text = (application as MatchItMania).userProfile.level.toString()
+        tvLevel?.text = userProfile?.level.toString()
+        val highestScore = userProfile?.highestScore
+        findViewById<TextView>(R.id.tvScore).text = if(highestScore == 0){
+            "???"
+        }else {
+            highestScore.toString()
+        }
+        val maxCombo = userProfile?.maxCombo
+        findViewById<TextView>(R.id.tvCombo).text = if(maxCombo == 0) {
+            "???"
+        }else{
+            maxCombo.toString()
+        }
+        val losses = userProfile?.losses
+        findViewById<TextView>(R.id.tvLosses).text = if(losses == 0){
+            "???"
+        }else{
+            losses.toString()
+        }
+        val remainingMillis = userProfile?.fastestClear
+        findViewById<TextView>(R.id.tvTime).text = if(remainingMillis == Long.MAX_VALUE){
+            "???"
+        }else{
+            val totalSeconds = (remainingMillis?.div(1000))?.toInt()
+            val minutes = totalSeconds?.div(60)
+            val seconds = totalSeconds?.rem(60)
+            String.format("%d:%02d", minutes, seconds)
+        }
 
         val btnExit = findViewById<MButton>(R.id.btnExit)
 

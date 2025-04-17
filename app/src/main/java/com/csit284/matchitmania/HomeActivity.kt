@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.csit284.matchitmania.app.MatchItMania
+import com.csit284.matchitmania.fragments.CommunityFragment
 import com.csit284.matchitmania.fragments.HomeFragment
 import com.csit284.matchitmania.fragments.LeaderboardFragment
 import com.csit284.matchitmania.fragments.LoginFragment
@@ -65,9 +66,9 @@ class HomeActivity : AppCompatActivity(), Clickable {
             setButtonInactive(activeButton)
             setButtonActive(btnHome)
             activeButton = btnHome
-            val homeFragment = HomeFragment()
+            val fragment = HomeFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fHome, homeFragment)
+                .replace(R.id.fHome, fragment)
                 .commit()
         }
 
@@ -75,9 +76,9 @@ class HomeActivity : AppCompatActivity(), Clickable {
             setButtonInactive(activeButton)
             setButtonActive(btnLeaderb)
             activeButton = btnLeaderb
-            val leaderboardFragment = LeaderboardFragment()
+            val fragment = LeaderboardFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fHome, leaderboardFragment)
+                .replace(R.id.fHome, fragment)
                 .commit()
         }
 
@@ -85,6 +86,10 @@ class HomeActivity : AppCompatActivity(), Clickable {
             setButtonInactive(activeButton)
             setButtonActive(btnFriends)
             activeButton = btnFriends
+            val fragment = CommunityFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fHome, fragment)
+                .commit()
         }
     }
 

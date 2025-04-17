@@ -31,9 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:startColor="@color/MPurple" />
 
-
-    <ListView
-        android:id="@+id/lvboard"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/gb_rounded_rect"
@@ -42,7 +40,75 @@
         app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
         app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
         app:layout_constraintTop_toTopOf="@+id/glProfileDown"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
+
+        <views.MButton
+            android:id="@+id/btnGlobal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/light_yellow_rounded_left"
+            android:contentDescription="@string/play_button"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Global"
+            android:textAlignment="center"
+            android:textColor="#704A65"
+            app:layout_constraintBottom_toTopOf="@+id/glProfileDown2"
+            app:layout_constraintEnd_toStartOf="@+id/glProfileDown3"
+            app:layout_constraintStart_toStartOf="@+id/lvboard"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <views.MButton
+            android:id="@+id/btnFriends"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/purple_rounded_right"
+            android:contentDescription="@string/play_button"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Friends"
+            android:textAlignment="center"
+            android:textColor="#ECDAB5"
+            app:layout_constraintBottom_toTopOf="@+id/glProfileDown2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/glProfileDown3"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ListView
+            android:id="@+id/lvboard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glProfileDown2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glProfileDown2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glProfileDown3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glProfileDown"

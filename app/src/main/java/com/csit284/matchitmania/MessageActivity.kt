@@ -44,9 +44,7 @@ class MessageActivity :Activity() {
 
             btnYes?.setOnClickListener {
                 FirebaseAuth.getInstance().signOut()
-                val app = application as MatchItMania
-                app.userProfile = UserProfile()
-                app.userSettings = UserSettings()
+                (application as MatchItMania).logOut()
 
                 val intent = Intent(this, UserActivity::class.java)
                 startActivity(intent)

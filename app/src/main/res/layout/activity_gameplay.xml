@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     android:background="@drawable/home2">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/glH37"
+        app:layout_constraintEnd_toStartOf="@+id/glV5715"
+        app:layout_constraintStart_toStartOf="@+id/glV571"
+        app:layout_constraintTop_toTopOf="@+id/glH2">
+
+        <ImageView
+            android:id="@+id/ivCombo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/energy"/>
+
+        <views.MTextView
+            android:id="@+id/tvCombo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:padding="12dp"
+            android:shadowColor="@color/MDarkPurple"
+            android:shadowRadius="20"
+            android:textColor="@color/MYellow"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
     <views.MTextView
         android:id="@+id/tvLevelName"
         android:layout_width="0dp"
@@ -23,6 +53,23 @@
         app:layout_constraintEnd_toStartOf="@+id/glV5715"
         app:layout_constraintStart_toStartOf="@+id/glV571"
         app:layout_constraintTop_toTopOf="@+id/glH06" />
+
+    <views.MTextView
+        android:id="@+id/tvScore"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/timer_bar"
+        android:padding="12dp"
+        android:text="Score: "
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/glH37"
+        app:layout_constraintEnd_toStartOf="@+id/glV579"
+        app:layout_constraintStart_toStartOf="@+id/glV5715"
+        app:layout_constraintTop_toTopOf="@+id/glH2" />
 
     <!-- Settings Button -->
     <View
@@ -63,27 +110,67 @@
         </LinearLayout>
     </ScrollView>
 
-    <views.MButton
-        android:id="@+id/btnSettings"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/settings_button"
-        app:backColor="#00000000"
-        app:cornerRadius="10dp"
-        app:imageBackground="@drawable/settings"
         app:layout_constraintBottom_toTopOf="@+id/glH2"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/glV579"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/glV5777"
-        app:layout_constraintTop_toBottomOf="@+id/glH06"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/glH06">
 
-    <View
-        android:id="@+id/timerView"
-        android:layout_width="0dp"
-        android:layout_height="16dp"
-        android:layout_gravity="bottom"
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/exit"
+            android:contentDescription="@string/settings_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/glV5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/settings"
+            android:contentDescription="@string/settings_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/glV5"
+            app:layout_constraintEnd_toStartOf="@+id/glV5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glV5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/vTimer"
+        android:layout_width="330dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/timer_bar"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintEnd_toStartOf="@+id/glV579"
+        app:layout_constraintStart_toStartOf="@+id/glV571"
+        app:layout_constraintTop_toTopOf="@+id/glH23" />
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="330dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/timer_bar"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
@@ -96,7 +183,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH8"
@@ -124,13 +211,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glH22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH23"
@@ -151,14 +232,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.37" />
+        app:layout_constraintGuide_percent="0.33" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV5777"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.69" />
+        app:layout_constraintGuide_percent="0.6" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glV579"

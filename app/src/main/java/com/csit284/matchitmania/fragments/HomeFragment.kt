@@ -54,8 +54,6 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireActivity(), ProfileActivity::class.java)
             if(!userProfile?.username.isNullOrEmpty()) {
                 startActivity(intent)
-                Log.i("TASK", "userProfile has been passed to Profile Activity: ")
-                Log.i("TASK", "UserProfile ${userProfile?.username}")
             }else Log.i("TASK", "user profile is empty")
         }
         view.findViewById<MButton>(R.id.btnPlay)?.setOnClickListener{

@@ -13,12 +13,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.csit284.matchitmania.R
+import com.csit284.matchitmania.app.MatchItMania
 import com.csit284.matchitmania.interfaces.Clickable
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import extensions.fieldEmpty
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import userGenerated.UserProfile
 import views.MButton
 
 // TODO: Rename parameter arguments, choose names that match
@@ -92,6 +94,13 @@ class RegisterFragment : Fragment() {
                 btnRegister.isEnabled = true
                 return
             }
+
+            (activity?.applicationContext as MatchItMania).users.find { it.username == user } != null ->{
+                etUser.error = "Username already exists"
+                pbRegister.visibility = View.GONE
+                btnRegister.isEnabled = true
+                return
+            }
             password != cPassword -> {
                 etConfirmPass.error = "Passwords don't match"
                 pbRegister.visibility = View.GONE
@@ -119,20 +128,21 @@ class RegisterFragment : Fragment() {
     private fun saveUserData(userId: String, username: String, email: String) {
         lifecycleScope.launch {
             try {
-                FirebaseFirestore.getInstance()
-                    .collection("users")
-                    .document(userId)
-                    .set(
-                        mapOf(
-                            "username" to username,
-                            "email" to email,
-                            "profileImageId" to "avatar1",
-                            "profileColor" to "MBlue",
-                            "level" to 1
-                        )
-                    ).await()
+                val newUser = UserProfile(
+                    username = username,
+                    email = email,
+                    profileImageId = "avatar1",
+                    profileColor = "MBlue",
+                    level = 1,
+                    highestScore = 0,
+                    fastestClear = Long.MAX_VALUE,
+                    maxCombo = 0,
+                    losses = 0
+                )
+                (activity?.applicationContext as MatchItMania).saveUserData(requireActivity(), newUser)
                 Toast.makeText(requireContext(), "Player $username registered!", Toast.LENGTH_SHORT).show()
-                clickListener?.onClicked("done")
+                (activity?.applicationContext as MatchItMania).users.add(newUser)
+                clickListener?.onClicked("doneRegister")
             } catch (e: Exception) {
                 Log.e("REGISTER", "Failed to save user data: ${e.message}", e)
                 handleRegistrationFailure("Failed to save user data")

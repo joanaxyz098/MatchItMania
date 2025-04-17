@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp"
+    android:paddingVertical="10dp"
     android:gravity="center_vertical">
 
     <TextView
@@ -50,5 +50,21 @@
             android:textSize="14sp"
             android:fontFamily="@font/poppins"/>
     </LinearLayout>
+
+    <!-- Add/Remove Friend Button -->
+    <ImageButton
+        android:id="@+id/btnAddRemoveFriend"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/add"
+        android:backgroundTint="@color/white"/>
+
+    <!-- User Info Button -->
+    <ImageButton
+        android:id="@+id/btnUserInfo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/info"/>
 
 </LinearLayout>

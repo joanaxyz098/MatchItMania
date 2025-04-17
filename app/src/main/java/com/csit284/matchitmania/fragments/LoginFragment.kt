@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
 
     private fun fetchUsername() {
         val app = requireActivity().application as MatchItMania
-        username = app.userProfile?.username
+        username = app.userProfile.username
         Toast.makeText(requireContext(), "Welcome back! $username", Toast.LENGTH_SHORT).show()
     }
 
@@ -81,12 +81,8 @@ class LoginFragment : Fragment() {
                 progressBar.visibility = View.GONE
 
                 if (task.isSuccessful) {
-                    val app = requireActivity().application as MatchItMania
-                    app.userProfile = UserProfile()
-                    app.userSettings = UserSettings()
-
                     fetchUsername()
-                    clickListener?.onClicked("done")
+                    clickListener?.onClicked("doneLogin")
                 } else {
                     val errorMessage = task.exception?.message ?: "Authentication failed"
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
