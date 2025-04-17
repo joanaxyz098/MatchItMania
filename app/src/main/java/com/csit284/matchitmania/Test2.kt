@@ -1,6 +1,7 @@
 package com.csit284.matchitmania
 
 import Game.GameParameters
+import Game.Piece
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
@@ -30,7 +31,7 @@ import kotlin.math.sqrt
 class Test2 : AppCompatActivity() {
     var level: Int = 1
     var activePiece: Int = -1
-    var activePieceView: MButton ?= null
+    var activePieceView:Piece ?= null
     var matchedPieces: Int = 0
     lateinit var params: GameParameters
     private val auth = FirebaseAuth.getInstance()
@@ -183,13 +184,13 @@ class Test2 : AppCompatActivity() {
         for (index in 0 until pairsList.size) {
             val pieceType = pairsList[index]
             // Use a Button or ImageView or custom view here
-            val pieceView = MButton(this).apply {
+            val pieceView =Piece(this).apply {
                 gravity = Gravity.CENTER
                 setTextColor(Color.WHITE)
                 background = imgList[pieceType]
-
+                value = pieceType
                 setOnClickListener {
-                    handleCLick(this, pieceType)
+                    handleCLick(this)
                 }
             }
 
@@ -214,24 +215,17 @@ class Test2 : AppCompatActivity() {
 
         }
     }
-    private fun handleCLick(currentPieceView: MButton, currentPiece: Int){
-        currentPieceView.background = ContextCompat.getDrawable(this, R.drawable.bg_active)
-        if(activePieceView != currentPieceView && activePiece == currentPiece){
-            currentPieceView.background = null
-            currentPieceView.backColor = ContextCompat.getColor(this, R.color.transparent)
-            currentPieceView.text = null
-            currentPieceView.isEnabled = false
-            activePieceView?.background = null
-            activePieceView?.backColor = ContextCompat.getColor(this, R.color.transparent)
-            activePieceView?.text = null
-            activePieceView?.isEnabled = false
-            activePiece = -1
-            activePieceView = null
-            matchedPieces++
-        }else{
-            if (activePieceView != currentPieceView && activePieceView != null) activePieceView?.background = imgList[activePiece]
-            activePiece = currentPiece
-            activePieceView = currentPieceView
+    private fun handleCLick(currentPieceView: Piece){
+        if(activePieceView != currentPieceView){
+            if(activePieceView?.value == currentPieceView.value) {
+                currentPieceView.isEnabled = false
+                activePieceView?.isEnabled = false
+                activePieceView = null
+                matchedPieces++
+            }else{
+                if(activePieceView != null) activePieceView?.deactivate()
+                activePieceView = currentPieceView
+            }
         }
 
         if((params.rows * params.cols) / 2 == matchedPieces){

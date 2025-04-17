@@ -31,8 +31,6 @@ class HomeActivity : AppCompatActivity(), Clickable {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fHome, homeFragment)
             .commit()
-
-        val matchItMania = application as MatchItMania
         setupViews()
         // Initialize music at app start
         BackgroundMusic.initialize(this)
@@ -45,6 +43,7 @@ class HomeActivity : AppCompatActivity(), Clickable {
 
     override fun onResume() {
         super.onResume()
+        BackgroundMusic.play()
     }
 
     override fun onDestroy() {
