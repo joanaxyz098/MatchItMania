@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -33,6 +34,7 @@ class Test2 : AppCompatActivity() {
     var matchedPieces: Int = 0
     lateinit var params: GameParameters
     private val auth = FirebaseAuth.getInstance()
+    val imgList = mutableListOf<Drawable>()
     companion object {
         const val BASE_GRID_SIZE = 2
         const val MAX_GRID_SIZE = 8
@@ -168,49 +170,48 @@ class Test2 : AppCompatActivity() {
         // Shuffle the list to randomize the positions
         pairsList.shuffle()
 
-        for (row in 0 until params.rows) {
-            for (col in 0 until params.cols) {
-                val index = row * params.cols + col
-                if (index < pairsList.size) {
-                    val pieceType = pairsList[index]
+        for (i in 0.. params.pieceTypes) {
+            val resId = resources.getIdentifier("blocks_${i%12}", "drawable", packageName)
+            if (resId != 0) {
+                val drawable = ContextCompat.getDrawable(this, resId)
+                drawable?.let { imgList.add(it) }
+            } else {
+                Log.w("ImageLoader", "Drawable not found for blocks_$i")
+            }
+        }
 
-                    // Use a Button or ImageView or custom view here
-                    val pieceView = MButton(this).apply {
-                        text = pieceType.toString() // Replace with icon if needed
-                        textSize = 18f
-                        gravity = Gravity.CENTER
-                        setTextColor(Color.WHITE)
-                        cornerRadius = 16f
-                        background = ContextCompat.getDrawable(this@Test2, R.drawable.bg_card)
+        for (index in 0 until pairsList.size) {
+            val pieceType = pairsList[index]
+            // Use a Button or ImageView or custom view here
+            val pieceView = MButton(this).apply {
+                gravity = Gravity.CENTER
+                setTextColor(Color.WHITE)
+                background = imgList[pieceType]
 
-                        setOnClickListener {
-                            handleCLick(this, pieceType)
-                        }
-                    }
-
-                    val gParams = GridLayout.LayoutParams().apply {
-                        width = 0 // width 0 to allow weight distribution
-                        height = 0 // height will be set proportionally to width
-                        columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f) // Distribute columns evenly
-                        rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f) // Distribute rows evenly
-                        setMargins(8, 8, 8, 8) // Optional: add margin around buttons
-                    }
-
-                    pieceView.layoutParams = gParams
-
-                    pieceView.post {
-                        val width = pieceView.width
-                        val height = pieceView.height
-                        if (width != height) {
-                            // Adjust height based on width to keep buttons square
-                            pieceView.layoutParams.height = width
-                            pieceView.requestLayout()
-                        }
-                    }
-
-                    glGame.addView(pieceView)
+                setOnClickListener {
+                    handleCLick(this, pieceType)
                 }
             }
+
+            val gParams = GridLayout.LayoutParams().apply {
+                width = 0 // width 0 to allow weight distribution
+                height = 0 // height will be set proportionally to width
+                columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f) // Distribute columns evenly
+                rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f) // Distribute rows evenly
+                setMargins(8, 8, 8, 8) // Optional: add margin around buttons
+            }
+            pieceView.layoutParams = gParams
+            pieceView.post {
+                val width = pieceView.width
+                val height = pieceView.height
+                if (width != height) {
+                    // Adjust height based on width to keep buttons square
+                    pieceView.layoutParams.height = width
+                    pieceView.requestLayout()
+                }
+            }
+            glGame.addView(pieceView)
+
         }
     }
     private fun handleCLick(currentPieceView: MButton, currentPiece: Int){
@@ -228,7 +229,7 @@ class Test2 : AppCompatActivity() {
             activePieceView = null
             matchedPieces++
         }else{
-            if (activePieceView != currentPieceView && activePieceView != null) activePieceView?.background = ContextCompat.getDrawable(this, R.drawable.bg_card)
+            if (activePieceView != currentPieceView && activePieceView != null) activePieceView?.background = imgList[activePiece]
             activePiece = currentPiece
             activePieceView = currentPieceView
         }
