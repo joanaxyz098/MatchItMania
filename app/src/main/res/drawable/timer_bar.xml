@@ -1,25 +1,15 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
 
-    <!-- Magical gradient background -->
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@color/MDarkPurple" />
-            <corners android:radius="20dp" />
-        </shape>
-    </item>
+    <gradient
+        android:type="linear"
+        android:angle="0"
+        android:startColor="@color/MLightYellow"
+        android:endColor="@color/MYellow" />
 
-    <!-- Gradient shimmer overlay -->
-    <item android:right="0dp">
-        <shape android:shape="rectangle">
-            <corners android:radius="20dp" />
-        </shape>
-    </item>
-
-    <!-- Top layer: black border only -->
-    <item>
-        <shape android:shape="rectangle">
-            <corners android:radius="20dp" />
-            <solid android:color="@android:color/transparent" />
-        </shape>
-    </item>
-</layer-list>
+    <corners android:radius="10dp"/>
+    <stroke
+        android:width="1dp"
+        android:color="@color/MShader" />
+</shape>
