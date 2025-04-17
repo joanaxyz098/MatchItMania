@@ -81,6 +81,23 @@
         </LinearLayout>
     </ScrollView>
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:background="@color/MShader"
+        app:layout_constraintEnd_toStartOf="@+id/glV5785"
+        app:layout_constraintStart_toStartOf="@+id/glV5715"
+        app:layout_constraintTop_toBottomOf="@+id/svBG" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:background="@color/MShader"
+        app:layout_constraintEnd_toStartOf="@+id/glV5785"
+        app:layout_constraintStart_toStartOf="@+id/glV5715"
+        app:layout_constraintTop_toTopOf="@+id/svBG" />
+
     <!-- Kept Guidelines that are actually used in the layout -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH11"
