@@ -58,25 +58,15 @@
         app:layout_constraintStart_toStartOf="@+id/glV5777"
         app:layout_constraintTop_toTopOf="@+id/glH09" />
 
-    <View
-        android:id="@+id/editContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/light_yellow_rounded_rect"
-        app:layout_constraintBottom_toTopOf="@id/glH8"
-        app:layout_constraintEnd_toEndOf="@id/glV5785"
-        app:layout_constraintStart_toStartOf="@id/glV5715"
-        app:layout_constraintTop_toBottomOf="@id/glH37" />
-
     <ScrollView
         android:id="@+id/svBG"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="false"
-        app:layout_constraintBottom_toBottomOf="@+id/editContainer"
-        app:layout_constraintEnd_toEndOf="@+id/editContainer"
-        app:layout_constraintStart_toStartOf="@+id/editContainer"
-        app:layout_constraintTop_toTopOf="@+id/editContainer">
+        app:layout_constraintBottom_toTopOf="@id/glH8"
+        app:layout_constraintEnd_toEndOf="@id/glV5785"
+        app:layout_constraintStart_toStartOf="@id/glV5715"
+        app:layout_constraintTop_toBottomOf="@id/glH37">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

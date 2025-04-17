@@ -35,7 +35,8 @@ class SelectLevelActivity : AppCompatActivity() {
 
     private fun setUpLevels() {
         val gridLayout = findViewById<GridLayout>(R.id.glLevels)
-        val numberOfLevels = (application as MatchItMania).userProfile.level
+        val userLevel = (application as MatchItMania).userProfile.level
+        val numberOfLevels = 50
         Log.i("TASK", "username ${ (application as MatchItMania).userProfile.username} level $numberOfLevels")
         val numColumns = 3  // Define the number of columns for the grid
         gridLayout.columnCount = numColumns
@@ -46,14 +47,17 @@ class SelectLevelActivity : AppCompatActivity() {
 
         for (i in 1..numberOfLevels) {
             val button = MButton(this).apply {
-                text = i.toString()
-                setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                setTextColor(Color.WHITE)
                 gravity = Gravity.CENTER
                 this.cornerRadius = 20f
-                this.backColor = ContextCompat.getColor(context, R.color.MPurple)
-                this.borderColor = ContextCompat.getColor(context, R.color.MShader)
-                this.borderWidth = 10f
+                if(i <= userLevel){
+                    this.background = ContextCompat.getDrawable(context, R.drawable.level_back)
+                    text = i.toString()
+                    setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
+                    setTextColor(Color.WHITE)
+                }else {
+                    this.background = ContextCompat.getDrawable(context, R.drawable.level_lock)
+                    this.isEnabled = false
+                }
                 typeface = ResourcesCompat.getFont(context, R.font.poppins)
             }
 
