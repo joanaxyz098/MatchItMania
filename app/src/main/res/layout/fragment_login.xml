@@ -98,21 +98,6 @@
         app:shadowColor="@color/MDarkPurple"
         app:shadowRadius="10dp" />
 
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:text="Log in using: "
-        android:textColor="@color/white"
-        app:autoSizeMaxTextSize="30sp"
-        app:autoSizeMinTextSize="18sp"
-        app:autoSizeStepGranularity="2sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
     <TextView
         android:id="@+id/tvRegister"
@@ -126,73 +111,10 @@
         app:autoSizeMinTextSize="18sp"
         app:autoSizeStepGranularity="2sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glH91"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/glH94"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/glH91">
-
-        <views.MButton
-            android:id="@+id/btnFb"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            app:backColor="@color/MYellow"
-            app:borderColor="@color/MShader"
-            app:borderWidth="2dp"
-            app:cornerRadius="100dp"
-            app:imageBackground="@drawable/fb"
-            app:imageScale="0.8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@id/btnTwitter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <views.MButton
-            android:id="@+id/btnTwitter"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="8dp"
-            app:backColor="@color/MYellow"
-            app:borderColor="@color/MShader"
-            app:borderWidth="2dp"
-            app:cornerRadius="100dp"
-            app:imageBackground="@drawable/twitter"
-            app:imageScale="0.8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@id/btnGoogle"
-            app:layout_constraintStart_toEndOf="@id/btnFb"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <views.MButton
-            android:id="@+id/btnGoogle"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            app:backColor="@color/MYellow"
-            app:borderColor="@color/MShader"
-            app:borderWidth="2dp"
-            app:cornerRadius="100dp"
-            app:imageBackground="@drawable/google"
-            app:imageScale="0.8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btnTwitter"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        app:layout_constraintTop_toBottomOf="@+id/btnDone" />
 
     <ProgressBar
         android:id="@+id/pbRegister"
@@ -208,8 +130,7 @@
         android:id="@+id/glH94"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
+        android:orientation="horizontal" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH91"
