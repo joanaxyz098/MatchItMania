@@ -25,7 +25,6 @@ class LoadingActivity : Activity() {
             app.refreshAllData()
         }
 
-
         // Register a callback that will be invoked when initialization is complete
         app.setOnInitCompleteListener {
             Log.d("LoadingActivity", "Received init complete callback")

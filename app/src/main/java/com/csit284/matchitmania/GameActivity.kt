@@ -3,7 +3,6 @@ package com.csit284.matchitmania
 import Game.GameParameters
 import Game.Piece
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -11,7 +10,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.GridLayout
@@ -20,20 +18,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.lifecycleScope
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import userGenerated.UserSettings
-import views.MButton
 import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.sqrt
 
-class Test2 : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
     var level: Int = 1
     var activePieceView:Piece ?= null
     var matchedPieces: Int = 0
@@ -336,25 +329,25 @@ class Test2 : AppCompatActivity() {
                     val elapsedMillis = System.currentTimeMillis() - gameStartTime
                     if(elapsedMillis < app.userProfile.fastestClear) app.userProfile.fastestClear = elapsedMillis
 
-                    app.saveUserData(this@Test2, app.userProfile)
+                    app.saveUserData(this@GameActivity, app.userProfile)
 
                     Log.i("TASK", "Settings successfully saved!")
-                    val intent = Intent(this@Test2, MessageActivity::class.java)
+                    val intent = Intent(this@GameActivity, MessageActivity::class.java)
                     intent.putExtra("MESSAGE", "You won!\n Total score: $currentScore")
                     intent.putExtra("TYPE", "OK")
                     startActivity(intent)
                 } catch (e: Exception) {
                     Log.e("TASK", "Failed to save settings: ${e.message}", e)
-                    Toast.makeText(this@Test2, "Failed to save settings", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GameActivity, "Failed to save settings", Toast.LENGTH_SHORT).show()
                 }
             }
         } ?: Log.e("TASK", "User is not logged in. Cannot save settings.")
     }
     private fun handleLoss() {
-        val intent = Intent(this@Test2, MessageActivity::class.java)
+        val intent = Intent(this@GameActivity, MessageActivity::class.java)
         val app = (application as MatchItMania)
         app.userProfile.losses += 1
-        app.saveUserData(this@Test2, app.userProfile)
+        app.saveUserData(this@GameActivity, app.userProfile)
         intent.putExtra("MESSAGE", "You lost! Try again.")
         intent.putExtra("TYPE", "OK")
         startActivity(intent)
@@ -386,7 +379,7 @@ class Test2 : AppCompatActivity() {
                 if (totalSeconds <= 10) {
                     tvTimer.setTextColor(Color.RED)
                 } else {
-                    tvTimer.setTextColor(ContextCompat.getColor(this@Test2, R.color.white))
+                    tvTimer.setTextColor(ContextCompat.getColor(this@GameActivity, R.color.white))
                 }
 
                 // Schedule next update
