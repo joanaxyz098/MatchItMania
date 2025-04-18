@@ -1,22 +1,16 @@
 package com.csit284.matchitmania
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
-import android.view.View
 import android.widget.GridLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.csit284.matchitmania.app.MatchItMania
-import com.google.firebase.auth.FirebaseAuth
-import userGenerated.UserProfile
-import userGenerated.UserSettings
 import views.MButton
 
 class SelectLevelActivity : AppCompatActivity() {
@@ -89,7 +83,7 @@ class SelectLevelActivity : AppCompatActivity() {
             }
 
             button.setOnClickListener {
-                val intent = Intent(this, Test2::class.java)
+                val intent = Intent(this, GameActivity::class.java)
                 intent.putExtra("LEVEL", i)
                 startActivity(intent)
             }
