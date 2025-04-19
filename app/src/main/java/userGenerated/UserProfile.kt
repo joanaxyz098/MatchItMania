@@ -12,7 +12,9 @@ data class UserProfile(
     var fastestClear: Long = 0,
     var maxCombo: Int = 0,
     var losses: Int = 0,
-    var friends: MutableList<String> = mutableListOf()
+    var friends: MutableList<String> = mutableListOf(),
+    var sentReq: MutableList<String> = mutableListOf(),
+    var recReq: MutableList<String> = mutableListOf(),
 ) : Serializable {
 
     fun toMap(): Map<String, Any> {
@@ -26,7 +28,9 @@ data class UserProfile(
             "fastestClear" to fastestClear,
             "maxCombo" to maxCombo,
             "losses" to losses,
-            "friends" to friends
+            "friends" to friends,
+            "sentReq" to sentReq,
+            "recREq" to recReq
         )
     }
 }

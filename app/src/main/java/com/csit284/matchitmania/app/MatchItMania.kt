@@ -8,6 +8,7 @@ import android.util.SparseArray
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.csit284.matchitmania.fragments.CommunityFragment
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,8 +25,11 @@ class MatchItMania : Application() {
     val disableFrames: SparseArray<SparseArray<Drawable>> = SparseArray()
     var users  = mutableListOf<UserProfile>()
     var friends = mutableListOf<UserProfile>()
+    var sent = mutableListOf<UserProfile>()
+    var req = mutableListOf<UserProfile>()
     lateinit var db: FirebaseFirestore
     lateinit var auth: FirebaseAuth
+    private var dataRefreshListener: CommunityFragment.DataRefreshListener? = null
 
     // Changed to public for easier debugging
     var profileLoaded = false
@@ -35,7 +39,9 @@ class MatchItMania : Application() {
 
     // Callback for notifying activities when initialization is complete
     private var onInitCompleteCallback: (() -> Unit)? = null
-
+    fun setDataRefreshListener(listener: CommunityFragment.DataRefreshListener?) {
+        dataRefreshListener = listener
+    }
     fun setOnInitCompleteListener(callback: () -> Unit) {
         if (isInitializationComplete()) {
             // If already initialized, call callback immediately
@@ -173,12 +179,40 @@ class MatchItMania : Application() {
                         maxCombo = document.getLong("maxCombo")?.toInt() ?: 0
                         losses = document.getLong("losses")?.toInt() ?: 0
                         friends = document.get("friends") as? MutableList<String> ?: mutableListOf()
+                        sentReq = document.get("sentReq") as? MutableList<String> ?: mutableListOf()
+                        recReq = document.get("recREq") as? MutableList<String> ?: mutableListOf()
                     }
 
-                    // Fetch friends data and add to friends list
-                    fetchFriends(userProfile.friends)
+                    var completedFetches = 0
 
-                    Log.d("Firestore", "User Profile fetched successfully: ${userProfile.username}")
+                    // Fetch friends data
+                    fetchList(friends, userProfile.friends) {
+                        completedFetches++
+                        if (completedFetches >= 3) {
+                            profileLoaded = true
+                            checkInitializationComplete()
+                        }
+                    }
+
+
+                    Log.d("Match it mania", "received requests: ${userProfile.recReq}")
+                    // Fetch received request data
+                    fetchList(req, userProfile.recReq) {
+                        completedFetches++
+                        if (completedFetches >= 3) {
+                            profileLoaded = true
+                            checkInitializationComplete()
+                        }
+                    }
+
+                    // Fetch sent request data
+                    fetchList(sent, userProfile.sentReq) {
+                        completedFetches++
+                        if (completedFetches >= 3) {
+                            profileLoaded = true
+                            checkInitializationComplete()
+                        }
+                    }
                 } else {
                     Log.d("Firestore", "User profile does not exist")
                 }
@@ -216,78 +250,187 @@ class MatchItMania : Application() {
         }
     }
 
-    private fun fetchFriends(usernames: List<String>) {
-        friends.clear()
-        friends.add(userProfile)  // Add current user first
+    private fun fetchList(target: MutableList<UserProfile>, usernames: List<String>, onComplete: () -> Unit = {}) {
+        target.clear()
 
         if (usernames.isEmpty()) {
-            Log.d("Firestore", "No friends to fetch")
+            Log.d("Firestore", "No users to fetch")
+            onComplete()
             return
         }
+
+        // Counter to track when all fetches are complete
+        var fetchCount = 0
+        val totalToFetch = usernames.size
 
         for (username in usernames) {
-            addFriend(username)
-        }
+            findUser(username) { userProfile ->
+                if (userProfile.username.isNotEmpty()) {
+                    target.add(userProfile)
+                    // Sort after each addition
+                    target.sortByDescending { it.level }
+                }
 
-        friends.sortByDescending { it.level }
+                // Increment counter and check if we're done
+                fetchCount++
+                if (fetchCount >= totalToFetch) {
+                    Log.d("Firestore", "Completed fetching all ${target.size} profiles")
+                    onComplete()
+                }
+            }
+        }
     }
 
-
-    fun addFriend(username: String) {
-        // Check if friend already exists
-        if (friends.any { it.username == username }) {
-            return
-        }
-
+    private fun findUser(username: String, callback: (UserProfile) -> Unit) {
         db.collection("users")
             .whereEqualTo("username", username)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 if (!querySnapshot.isEmpty) {
-                    for (document in querySnapshot.documents) {
-                        val friendProfile = UserProfile(
-                            username = document.getString("username") ?: "Unknown",
-                            email = document.getString("email") ?: "",
-                            profileImageId = document.getString("profileImageId") ?: "avatar1",
-                            profileColor = document.getString("profileColor") ?: "MBlue",
-                            level = document.getLong("level")?.toInt() ?: 1,
-                            highestScore = document.getLong("highestScore")?.toInt() ?: 0,
-                            fastestClear = document.getLong("fastestClear") ?: Long.MAX_VALUE,
-                            maxCombo = document.getLong("maxCombo")?.toInt() ?: 0,
-                            losses = document.getLong("mistakes")?.toInt() ?: 0
-                        )
-                        friends.add(friendProfile)
-                        // Sort the list immediately
-                        friends.sortByDescending { it.level }
-                        Log.d("Firestore", "Added and sorted friend: ${friendProfile.username}")
-                    }
+                    val document = querySnapshot.documents[0]
+                    val userProfile = UserProfile(
+                        username = document.getString("username") ?: "Unknown",
+                        email = document.getString("email") ?: "",
+                        profileImageId = document.getString("profileImageId") ?: "avatar1",
+                        profileColor = document.getString("profileColor") ?: "MBlue",
+                        level = document.getLong("level")?.toInt() ?: 1,
+                        highestScore = document.getLong("highestScore")?.toInt() ?: 0,
+                        fastestClear = document.getLong("fastestClear") ?: Long.MAX_VALUE,
+                        maxCombo = document.getLong("maxCombo")?.toInt() ?: 0,
+                        losses = document.getLong("mistakes")?.toInt() ?: 0,
+                        friends = document.get("friends") as? MutableList<String> ?: mutableListOf(),
+                        sentReq = document.get("sentReq") as? MutableList<String> ?: mutableListOf(),
+                        recReq = document.get("recReq") as? MutableList<String> ?: mutableListOf()
+                    )
+                    Log.d("Firestore", "Found User: $username")
+                    callback(userProfile)
                 } else {
                     Log.d("Firestore", "No user found with username: $username")
+                    callback(UserProfile())
                 }
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error fetching user with username: $username", e)
+                callback(UserProfile())
+            }
+    }
+    fun sendRequest(username: String, onComplete: () -> Unit = {}) {
+        findUser(username) { friendProfile ->
+            friendProfile.recReq.add(userProfile.username)
+            userProfile.sentReq.add(username)
+
+            // Add to the sent requests list immediately
+            val newSentProfile = friendProfile.copy()
+            if (!sent.any { it.username == newSentProfile.username }) {
+                sent.add(newSentProfile)
+                sent.sortByDescending { it.level }
+            }
+
+            syncUserProfiles(userProfile, friendProfile) {
+                dataRefreshListener?.onDataRefresh()
+                onComplete()
+            }
+        }
+    }
+
+    fun acceptRequest(username: String, onComplete: () -> Unit = {}) {
+        findUser(username) { friendProfile ->
+            friendProfile.sentReq.remove(userProfile.username)
+            userProfile.recReq.remove(username)
+
+            // Update local lists
+            userProfile.friends.add(username)
+            friendProfile.friends.add(userProfile.username)
+
+            // Add to friends list
+            if (!friends.any { it.username == friendProfile.username }) {
+                friends.add(friendProfile)
+                friends.sortByDescending { it.level }
+            }
+
+            // Remove from requests lists
+            req.removeIf { it.username == username }
+
+            syncUserProfiles(userProfile, friendProfile) {
+                dataRefreshListener?.onDataRefresh()
+                onComplete()
+            }
+        }
+    }
+
+    fun declineRequest(username: String, onComplete: () -> Unit = {}) {
+        findUser(username) { friendProfile ->
+            friendProfile.recReq.remove(userProfile.username)
+            userProfile.sentReq.remove(username)
+
+            // Remove from requests list
+            req.removeIf { it.username == username }
+            sent.removeIf { it.username == username }
+
+            syncUserProfiles(userProfile, friendProfile) {
+                dataRefreshListener?.onDataRefresh()
+                onComplete()
+            }
+        }
+    }
+
+    fun removeFriend(username: String, onComplete: () -> Unit = {}) {
+        findUser(username) { friendProfile ->
+            friendProfile.friends.remove(userProfile.username)
+            userProfile.friends.remove(username)
+
+            // Remove from friends list
+            friends.removeIf { it.username == username }
+
+            syncUserProfiles(userProfile, friendProfile) {
+                dataRefreshListener?.onDataRefresh()
+                onComplete()
+            }
+        }
+    }
+
+
+    private fun syncUserProfiles(
+        user1: UserProfile,
+        user2: UserProfile,
+        onComplete: () -> Unit = {}
+    ) {
+        val db = FirebaseFirestore.getInstance()
+        val auth = FirebaseAuth.getInstance()
+        val currentUid = auth.currentUser?.uid ?: return
+
+        db.collection("users")
+            .whereEqualTo("username", user2.username)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val friendDocId = querySnapshot.documents[0].id
+
+                    // Save both user profiles
+                    val batch = db.batch()
+                    batch.set(db.collection("users").document(currentUid), user1.toMap())
+                    batch.set(db.collection("users").document(friendDocId), user2.toMap())
+
+                    batch.commit()
+                        .addOnSuccessListener {
+                            Log.d("Firestore", "User profiles synced successfully.")
+                            onComplete()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("Firestore", "Error syncing profiles", e)
+                            onComplete()
+                        }
+                } else {
+                    Log.w("Firestore", "Friend document not found for ${user2.username}")
+                    onComplete()
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Failed to fetch friend document ID", e)
+                onComplete()
             }
     }
 
-    // Add to MatchItMania class
-    fun removeFriend(context: Context, username: String) {
-        // Remove from friends list in memory
-        val friendToRemove = friends.find { it.username == username }
-        if (friendToRemove != null) {
-            friends.remove(friendToRemove)
-            Log.d("Firestore", "Removed friend locally: ${username}")
-        }
-
-        // Remove from userProfile.friends list
-        userProfile.friends.remove(username)
-
-        // Save to Firestore
-        saveUserData(context, userProfile)
-
-        // Log the current state for debugging
-        Log.d("Firestore", "After removal: ${userProfile.friends.size} friends in profile, ${friends.size} friends in list")
-    }
 
     private fun fetchUserSettings(uid: String) {
         db.collection("settings").document(uid).get()

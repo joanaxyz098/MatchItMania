@@ -8,6 +8,7 @@
     android:textAlignment="center"
     tools:context=".HomeActivity">
 
+
     <views.MTextView
         android:id="@+id/tvLeaderboard"
         android:layout_width="0dp"
@@ -27,8 +28,10 @@
         app:gradientDirection="topToBottom"
         app:layout_constraintBottom_toTopOf="@+id/glProfileDown"
         app:layout_constraintEnd_toStartOf="@+id/glPlayButtonR"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/glPlayButtonL"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:startColor="@color/MPurple" />
 
 
@@ -100,6 +103,23 @@
                 android:textColor="#704A65"
                 android:textSize="18sp" />
         </LinearLayout>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/scToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Received"
+            android:checked="true"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold
+"           android:fontFamily="@font/poppins"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/glProfileDown3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etSearch"
+            />
 
         <EditText
             android:id="@+id/etSearch"

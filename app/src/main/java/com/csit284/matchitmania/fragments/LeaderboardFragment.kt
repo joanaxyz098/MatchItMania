@@ -2,11 +2,13 @@ package com.csit284.matchitmania.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import com.csit284.matchitmania.AdapterType
 import com.csit284.matchitmania.MListView
 import com.csit284.matchitmania.R
 import com.csit284.matchitmania.app.MatchItMania
@@ -39,10 +41,11 @@ class LeaderboardFragment : Fragment() {
     }
 
     private fun setupViews(view: View) {
-        val users = (context?.applicationContext as MatchItMania).users
+        val app = (context?.applicationContext as MatchItMania)
+        val users = app.users
         val lvLeaderboard = view.findViewById<ListView>(R.id.lvboard)
 
-        val globalAdapter = MListView(requireActivity(), users)
+        val globalAdapter = MListView(requireActivity(), users, AdapterType.LEADERBOARD)
         lvLeaderboard.adapter = globalAdapter
 
         // Set button click handlers for the Global/Friends tabs
@@ -50,8 +53,12 @@ class LeaderboardFragment : Fragment() {
             lvLeaderboard.adapter = globalAdapter
         }
 
-        val friends = (context?.applicationContext as MatchItMania).friends
-        val friendsAdapter = MListView(requireActivity(), friends)
+        val friends = app.friends.toMutableList().apply {
+            if (!any { it.username == app.userProfile.username }) {
+                add(app.userProfile)
+            }
+        }
+        val friendsAdapter = MListView(requireActivity(), friends, AdapterType.LEADERBOARD)
 
         view.findViewById<MButton>(R.id.btnFriends).setOnClickListener {
             lvLeaderboard.adapter = friendsAdapter
