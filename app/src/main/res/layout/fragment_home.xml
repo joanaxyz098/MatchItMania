@@ -81,7 +81,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintDimensionRatio="4.5:1"
         app:shadowColor="@color/MPurple"
-        app:shadowRadius="12dp" />
+        app:shadowRadius="12dp"
+        app:borderColor="#000000"
+        app:borderWidth="3dp"/>
 
     <views.MButton
         android:id="@+id/btnTutorial"
@@ -107,7 +109,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintDimensionRatio="4.5:1"
         app:shadowColor="@color/MPurple"
-        app:shadowRadius="12dp" />
+        app:shadowRadius="12dp"
+        app:borderColor="#000000"
+        app:borderWidth="3dp"
+        />
 
 
     <androidx.constraintlayout.widget.Guideline
