@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.view.isGone
+import com.csit284.matchitmania.app.MatchItMania
+import music.BackgroundMusic
 import views.MButton
 import views.MView
 
@@ -182,4 +184,13 @@ class AboutActivity: Activity() {
             isLClicked = toggleGuidelineAndViews(Jbtn, Jtv, Jtv2, Lll, isLClicked, 0.35f, glListL, glListJ, glH77L, glH96L)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        val musicEnabled = (application as MatchItMania).userSettings.music ?: true
+        if (musicEnabled) {
+            BackgroundMusic.play()
+        }
+    }
+
 }

@@ -44,15 +44,11 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".LeaderboardActivity"
-            android:exported="false">
-        </activity>
-        <activity
             android:name=".SelectLevelActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".Test"
+            android:name=".TutorialActivity"
             android:exported="false">
         </activity>
         <activity

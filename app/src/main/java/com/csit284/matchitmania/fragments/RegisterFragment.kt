@@ -1,7 +1,13 @@
 package com.csit284.matchitmania.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +17,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.csit284.matchitmania.R
 import com.csit284.matchitmania.app.MatchItMania
@@ -20,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import extensions.fieldEmpty
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import music.BackgroundMusic
 import userGenerated.UserProfile
 import views.MButton
 
@@ -28,11 +36,6 @@ import views.MButton
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterFragment : Fragment() {
     private lateinit var etEmail: EditText
     private lateinit var etPass: EditText
@@ -77,6 +80,31 @@ class RegisterFragment : Fragment() {
         view.findViewById<TextView>(R.id.tvLogin).setOnClickListener {
             clickListener?.onClicked("login")
         }
+
+        val tvLogin = view.findViewById<TextView>(R.id.tvLogin)
+        val fullText = getString(R.string.loginMsg)
+        val spannable = SpannableString(fullText)
+
+        val registerStart = fullText.indexOf("Log in")
+        val registerEnd = registerStart + "Log in".length
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                clickListener?.onClicked("login")
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = ContextCompat.getColor(requireContext(), R.color.blue) // use your defined color
+                ds.isUnderlineText = false
+            }
+        }
+
+        spannable.setSpan(clickableSpan, registerStart, registerEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        tvLogin.text = spannable
+        tvLogin.movementMethod = LinkMovementMethod.getInstance()
+        tvLogin.highlightColor = Color.TRANSPARENT
     }
 
     private fun handleRegister() {
@@ -154,5 +182,10 @@ class RegisterFragment : Fragment() {
         pbRegister.visibility = View.GONE
         btnRegister.isEnabled = true
         Toast.makeText(requireContext(), "Error: $errorMessage", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        BackgroundMusic.pause()
     }
 }

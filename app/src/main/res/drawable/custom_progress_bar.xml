@@ -1,19 +1,24 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Full bar background (white "track") -->
     <item android:id="@android:id/background">
         <shape>
-            <solid android:color="#E0E0E0"/>
-            <corners android:radius="4dp"/>
+            <solid android:color="#FFFFFF"/>
+            <corners android:radius="25dp"/>
         </shape>
     </item>
+
+    <!-- Actual progress (the moving colored bar) -->
     <item android:id="@android:id/progress">
-        <scale>
+        <clip>
             <shape>
                 <gradient
-                    android:startColor="#3498DB"
-                    android:endColor="#2980B9"
+                    android:startColor="#6A11CB"
+                    android:endColor="#2575FC"
                     android:angle="0"/>
-                <corners android:radius="4dp"/>
+                <corners android:radius="25dp"/>
             </shape>
-        </scale>
+        </clip>
     </item>
+
 </layer-list>

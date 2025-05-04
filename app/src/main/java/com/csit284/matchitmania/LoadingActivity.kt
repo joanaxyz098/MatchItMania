@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
+import music.BackgroundMusic
 
 class LoadingActivity : Activity() {
     private lateinit var app: MatchItMania
@@ -17,7 +18,7 @@ class LoadingActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
-
+        BackgroundMusic.initialize(this)
         app = application as MatchItMania
 
         shouldRefresh = intent.getBooleanExtra("REFRESH_DATA", false)

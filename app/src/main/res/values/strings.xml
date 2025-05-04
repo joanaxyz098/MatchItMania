@@ -30,4 +30,14 @@
     <string name="luisBday">Birthday: April 25, 2004</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="goal_title">Goal:</string>
+    <string name="goal_description">Match all the blocks with the same drawings before the time runs out!</string>
+    <string name="instructions_title">Instructions:</string>
+    <string name="tutorial1"> 1. Find a Match:\n\t\t\tTap or click two blocks with the same drawing to match them.</string>
+    <string name="tutorial2">2. Clear the Board:\n\t\t\tMatch all blocks to win the game! You must clear all blocks within the time limit.</string>
+    <string name="tutorial3">3. Score Multiplier:\n\t\t\tMatching blocks correctly one after another without mistakes will activate a score multiplier.
+        The more consecutive correct matches you make, the higher your score multiplier goes!\n\n
+        A wrong match resets the multiplier back to 1×.</string>
+    <string name="tutorial4">4. Time is Ticking:\n\t\t\tKeep an eye on the timer! If it runs out before you match all the blocks, the game is over.</string>
 </resources>

@@ -60,6 +60,9 @@
         android:paddingStart="10dp"
         android:text="Guest"
         android:textColor="@color/black"
+        android:singleLine="true"
+        android:inputType="textPersonName"
+        android:imeOptions="actionDone"
         app:autoSizeTextType="uniform"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="20sp"
@@ -68,6 +71,7 @@
         app:layout_constraintEnd_toStartOf="@+id/glV5785"
         app:layout_constraintStart_toStartOf="@+id/glV5743"
         app:layout_constraintTop_toTopOf="@+id/glH24" />
+
 
     <views.MButton
         android:id="@+id/btnProfile"

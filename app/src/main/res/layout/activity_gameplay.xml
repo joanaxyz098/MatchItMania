@@ -88,6 +88,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:padding="16dp"
+        android:overScrollMode="ifContentScrolls"
         app:layout_constraintBottom_toTopOf="@+id/glH23"
         app:layout_constraintEnd_toStartOf="@id/glV579"
         app:layout_constraintHorizontal_bias="0.0"
@@ -110,6 +111,7 @@
         </LinearLayout>
     </ScrollView>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -130,18 +132,7 @@
             app:layout_constraintStart_toStartOf="@+id/glV5"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btnSettings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/settings"
-            android:contentDescription="@string/settings_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@+id/glV5"
-            app:layout_constraintEnd_toStartOf="@+id/glV5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/glV5"
             android:layout_width="wrap_content"

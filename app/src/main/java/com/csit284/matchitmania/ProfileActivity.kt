@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
+import music.BackgroundMusic
+import music.GameBGMusic
 import views.MButton
 import userGenerated.UserProfile
 
@@ -93,6 +95,25 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
         }
         loadUserData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val settings = (application as MatchItMania).userSettings
+        val musicEnabled = settings.music ?: true
+        val gameMusicEnabled = settings.music ?: true
+
+        if (musicEnabled) {
+            BackgroundMusic.play()
+        } else {
+            BackgroundMusic.pause()
+        }
+
+        if (gameMusicEnabled) {
+            GameBGMusic.play()
+        } else {
+            GameBGMusic.pause()
+        }
     }
 
     private fun loadUserData() {

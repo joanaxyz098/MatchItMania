@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import music.BackgroundMusic
 import userGenerated.UserProfile
 import views.MButton
 
@@ -96,6 +97,16 @@ class EditProfileActivity : AppCompatActivity() {
         setupAvatarButtons()
         setupBGButtons()
     }
+
+    override fun onResume() {
+        super.onResume()
+        val musicEnabled = (application as MatchItMania).userSettings.music ?: true
+        if (musicEnabled) {
+            BackgroundMusic.play()
+        }
+    }
+
+
     private fun setupAvatarButton(buttonId: Int, avatarResourceId: Int) {
         findViewById<MButton>(buttonId).setOnClickListener {
             btnProfile?.let { profile ->

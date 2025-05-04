@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import music.BackgroundMusic
+import music.SoundEffects
 import userGenerated.UserSettings
 import views.MButton
 
@@ -23,10 +24,9 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var scSound: SwitchCompat
     private lateinit var scVib: SwitchCompat
     private lateinit var btnLogIn: MButton
-//
-//    private var userSettings: UserSettings? = null
-//    private var userProfile: UserProfile? = null
+
     private var isGuest = auth.currentUser == null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -35,18 +35,15 @@ class SettingsActivity : AppCompatActivity() {
         loadUserSettings()
     }
 
-    override fun onDestroy() {
-        updateSettings()
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
+        saveAndApplySettings() // <- Save and apply settings when user leaves Settings
     }
 
     private fun setupViews() {
-        // Initialize switches
         scMusic = findViewById(R.id.scMusic)
         scSound = findViewById(R.id.scSound)
         scVib = findViewById(R.id.scVibration)
-
-        // Initialize buttons
         btnLogIn = findViewById(R.id.btnLogIn)
 
         findViewById<MButton>(R.id.btnExit).setOnClickListener {
@@ -56,51 +53,61 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<MButton>(R.id.btnAbout).setOnClickListener {
             startActivity(Intent(this, AboutActivity::class.java))
         }
-        // Setup login/logout button
-        updateLoginButton()
-        onScMusic()
-    }
 
-    private fun onScMusic(){
+        updateLoginButton()
+
         scMusic.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 BackgroundMusic.play()
             } else {
                 BackgroundMusic.pause()
             }
+            // Also update app-wide settings immediately
+            (application as MatchItMania).userSettings = (application as MatchItMania).userSettings.copy(
+                music = isChecked
+            )
+        }
+
+        scSound.setOnCheckedChangeListener { _, isChecked ->
+            // Toggle sound effects enabled/disabled
+            SoundEffects.setEnabled(isChecked)
+
+            // Also update app-wide settings immediately
+            (application as MatchItMania).userSettings = (application as MatchItMania).userSettings.copy(
+                sound = isChecked
+            )
         }
     }
 
-    private fun updateSwitch(userSettings : UserSettings) {
-        Log.i("TASK", "Initializing Settings: nimal1 $userSettings")
-
-        // Set the correct values from userSettings
+    private fun updateSwitch(userSettings: UserSettings) {
+        Log.i("TASK", "Initializing Settings: $userSettings")
         scMusic.isChecked = userSettings.music ?: true
         scSound.isChecked = userSettings.sound ?: true
         scVib.isChecked = userSettings.vibration ?: true
-
-        Log.i("TASK", "Initializing Settings: nimal2 $userSettings")
     }
 
-
-    private fun updateSettings() {
-        val updatedSettings = mapOf(
-            "music" to scMusic.isChecked,
-            "sound" to scSound.isChecked,
-            "vibration" to scVib.isChecked
-        )
-        (application as MatchItMania).userSettings = UserSettings(
+    private fun saveAndApplySettings() {
+        val updatedSettings = UserSettings(
             scMusic.isChecked,
             scSound.isChecked,
             scVib.isChecked
         )
+
+        (application as MatchItMania).userSettings = updatedSettings
+
         auth.currentUser?.uid?.let { userId ->
             lifecycleScope.launch {
                 try {
                     FirebaseFirestore.getInstance()
                         .collection("settings")
                         .document(userId)
-                        .set(updatedSettings)
+                        .set(
+                            mapOf(
+                                "music" to updatedSettings.music,
+                                "sound" to updatedSettings.sound,
+                                "vibration" to updatedSettings.vibration
+                            )
+                        )
                         .await()
 
                     Log.i("TASK", "Settings successfully saved!")
@@ -109,7 +116,7 @@ class SettingsActivity : AppCompatActivity() {
                     Toast.makeText(this@SettingsActivity, "Failed to save settings", Toast.LENGTH_SHORT).show()
                 }
             }
-        } ?: Log.e("TASK", "User is not logged in. Cannot save settings.")
+        }
     }
 
     private fun loadUserSettings() {
@@ -132,14 +139,23 @@ class SettingsActivity : AppCompatActivity() {
         val intent = Intent(this, MessageActivity::class.java)
         intent.putExtra("MESSAGE", "Are you sure you want to logout?")
         startActivity(intent)
-        updateSettings()
+        saveAndApplySettings()
         finish()
     }
 
     private fun navigateToHome() {
         val intent = Intent(this, HomeActivity::class.java)
-        updateSettings()
+        saveAndApplySettings()
         startActivity(intent)
         finish()
     }
+
+    override fun onResume() {
+        super.onResume()
+        val musicEnabled = (application as MatchItMania).userSettings.music ?: true
+        if (musicEnabled) {
+            BackgroundMusic.play()
+        }
+    }
+
 }

@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#808080</color>
     <color name="transparent">#00000000</color>
     <color name="MBlue">#AED9D2</color>
     <color name="MYellow">#FEA705</color>
@@ -21,4 +22,6 @@
     <color name="MGreen">#D5E25C</color>
     <color name="MCandyBlue">#B3E5FC</color>
     <color name="MDarkBlue">#BF0288D1</color>
+    <color name="opacity">#CCFFFFFF</color>
+    <color name="blue">#0000EE </color>
 </resources>

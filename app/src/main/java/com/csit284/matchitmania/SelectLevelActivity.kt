@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.csit284.matchitmania.app.MatchItMania
+import music.BackgroundMusic
 import views.MButton
 
 class SelectLevelActivity : AppCompatActivity() {
@@ -25,6 +26,15 @@ class SelectLevelActivity : AppCompatActivity() {
         }
         setUpLevels()
     }
+
+    override fun onResume() {
+        super.onResume()
+        val musicEnabled = (application as MatchItMania).userSettings.music ?: true
+        if (musicEnabled) {
+            BackgroundMusic.play()
+        }
+    }
+
 
 
     private fun setUpLevels() {

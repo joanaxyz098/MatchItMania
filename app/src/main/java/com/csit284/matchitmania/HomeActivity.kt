@@ -24,7 +24,6 @@ class HomeActivity : AppCompatActivity(), Clickable {
     private var btnFriends: MButton ?= null
     private var activeButton: MButton ?= null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -34,7 +33,7 @@ class HomeActivity : AppCompatActivity(), Clickable {
             .commit()
         setupViews()
         // Initialize music at app start
-        BackgroundMusic.initialize(this)
+
     }
 
     override fun onPause() {

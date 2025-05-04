@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 fun String.fieldEmpty(et: EditText, message: String) : Boolean{
     if(this.isEmpty()){
-        et.error = "message"
+        et.error = message
         return true
     }
     return false

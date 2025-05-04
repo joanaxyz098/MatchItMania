@@ -13,6 +13,7 @@ import com.csit284.matchitmania.ProfileActivity
 import com.csit284.matchitmania.R
 import com.csit284.matchitmania.SelectLevelActivity
 import com.csit284.matchitmania.SettingsActivity
+import com.csit284.matchitmania.TutorialActivity
 import com.csit284.matchitmania.app.MatchItMania
 import com.csit284.matchitmania.interfaces.Clickable
 import music.BackgroundMusic
@@ -27,6 +28,22 @@ class HomeFragment : Fragment() {
         super.onAttach(context)
         if (context is Clickable) {
             clickListener = context
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateMusicSetting()
+    }
+
+    private fun updateMusicSetting() {
+        val matchItMania = requireActivity().application as MatchItMania
+        userSettings = matchItMania.userSettings
+
+        if (userSettings?.music == true) {
+            BackgroundMusic.play()
+        } else {
+            BackgroundMusic.pause()
         }
     }
 
@@ -60,6 +77,12 @@ class HomeFragment : Fragment() {
 
             clickListener?.onClicked("play")
             val intent = Intent(requireActivity(), SelectLevelActivity::class.java)
+            startActivity(intent)
+        }
+        view.findViewById<MButton>(R.id.btnTutorial)?.setOnClickListener{
+
+            clickListener?.onClicked("play")
+            val intent = Intent(requireActivity(), TutorialActivity::class.java)
             startActivity(intent)
         }
     }

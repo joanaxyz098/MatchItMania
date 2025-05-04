@@ -106,9 +106,9 @@ class MListView(
         btnAddRemoveFriend.setBackgroundResource(
             when (adapterType) {
                 AdapterType.RECEIVED -> R.drawable.check
-                AdapterType.SENT -> R.drawable.settings
+                AdapterType.SENT -> R.drawable.remove
                 AdapterType.FIND -> {
-                    if(isSent) R.drawable.settings
+                    if(isSent) R.drawable.remove
                     else if(isFriend) R.drawable.remove
                     else R.drawable.add
                 }

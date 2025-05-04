@@ -8,48 +8,90 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
+import music.BackgroundMusic
 import userGenerated.UserProfile
 import userGenerated.UserSettings
 import views.MButton
 
 class MessageActivity :Activity() {
-    var btnYes: MButton ?= null
-    var btnNo: MButton ?= null
+    private var btnYes: MButton? = null
+    private var btnNo: MButton? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_message)
 
         btnYes = findViewById(R.id.btnYes)
         btnNo = findViewById(R.id.btnNo)
-        findViewById<TextView>(R.id.tvMessage).text = intent.getStringExtra("MESSAGE")
+        val tvMessage = findViewById<TextView>(R.id.tvMessage)
 
+        val message = intent.getStringExtra("MESSAGE") ?: "Message"
         val type = intent.getStringExtra("TYPE") ?: ""
 
-        if(type == "OK"){
-            btnYes?.text = "OK"
-            btnNo?.isVisible = false
-            btnYes?.setOnClickListener {
-                val intent = Intent(this, SelectLevelActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }else {
-            btnNo?.setOnClickListener {
-                val intent = Intent(this, SettingsActivity::class.java)
-                startActivity(intent)
-                finish()
+        tvMessage.text = message
+
+        when (type) {
+            "OK" -> {
+                btnYes?.text = "OK"
+                btnNo?.isVisible = false
+                btnYes?.setOnClickListener {
+                    startActivity(Intent(this, SelectLevelActivity::class.java))
+                    finish()
+                }
             }
 
-            btnYes?.setOnClickListener {
-                FirebaseAuth.getInstance().signOut()
-                (application as MatchItMania).logOut()
+            "EXIT_GAME", "CONFIRM_EXIT" -> {
+                btnYes?.text = "Yes"
+                btnNo?.text = "No"
+                btnNo?.isVisible = true
 
-                val intent = Intent(this, UserActivity::class.java)
-                startActivity(intent)
-                finish()
+                btnYes?.setOnClickListener {
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("RESPONSE", "YES")
+                    setResult(RESULT_OK, resultIntent)
+
+                    val intent = Intent(this, SelectLevelActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+
+                btnNo?.setOnClickListener {
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("RESPONSE", "NO")
+                    setResult(RESULT_OK, resultIntent)
+                    finish()
+                }
+            }
+
+
+            else -> {
+                btnYes?.text = "Yes"
+                btnNo?.text = "No"
+                btnNo?.isVisible = true
+
+                btnYes?.setOnClickListener {
+                    FirebaseAuth.getInstance().signOut()
+                    (application as MatchItMania).logOut()
+                    startActivity(Intent(this, UserActivity::class.java))
+                    finish()
+                }
+
+                btnNo?.setOnClickListener {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    finish()
+                }
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        val musicEnabled = (application as MatchItMania).userSettings.music ?: true
+        if (musicEnabled) {
+            BackgroundMusic.play()
+        }
+    }
+
 }

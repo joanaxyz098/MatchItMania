@@ -1,3 +1,4 @@
+// GameActivity.kt
 package com.csit284.matchitmania
 
 import Game.GameParameters
@@ -6,6 +7,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -22,77 +24,125 @@ import androidx.lifecycle.lifecycleScope
 import com.csit284.matchitmania.app.MatchItMania
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
+import music.BackgroundMusic
+import music.GameBGMusic
+import music.SoundEffects
 import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.sqrt
 
 class GameActivity : AppCompatActivity() {
-    var level: Int = 1
-    var activePieceView:Piece ?= null
-    var matchedPieces: Int = 0
-    lateinit var params: GameParameters
+    private var level: Int = 1
+    private var activePieceView: Piece? = null
+    private var matchedPieces: Int = 0
+    private lateinit var params: GameParameters
     private val auth = FirebaseAuth.getInstance()
-    val imgList = mutableListOf<Drawable>()
+    private val imgList = mutableListOf<Drawable>()
+    private var gameEnded = false
+    private var isPausedForDialog = false
+
     private lateinit var tvScore: TextView
     private lateinit var tvCombo: TextView
     private lateinit var ivCombo: ImageView
+    private lateinit var tvTimer: TextView
+    private lateinit var vTimer: View
+
     private var currentScore = 0
     private var comboCount = 0
     private var lastMatchTime = 0L
     private var gameStartTime = 0L
-    private val comboTimeWindow = 2000L  // 2 seconds to maintain combo
+    private var maxTimerWidth = 0
+
     private val handler = Handler(Looper.getMainLooper())
     private var timeBonusRunnable: Runnable? = null
-    private lateinit var vTimer: View
-    private lateinit var tvTimer: TextView
-    private var maxTimerWidth = 0
-    private val timerUpdateInterval = 100L // Update every 100ms for smoother animation
+    private var musicOff = false
+
     companion object {
         const val BASE_GRID_SIZE = 2
-        const val MAX_GRID_SIZE = 8
+        const val MAX_GRID_SIZE = 6
         const val BASE_PIECE_TYPES = 5
-        const val MAX_PIECE_TYPES = 15
-        const val BASE_TIME_SECONDS = 120
-        const val TIME_PER_PIECE = 5
+        const val MAX_PIECE_TYPES = 7
+        const val BASE_TIME_SECONDS = 1
+        const val TIME_PER_PIECE = 2
+        const val COMBO_TIME_WINDOW = 2000L
+        const val TIMER_UPDATE_INTERVAL = 100L
     }
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gameplay)
+        GameBGMusic.initialize(this)
+
+        val musicEnabled = (application as MatchItMania).userSettings.music ?: true
+        if (musicEnabled) {
+            GameBGMusic.play()
+        }
+
+        SoundEffects.init(this)
+
         tvScore = findViewById(R.id.tvScore)
-        tvCombo = findViewById(R.id.tvCombo)  // Add this TextView to your layout
-        ivCombo = findViewById(R.id.ivCombo)  // Add this TextView to your layout
-        tvTimer = findViewById(R.id.tvTimer) // Make sure this exists in your layout
-        vTimer = findViewById(R.id.vTimer) // Make sure this exists in your layout
-        vTimer.post {
-            maxTimerWidth = tvTimer.width // Store the maximum width
-            updateTimerWidth(params.timeLimit * 1000L) // Initialize with full width
-        }
+        tvCombo = findViewById(R.id.tvCombo)
+        ivCombo = findViewById(R.id.ivCombo)
+        tvTimer = findViewById(R.id.tvTimer)
+        vTimer = findViewById(R.id.vTimer)
 
-        updateScore(0)
-        updateComboDisplay()
-
-        val btnExit = findViewById<ImageView>(R.id.btnExit)
-        btnExit.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnSettings = findViewById<ImageView>(R.id.btnSettings)
-        btnSettings.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }
-
-        val tvLevelName = findViewById<TextView>(R.id.tvLevelName)
         level = intent.getIntExtra("LEVEL", 0)
-        tvLevelName.text = "Level $level"
+        findViewById<TextView>(R.id.tvLevelName).text = "Level $level"
 
         params = calculateGameParameters(level)
         initializeGame(params)
 
+        vTimer.post {
+            maxTimerWidth = vTimer.width
+            updateTimerWidth(params.timeLimit * 1000L)
+        }
+
+        findViewById<ImageView>(R.id.btnExit).setOnClickListener {
+            if (!gameEnded) {
+                isPausedForDialog = true
+                timeBonusRunnable?.let { handler.removeCallbacks(it) }
+                if (GameBGMusic.mediaPlayer?.isPlaying == false){
+                    musicOff = true
+                }
+                GameBGMusic.pause()
+
+                val intent = Intent(this, MessageActivity::class.java)
+                intent.putExtra("MESSAGE", "Do you want to end the game?")
+                intent.putExtra("TYPE", "CONFIRM_EXIT")
+                startActivityForResult(intent, 1)
+            }
+        }
+        updateScore(0)
+        updateComboDisplay()
+
         gameStartTime = System.currentTimeMillis()
         startTimeBonusCounter()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val userResponse = data?.getStringExtra("RESPONSE")
+            if (userResponse == "YES") {
+                handleLoss()
+            } else if (userResponse == "NO") {
+                if (isPausedForDialog) {
+                    isPausedForDialog = false
+                    if (musicOff) {
+                        GameBGMusic.pause()
+                    }  else {
+                        GameBGMusic.play()
+                    }
+                    startTimeBonusCounter()
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        BackgroundMusic.pause()
     }
 
     fun calculateGameParameters(level: Int): GameParameters {
@@ -145,85 +195,56 @@ class GameActivity : AppCompatActivity() {
         )
     }
 
-    // Helper function to calculate grid dimensions with non-linear scaling
-    private fun calculateGridDimension(
-        baseSize: Int,
-        levelTier: Int,
-        maxSize: Int,
-        difficultyModifier: Int = 0
-    ): Int {
+    private fun calculateGridDimension(baseSize: Int, levelTier: Int, maxSize: Int, difficultyModifier: Int = 0): Int {
         // Use a logarithmic formula for more dynamic scaling
         val dimension = baseSize + (ln(levelTier.toDouble() + 1) * 2) + (difficultyModifier * 0.1)
         return minOf(dimension.toInt(), maxSize)
     }
 
-    // Helper function to calculate piece types with gradual scaling
-    private fun calculatePieceTypes(
-        basePieceTypes: Int,
-        levelTier: Int,
-        maxPieceTypes: Int
-    ): Int {
-        // Use a square root formula for slower scaling
+    private fun calculatePieceTypes(basePieceTypes: Int, levelTier: Int, maxPieceTypes: Int): Int {
         return minOf(basePieceTypes + sqrt(levelTier.toDouble()).toInt(), maxPieceTypes)
     }
 
-    // Helper function to calculate time limit with balanced scaling
-    private fun calculateTimeLimit(
-        baseTime: Int,
-        levelTier: Int,
-        gridCapacity: Int, // Total number of cells in the grid
-        timePerPiece: Int
-    ): Int {
-        // Adjust time limit based on level tier and grid capacity
-        return baseTime - (levelTier * 5) + (gridCapacity * timePerPiece / 2)
+    private fun calculateTimeLimit(baseTime: Int, levelTier: Int, gridCapacity: Int, timePerPiece: Int): Int {
+        return baseTime - levelTier + (gridCapacity * timePerPiece / 2)
     }
 
     private fun initializeGame(params: GameParameters) {
         val glGame = findViewById<GridLayout>(R.id.glGame)
-        glGame.columnCount = 4  // Keeping your original column count
+        glGame.columnCount = 4
         glGame.rowCount = params.rows
 
-        // Create a list of paired numbers (0-7 only)
         val pairsList = mutableListOf<Int>()
-        for (i in 0 until params.pieceTypes) {
-            // Add each number twice (for matching pairs), modulo 8 to limit to 0-7
-            pairsList.add(i % 8)
-            pairsList.add(i % 8)
+        repeat(params.pieceTypes) {
+            pairsList.add(it % 7)
+            pairsList.add(it % 7)
         }
 
-        // Fill remaining slots with pairs from 0-7
         val remainingPairs = (params.rows * params.cols - pairsList.size) / 2
-        for (i in 0 until remainingPairs) {
-            val extraType = i % 8  // Limit to 0-7
+        repeat(remainingPairs) {
+            val extraType = it % 7
             pairsList.add(extraType)
             pairsList.add(extraType)
         }
 
-        // Shuffle the list (your original randomization)
         pairsList.shuffle()
 
-        // Load only images for types 0-7
         imgList.clear()
-        for (i in 0..7) {  // Only load 8 images (0-7)
+        for (i in 0..6) {
             val resId = resources.getIdentifier("blocks_$i", "drawable", packageName)
             if (resId != 0) {
                 ContextCompat.getDrawable(this, resId)?.let { imgList.add(it) }
-            } else {
-                Log.w("ImageLoader", "Drawable not found for blocks_$i")
             }
         }
 
-        // Your original grid placement code remains unchanged
-        for (index in 0 until pairsList.size) {
-            val pieceType = pairsList[index]
+        for (pieceType in pairsList) {
             val pieceView = Piece(this).apply {
                 gravity = Gravity.CENTER
                 setTextColor(Color.WHITE)
-                background = imgList[pieceType % 8]  // Ensure we only use 0-7
-                value = pieceType % 8  // Ensure value is 0-7
-                setOnClickListener {
-                    handleCLick(this)
-                }
+                val safeIndex = pieceType % imgList.size
+                background = imgList[safeIndex]
+                value = pieceType
+                setOnClickListener { handleClick(this) }
             }
 
             val gParams = GridLayout.LayoutParams().apply {
@@ -233,49 +254,42 @@ class GameActivity : AppCompatActivity() {
                 rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
                 setMargins(8, 8, 8, 8)
             }
+
             pieceView.layoutParams = gParams
             pieceView.post {
                 val width = pieceView.width
-                val height = pieceView.height
-                if (width != height) {
-                    pieceView.layoutParams.height = width
-                    pieceView.requestLayout()
-                }
+                pieceView.layoutParams.height = width
+                pieceView.requestLayout()
             }
             glGame.addView(pieceView)
         }
     }
+
     private fun updateScore(pointsToAdd: Int) {
         currentScore += pointsToAdd
+        if (currentScore < 0) currentScore = 0
         tvScore.text = "Score: $currentScore"
     }
 
-    @SuppressLint("SetTextI18n")
     private fun updateComboDisplay() {
         if (comboCount > 1) {
-            tvCombo.text = "$comboCount"
+            tvCombo.text = "x$comboCount Combo!"
             tvCombo.visibility = View.VISIBLE
-
         } else {
             tvCombo.visibility = View.GONE
         }
     }
 
-    private fun handleCLick(currentPieceView: Piece) {
+    private fun handleClick(currentPieceView: Piece) {
         if (activePieceView != currentPieceView) {
             if (activePieceView?.value == currentPieceView.value) {
-                // Successful match - handle combo
+                SoundEffects.playMatch()
                 val currentTime = System.currentTimeMillis()
-                if (currentTime - lastMatchTime < comboTimeWindow) {
-                    comboCount++
-                } else {
-                    comboCount = 1
-                }
+                comboCount = if (currentTime - lastMatchTime < COMBO_TIME_WINDOW) comboCount + 1 else 1
                 lastMatchTime = currentTime
 
-                // Calculate score with combo multiplier
-                val basePoints = 100 * level
-                val comboMultiplier = 1 + (comboCount * 0.2f)  // 20% bonus per combo
+                val basePoints = 10 * level
+                val comboMultiplier = 1f + (comboCount * 0.15f)
                 val totalPoints = (basePoints * comboMultiplier).toInt()
 
                 updateScore(totalPoints)
@@ -285,53 +299,53 @@ class GameActivity : AppCompatActivity() {
                 activePieceView?.isEnabled = false
                 activePieceView = null
                 matchedPieces++
-
             } else {
+                SoundEffects.playTap()
                 if (activePieceView != null) {
-                    // Failed match - reset combo
                     comboCount = 0
                     activePieceView?.deactivate()
-                    if(currentScore > 0)updateScore(-20)
+                    updateScore(-5 * level) // reduced penalty
                 }
-
                 updateComboDisplay()
                 activePieceView = currentPieceView
             }
         }
 
         if ((params.rows * params.cols) / 2 == matchedPieces) {
-            // Calculate time bonus
             val elapsedTime = (System.currentTimeMillis() - gameStartTime) / 1000
             val timeLeft = max(0, params.timeLimit - elapsedTime)
-            val timeBonus = (timeLeft * 10 * level)  // 10 points per second left × level
+            val timeBonus = (timeLeft * 3 * level)  // reduced time bonus scaling
 
             updateScore(timeBonus.toInt())
-            updateScore(500 * level)  // Base level completion bonus
+            updateScore(300 * level) // win bonus scaled down slightly
 
-            handler.removeCallbacks(timeBonusRunnable!!)
+            timeBonusRunnable?.let { handler.removeCallbacks(it) }
             handleWin()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        handler.removeCallbacksAndMessages(null)
+        timeBonusRunnable?.let { handler.removeCallbacks(it) }
+        GameBGMusic.stop()
     }
 
     private fun handleWin() {
+        gameEnded = true
+        GameBGMusic.stop()
+        SoundEffects.playWin()
         auth.currentUser?.uid?.let { userId ->
             lifecycleScope.launch {
                 try {
                     val app = (application as MatchItMania)
-                    if(level == app.userProfile.level) app.userProfile.level += 1
-                    if(currentScore > app.userProfile.highestScore) app.userProfile.highestScore = currentScore
-                    if(comboCount > app.userProfile.maxCombo) app.userProfile.maxCombo = comboCount
+                    if (level == app.userProfile.level) app.userProfile.level++
+                    if (currentScore > app.userProfile.highestScore) app.userProfile.highestScore = currentScore
+                    if (comboCount > app.userProfile.maxCombo) app.userProfile.maxCombo = comboCount
                     val elapsedMillis = System.currentTimeMillis() - gameStartTime
-                    if(elapsedMillis < app.userProfile.fastestClear) app.userProfile.fastestClear = elapsedMillis
+                    if (elapsedMillis < app.userProfile.fastestClear) app.userProfile.fastestClear = elapsedMillis
 
                     app.saveUserData(this@GameActivity, app.userProfile)
 
-                    Log.i("TASK", "Settings successfully saved!")
                     val intent = Intent(this@GameActivity, MessageActivity::class.java)
                     intent.putExtra("MESSAGE", "You won!\n Total score: $currentScore")
                     intent.putExtra("TYPE", "OK")
@@ -343,59 +357,58 @@ class GameActivity : AppCompatActivity() {
             }
         } ?: Log.e("TASK", "User is not logged in. Cannot save settings.")
     }
+
     private fun handleLoss() {
-        val intent = Intent(this@GameActivity, MessageActivity::class.java)
+        gameEnded = true
+        GameBGMusic.stop()
+        SoundEffects.playLose()
         val app = (application as MatchItMania)
-        app.userProfile.losses += 1
-        app.saveUserData(this@GameActivity, app.userProfile)
+        app.userProfile.losses++
+        app.saveUserData(this, app.userProfile)
+
+        val intent = Intent(this@GameActivity, MessageActivity::class.java)
         intent.putExtra("MESSAGE", "You lost! Try again.")
         intent.putExtra("TYPE", "OK")
         startActivity(intent)
     }
+
     private fun startTimeBonusCounter() {
+        timeBonusRunnable?.let { handler.removeCallbacks(it) }
         timeBonusRunnable = object : Runnable {
             override fun run() {
+                if (gameEnded) return
                 val elapsedMillis = System.currentTimeMillis() - gameStartTime
                 val remainingMillis = max(0, (params.timeLimit * 1000L) - elapsedMillis)
 
                 if (remainingMillis == 0L) {
-                    // Time is up — handle loss
                     handleLoss()
-                    return // Exit the runnable, stop posting more updates
+                    return
                 }
 
-                // Update timer bar width or progress
                 updateTimerWidth(remainingMillis)
 
-                // Calculate minutes and seconds
                 val totalSeconds = (remainingMillis / 1000).toInt()
                 val minutes = totalSeconds / 60
                 val seconds = totalSeconds % 60
-
-                // Format time as mm:ss
                 tvTimer.text = String.format("%d:%02d", minutes, seconds)
 
-                // Change text color if time is running out
-                if (totalSeconds <= 10) {
-                    tvTimer.setTextColor(Color.RED)
-                } else {
-                    tvTimer.setTextColor(ContextCompat.getColor(this@GameActivity, R.color.white))
-                }
+                tvTimer.setTextColor(
+                    if (totalSeconds <= 10) Color.RED
+                    else ContextCompat.getColor(this@GameActivity, R.color.white)
+                )
 
-                // Schedule next update
-                handler.postDelayed(this, timerUpdateInterval)
+                handler.postDelayed(this, TIMER_UPDATE_INTERVAL)
             }
         }
 
         handler.post(timeBonusRunnable!!)
     }
 
-
     private fun updateTimerWidth(remainingMillis: Long) {
         if (::vTimer.isInitialized && maxTimerWidth > 0) {
             val progress = remainingMillis.toFloat() / (params.timeLimit * 1000L)
-            val newWidth = (maxTimerWidth * progress).toInt()
-            vTimer.layoutParams.width = max(1, newWidth) // Ensure it never goes to 0
+            val newWidth = (progress * maxTimerWidth).toInt()
+            vTimer.layoutParams.width = newWidth
             vTimer.requestLayout()
         }
     }

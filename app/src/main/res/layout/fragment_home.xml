@@ -74,14 +74,41 @@
         app:backColor="@color/MYellow"
         app:cornerRadius="50dp"
         app:fontWeight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="3:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toTopOf="@id/glButtonsTop"
+        app:layout_constraintBottom_toTopOf="@id/btnTutorial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="4.5:1"
         app:shadowColor="@color/MPurple"
-        app:shadowRadius="20dp" />
+        app:shadowRadius="12dp" />
+
+    <views.MButton
+        android:id="@+id/btnTutorial"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:autoSizeMaxTextSize="32sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:contentDescription=""
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:text="TUTORIAL"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        app:backColor="@color/MPurple"
+        app:cornerRadius="50dp"
+        app:fontWeight="1"
+        app:layout_constraintTop_toBottomOf="@id/btnPlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="4.5:1"
+        app:shadowColor="@color/MPurple"
+        app:shadowRadius="12dp" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glProfileUp"
@@ -102,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.83" />
+        app:layout_constraintGuide_percent="0.6" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glHomeButtonR"
         android:layout_width="wrap_content"
@@ -115,5 +142,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.32" />
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glButtonsTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
