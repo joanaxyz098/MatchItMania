@@ -14,7 +14,7 @@ data class UserProfile(
     var losses: Int = 0,
     var friends: MutableList<String> = mutableListOf(),
     var sentReq: MutableList<String> = mutableListOf(),
-    var recReq: MutableList<String> = mutableListOf(),
+    var recReq: MutableList<String> = mutableListOf()
 ) : Serializable {
 
     fun toMap(): Map<String, Any> {
@@ -30,7 +30,7 @@ data class UserProfile(
             "losses" to losses,
             "friends" to friends,
             "sentReq" to sentReq,
-            "recREq" to recReq
+            "recReq" to recReq
         )
     }
 }

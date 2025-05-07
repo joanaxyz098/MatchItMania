@@ -98,6 +98,11 @@ class EditProfileActivity : AppCompatActivity() {
         setupBGButtons()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     override fun onResume() {
         super.onResume()
         val musicEnabled = (application as MatchItMania).userSettings.music ?: true

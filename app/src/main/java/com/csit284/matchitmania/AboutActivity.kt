@@ -193,4 +193,9 @@ class AboutActivity: Activity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
+    }
 }

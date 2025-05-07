@@ -27,6 +27,12 @@ class SelectLevelActivity : AppCompatActivity() {
         setUpLevels()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onResume() {
         super.onResume()
         val musicEnabled = (application as MatchItMania).userSettings.music ?: true
@@ -34,8 +40,6 @@ class SelectLevelActivity : AppCompatActivity() {
             BackgroundMusic.play()
         }
     }
-
-
 
     private fun setUpLevels() {
         val gridLayout = findViewById<GridLayout>(R.id.glLevels)

@@ -158,4 +158,8 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navigateToHome()
+    }
 }

@@ -62,8 +62,8 @@ class GameActivity : AppCompatActivity() {
         const val MAX_GRID_SIZE = 6
         const val BASE_PIECE_TYPES = 5
         const val MAX_PIECE_TYPES = 7
-        const val BASE_TIME_SECONDS = 1
-        const val TIME_PER_PIECE = 2
+        const val BASE_TIME_SECONDS = 3
+        const val TIME_PER_PIECE = 3
         const val COMBO_TIME_WINDOW = 2000L
         const val TIMER_UPDATE_INTERVAL = 100L
     }
@@ -146,11 +146,17 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun calculateGameParameters(level: Int): GameParameters {
-        // Base difficulty determined by level % 10 (0-9)
-        val difficultyModifier = level % 10
+        val difficultyModifier = if (level == 1) {
+            0 // or a special value, like -1, to mark it as "unique"
+        } else {
+            level % 10
+        }
 
-        // Determine which "decade" of levels we're in (1-10, 11-20, etc.)
-        val levelTier = ((level - 1) / 10) + 1
+        val levelTier = if (level == 1) {
+            0 // or 1, depending on whether tiering starts at 0 or 1
+        } else {
+            ((level - 1) / 10) + 1
+        }
 
         // Calculate grid dimensions ensuring they can accommodate pairs
         var rows = calculateGridDimension(BASE_GRID_SIZE, levelTier, MAX_GRID_SIZE)
@@ -412,4 +418,24 @@ class GameActivity : AppCompatActivity() {
             vTimer.requestLayout()
         }
     }
+
+    override fun onBackPressed() {
+        if (!gameEnded) {
+            isPausedForDialog = true
+            timeBonusRunnable?.let { handler.removeCallbacks(it) }
+
+            if (GameBGMusic.mediaPlayer?.isPlaying == false) {
+                musicOff = true
+            }
+            GameBGMusic.pause()
+
+            val intent = Intent(this, MessageActivity::class.java)
+            intent.putExtra("MESSAGE", "Do you want to end the game?")
+            intent.putExtra("TYPE", "CONFIRM_EXIT")
+            startActivityForResult(intent, 1)
+        } else {
+            super.onBackPressed()  // or finish() if you want to close the activity
+        }
+    }
+
 }

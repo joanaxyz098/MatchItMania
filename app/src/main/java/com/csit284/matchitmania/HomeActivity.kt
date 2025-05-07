@@ -51,6 +51,12 @@ class HomeActivity : AppCompatActivity(), Clickable {
         BackgroundMusic.release()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+
     private fun setupViews() {
         btnHome = findViewById(R.id.btnHome)
         btnLeaderb = findViewById(R.id.btnboards)

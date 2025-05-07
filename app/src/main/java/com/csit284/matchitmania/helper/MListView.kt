@@ -2,19 +2,16 @@ package com.csit284.matchitmania
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.csit284.matchitmania.app.MatchItMania
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import userGenerated.UserProfile
+
 enum class AdapterType {
     FIND,
     FRIENDS,
@@ -31,7 +28,6 @@ class MListView(
 
     private var filteredUsers: List<UserProfile> = originalUsers
         .filter { user ->
-            // Filter out current user for non-leaderboard adapters
             if (adapterType != AdapterType.LEADERBOARD) {
                 user.username != (activity.applicationContext as MatchItMania).userProfile.username
             } else {
@@ -39,6 +35,7 @@ class MListView(
             }
         }
         .toList()
+
     private var expandedPosition = -1
 
     override fun getCount(): Int = filteredUsers.size
@@ -51,7 +48,6 @@ class MListView(
         val view = convertView ?: activity.layoutInflater.inflate(R.layout.list_item, parent, false)
         val user = filteredUsers[position]
 
-        // Get references to views
         val tvRank = view.findViewById<TextView>(R.id.tvRank)
         val ivAvatar = view.findViewById<ImageView>(R.id.ivAvatar)
         val tvUsername = view.findViewById<TextView>(R.id.tvUsername)
@@ -59,48 +55,33 @@ class MListView(
         val btnAddRemoveFriend = view.findViewById<ImageButton>(R.id.btnAddRemoveFriend)
         val btnUserInfo = view.findViewById<ImageButton>(R.id.btnUserInfo)
 
-        // Set data
+        val app = activity.applicationContext as MatchItMania
+        val currentUser = app.userProfile
+        val username = currentUser.username
+
         tvRank.text = (position + 1).toString()
-        val username = (activity.applicationContext as MatchItMania).userProfile.username
-        tvUsername.text = if(user.username == username){
-            "You"
-        }else{
-            user.username
-        }
+        tvUsername.text = if (user.username == username) "You" else user.username
         tvLevel.text = "Level ${user.level}"
 
-        val resourceId = activity.resources.getIdentifier(
-            user.profileImageId, "drawable", activity.packageName
+        val resourceId = activity.resources.getIdentifier(user.profileImageId, "drawable", activity.packageName)
+        val colorId = activity.resources.getIdentifier(user.profileColor, "color", activity.packageName)
+
+        ivAvatar.setImageResource(if (resourceId != 0) resourceId else R.drawable.avatar1)
+        ivAvatar.setBackgroundColor(
+            if (colorId != 0) ContextCompat.getColor(activity, colorId) else colorId
         )
 
-        val colorId = activity.resources.getIdentifier(
-            user.profileColor, "color", activity.packageName
-        )
-
-        if (resourceId != 0) {
-            ivAvatar.setImageResource(resourceId)
-        } else {
-            ivAvatar.setImageResource(R.drawable.avatar1) // Default image
-        }
-
-        if(colorId != 0){
-            val color = ContextCompat.getColor(activity, colorId)
-            ivAvatar.setBackgroundColor(color)
-        }else{
-            ivAvatar.setBackgroundColor(colorId)
-        }
-
-        val app = (activity.applicationContext as MatchItMania)
-        val isFriend = app.userProfile.friends.contains(user.username)
-        val isSent = app.userProfile.sentReq.contains(user.username)
-
-        val isCurrentUser = user.username == app.userProfile.username
+        val isCurrentUser = user.username == username
+        val isFriend = currentUser.friends.contains(user.username)
+        val isSent = currentUser.sentReq.contains(user.username)
+        val isReceived = currentUser.recReq.contains(user.username)
 
         btnAddRemoveFriend.visibility = when {
             adapterType == AdapterType.LEADERBOARD -> View.GONE
             !isCurrentUser && position == expandedPosition -> View.VISIBLE
             else -> View.GONE
         }
+
         btnUserInfo.visibility = if (!isCurrentUser && position == expandedPosition) View.VISIBLE else View.GONE
 
         btnAddRemoveFriend.setBackgroundResource(
@@ -108,9 +89,12 @@ class MListView(
                 AdapterType.RECEIVED -> R.drawable.check
                 AdapterType.SENT -> R.drawable.remove
                 AdapterType.FIND -> {
-                    if(isSent) R.drawable.remove
-                    else if(isFriend) R.drawable.remove
-                    else R.drawable.add
+                    when {
+                        isFriend -> R.drawable.remove
+                        isSent -> R.drawable.remove
+                        isReceived -> R.drawable.check
+                        else -> R.drawable.add
+                    }
                 }
                 AdapterType.FRIENDS -> R.drawable.remove
                 else -> R.drawable.add
@@ -118,16 +102,13 @@ class MListView(
         )
 
         view.setOnClickListener {
-            if (user.username != (activity.applicationContext as MatchItMania).userProfile.username) {
+            if (!isCurrentUser) {
                 expandedPosition = if (position == expandedPosition) -1 else position
                 notifyDataSetChanged()
             }
         }
 
-
         btnAddRemoveFriend.setOnClickListener {
-            val app = (activity.applicationContext as MatchItMania)
-
             btnAddRemoveFriend.isEnabled = false
 
             when (adapterType) {
@@ -148,18 +129,37 @@ class MListView(
                     }
                 }
                 AdapterType.FIND -> {
-                    if(isSent) {
-                        app.declineRequest(user.username) {
-                            activity.runOnUiThread {
-                                notifyDataSetChanged()
-                                btnAddRemoveFriend.isEnabled = true
+                    when {
+                        isFriend -> {
+                            app.removeFriend(user.username) {
+                                activity.runOnUiThread {
+                                    notifyDataSetChanged()
+                                    btnAddRemoveFriend.isEnabled = true
+                                }
                             }
                         }
-                    }else{
-                        app.sendRequest(user.username) {
-                            activity.runOnUiThread {
-                                notifyDataSetChanged()
-                                btnAddRemoveFriend.isEnabled = true
+                        isSent -> {
+                            app.declineRequest(user.username) {
+                                activity.runOnUiThread {
+                                    notifyDataSetChanged()
+                                    btnAddRemoveFriend.isEnabled = true
+                                }
+                            }
+                        }
+                        isReceived -> {
+                            app.acceptRequest(user.username) {
+                                activity.runOnUiThread {
+                                    notifyDataSetChanged()
+                                    btnAddRemoveFriend.isEnabled = true
+                                }
+                            }
+                        }
+                        else -> {
+                            app.sendRequest(user.username) {
+                                activity.runOnUiThread {
+                                    notifyDataSetChanged()
+                                    btnAddRemoveFriend.isEnabled = true
+                                }
                             }
                         }
                     }
@@ -173,7 +173,6 @@ class MListView(
                     }
                 }
                 AdapterType.LEADERBOARD -> {
-                    //does nothing
                     btnAddRemoveFriend.isEnabled = true
                 }
             }
@@ -187,6 +186,7 @@ class MListView(
 
         return view
     }
+
     fun filter(query: String) {
         val lowerQuery = query.lowercase().trim()
         filteredUsers = if (lowerQuery.isEmpty()) {
@@ -194,7 +194,7 @@ class MListView(
         } else {
             originalUsers.filter { it.username.lowercase().contains(lowerQuery) }
         }
-        expandedPosition = -1 // collapse any expanded items
+        expandedPosition = -1
         notifyDataSetChanged()
     }
 }

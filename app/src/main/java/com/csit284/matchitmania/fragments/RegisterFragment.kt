@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.csit284.matchitmania.R
@@ -56,14 +57,24 @@ class RegisterFragment : Fragment() {
         super.onDetach()
         clickListener = null
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_register, container, false)
+
+        // Handle back press to exit the app
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish() // This will close the app
+            }
+        })
+
         setupViews(view)
         return view
     }
+
 
     private fun setupViews(view: View) {
         mAuth = FirebaseAuth.getInstance()

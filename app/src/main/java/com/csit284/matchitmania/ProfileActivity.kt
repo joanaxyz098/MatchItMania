@@ -150,4 +150,10 @@ class ProfileActivity : AppCompatActivity() {
                 profile.invalidate()
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+    }
 }
