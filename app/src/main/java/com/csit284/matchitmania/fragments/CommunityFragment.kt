@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ListView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SwitchCompat
 import com.csit284.matchitmania.AdapterType
@@ -68,6 +69,11 @@ class CommunityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_community, container, false)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finishAffinity() // This will close the app
+            }
+        })
         setupViews(view)
         return view
     }

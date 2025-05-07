@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.csit284.matchitmania.AdapterType
 import com.csit284.matchitmania.MListView
@@ -36,6 +37,11 @@ class LeaderboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_leaderboard, container, false)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finishAffinity() // This will close the app
+            }
+        })
         setupViews(view)
         return view
     }

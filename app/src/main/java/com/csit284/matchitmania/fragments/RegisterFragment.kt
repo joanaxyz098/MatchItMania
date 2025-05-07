@@ -67,7 +67,7 @@ class RegisterFragment : Fragment() {
         // Handle back press to exit the app
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                requireActivity().finish() // This will close the app
+                requireActivity().finishAffinity() // This will close the app
             }
         })
 
